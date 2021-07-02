@@ -1,5 +1,5 @@
 import Home from "./home";
-import Sudoku from "./sudoku";
+import Sudoku from "./sudokuSolver";
 import PasswordGen from "./passwordGen";
 
 function Body(props) {

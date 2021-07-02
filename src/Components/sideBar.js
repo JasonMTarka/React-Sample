@@ -12,6 +12,7 @@ function SideBar(props) {
     sideBar["codeText"] = "Website Code - Github";
     sideBar["codeLink"] =
       "https://github.com/JasonMTarka/React-Sample/tree/main/src";
+    //
   } else if (props.currentPage === "sudoku") {
     sideBar["pageName"] = "Sudoku Solver";
     sideBar["description"] =
@@ -21,6 +22,7 @@ function SideBar(props) {
       "https://github.com/JasonMTarka/React-Sample/blob/main/src/Components/sudoku.js";
     sideBar["componentCodeText"] = "Sudoku Form Component - Github";
     sideBar["componentCodeLink"] = "";
+    //
   } else if (props.currentPage === "passwordGen") {
     sideBar["pageName"] = "Password Generator";
     sideBar["description"] =
