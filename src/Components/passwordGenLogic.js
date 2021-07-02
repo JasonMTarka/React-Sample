@@ -51,6 +51,8 @@ class Password {
     }
     if (this._source) {
       this.value = this.passBuilder();
+    } else {
+      this.value = "Please select at least one option.";
     }
   }
 

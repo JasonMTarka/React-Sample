@@ -4,7 +4,7 @@ import PasswordGen from "./passwordGen";
 
 function Body(props) {
   return (
-    <div className="container">
+    <div>
       <div className="col-9">
         <div>{props.currentPage === "home" ? <Home /> : ""}</div>
         <div>{props.currentPage === "sudoku" ? <Sudoku /> : ""}</div>
