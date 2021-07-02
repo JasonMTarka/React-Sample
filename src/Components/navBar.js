@@ -1,6 +1,5 @@
 function NavBar(props) {
   const navButtonPressed = (buttonName) => {
-    console.log("Updating page to", buttonName);
     props.updatePage(buttonName);
   };
 

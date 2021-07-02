@@ -1,47 +1,48 @@
 function SideBar(props) {
-  let sideBar = { emailBox: "jasonmtarka@gmail.com" };
+  let sideBar = {
+    emailBox: "jasonmtarka@gmail.com",
+    huiText: "HUI",
+    huiLink: "https://hui.co.jp/",
+  };
+
   if (props.currentPage === "home") {
     sideBar["pageName"] = "Home";
-    sideBar["box1Text"] = "Website Code";
-    sideBar["box1Link"] = "Github URL";
-    sideBar["box2Text"] = "Other Code";
-    sideBar["box2Link"] = "Other URL";
-    sideBar["box3Text"] = "Yet More Code";
-    sideBar["box3LLink"] = "Yet Another URL";
+    sideBar["description"] =
+      "You can view this site's source code at the Github link below.  Also, you can see the source code for each page by following each page's code link.";
+    sideBar["codeText"] = "Website Code - Github";
+    sideBar["codeLink"] =
+      "https://github.com/JasonMTarka/React-Sample/tree/main/src";
   } else if (props.currentPage === "sudoku") {
     sideBar["pageName"] = "Sudoku Solver";
-    sideBar["box1Text"] = "Sudoku Code";
-    sideBar["box1Link"] = "Github URL";
-    sideBar["box2Text"] = "Other Code";
-    sideBar["box2Link"] = "Other URL";
-    sideBar["box3Text"] = "Yet More Code";
-    sideBar["box3Link"] = "Yet Another URL";
+    sideBar["description"] =
+      "A sudoku solver which uses recursion and backtracking to find the solution.";
+    sideBar["codeText"] = "Sudoku Code - Github";
+    sideBar["codeLink"] =
+      "https://github.com/JasonMTarka/React-Sample/blob/main/src/Components/sudoku.js";
   } else if (props.currentPage === "passwordGen") {
     sideBar["pageName"] = "Password Generator";
-    sideBar["box1Text"] = "Password Code";
-    sideBar["box1Link"] = "Github URL";
-    sideBar["box2Text"] = "Other Code";
-    sideBar["box2Link"] = "Other URL";
-    sideBar["box3Text"] = "Yet More Code";
-    sideBar["box3Link"] = "Yet Another URL";
+    sideBar["description"] =
+      "A password generator which generates a random password based on user input, including which character sets to include, minimum amounts of numbers and symbols, and password length. The copy password button enables users to copy the generated password for ease of use.";
+    sideBar["codeText"] = "Password Code - Github";
+    sideBar["codeLink"] =
+      "https://github.com/JasonMTarka/React-Sample/blob/main/src/Components/passwordGen.js";
   }
 
   return (
     <div className="container">
       <div className="content-section">
-        <h4>{sideBar.pageName}</h4>
         <ul className="list-group">
           <li className="list-group-item list-group-item-light">
-            <a>{sideBar.box1Text}</a>
+            <p>{sideBar.description}</p>
           </li>
           <li className="list-group-item list-group-item-light">
-            <a>{sideBar.box2Text}</a>
+            <a href={sideBar.codeLink}>{sideBar.codeText}</a>
           </li>
           <li className="list-group-item list-group-item-light">
-            <a>{sideBar.box3Text}</a>
+            <a href={sideBar.huiLink}>{sideBar.huiText}</a>
           </li>
           <li className="list-group-item list-group-item-light">
-            <a>{sideBar.emailBox}</a>
+            {sideBar.emailBox}
           </li>
         </ul>
       </div>
