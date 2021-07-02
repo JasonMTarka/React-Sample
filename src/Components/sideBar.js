@@ -19,13 +19,18 @@ function SideBar(props) {
     sideBar["codeText"] = "Sudoku Code - Github";
     sideBar["codeLink"] =
       "https://github.com/JasonMTarka/React-Sample/blob/main/src/Components/sudoku.js";
+    sideBar["componentCodeText"] = "Sudoku Form Component - Github";
+    sideBar["componentCodeLink"] = "";
   } else if (props.currentPage === "passwordGen") {
     sideBar["pageName"] = "Password Generator";
     sideBar["description"] =
       "A password generator which generates a random password based on user input, including which character sets to include, minimum amounts of numbers and symbols, and password length. The copy password button enables users to copy the generated password for ease of use.";
-    sideBar["codeText"] = "Password Code - Github";
+    sideBar["codeText"] = "Password Logic - Github";
     sideBar["codeLink"] =
       "https://github.com/JasonMTarka/React-Sample/blob/main/src/Components/passwordGen.js";
+    sideBar["componentCodeText"] = "Password Form Component - Github";
+    sideBar["componentCodeLink"] =
+      "https://github.com/JasonMTarka/React-Sample/blob/main/src/Components/PasswordForm.js";
   }
 
   return (
@@ -38,6 +43,15 @@ function SideBar(props) {
           <li className="list-group-item list-group-item-light">
             <a href={sideBar.codeLink}>{sideBar.codeText}</a>
           </li>
+          {sideBar.componentCodeLink ? (
+            <li className="list-group-item list-group-item-light">
+              <a href={sideBar.componentCodeLink}>
+                {sideBar.componentCodeText}
+              </a>
+            </li>
+          ) : (
+            ""
+          )}
           <li className="list-group-item list-group-item-light">
             <a href={sideBar.huiLink}>{sideBar.huiText}</a>
           </li>

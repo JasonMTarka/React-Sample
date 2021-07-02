@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Password from "./passwordGenLogic";
+import Password from "./Logic/passwordGenLogic";
 
 class PasswordForm extends Component {
   constructor(props) {
