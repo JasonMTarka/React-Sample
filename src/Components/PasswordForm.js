@@ -4,7 +4,9 @@ import Password from "./passwordGenLogic";
 class PasswordForm extends Component {
   constructor(props) {
     super(props);
+
     let defaultPassword = new Password({});
+
     this.state = {
       lowercase: defaultPassword.lowercase,
       uppercase: defaultPassword.uppercase,
@@ -68,22 +70,28 @@ class PasswordForm extends Component {
       minSyms: this.state.minSyms,
       passLen: this.state.passLen,
     });
-    console.log(newPassword.value);
+    this.setState({
+      password: newPassword.value,
+    });
     event.preventDefault();
   };
 
   render() {
-    const minNumsOptions = 4;
+    const maxAllowedPassLen = 16;
+    const maxAllowedMinNums = 4;
+    const maxAllowedMinSyms = 4;
+
+    const minNumsOptions = maxAllowedMinNums;
     const minNumsItems = [];
     for (let i = 0; i < minNumsOptions + 1; i++) {
       minNumsItems.push(<option key={i}>{i}</option>);
     }
-    const minSymsOptions = 4;
+    const minSymsOptions = maxAllowedMinSyms;
     const minSymsItems = [];
     for (let i = 0; i < minSymsOptions + 1; i++) {
       minSymsItems.push(<option key={i}>{i}</option>);
     }
-    const passLengthOptions = 16;
+    const passLengthOptions = maxAllowedPassLen;
     const passLengthItems = [];
     for (let i = 0; i < passLengthOptions + 1; i++) {
       passLengthItems.push(<option key={i}>{i}</option>);
@@ -91,49 +99,53 @@ class PasswordForm extends Component {
 
     return (
       <form onSubmit={this.handleSubmit}>
-        <div className="form-check mt-4">
-          <label className="form-check-label">Lowercase</label>
-          <input
-            type="checkbox"
-            className="form-check-input"
-            name="lowercase"
-            value="lowercase"
-            checked={this.state.lowercase}
-            onChange={this.handleLowercaseChange}
-          ></input>
+        <div className="row mt-3">
+          <div className="col form-check">
+            <label className="form-check-label">Lowercase</label>
+            <input
+              type="checkbox"
+              className="form-check-input"
+              name="lowercase"
+              value="lowercase"
+              checked={this.state.lowercase}
+              onChange={this.handleLowercaseChange}
+            ></input>
+          </div>
+          <div className="col form-check">
+            <label className="form-check-label">Uppercase</label>
+            <input
+              type="checkbox"
+              className="form-check-input"
+              name="uppercase"
+              value="uppercase"
+              checked={this.state.uppercase}
+              onChange={this.handleUppercaseChange}
+            ></input>
+          </div>
         </div>
-        <div className="form-check">
-          <label className="form-check-label">Uppercase</label>
-          <input
-            type="checkbox"
-            className="form-check-input"
-            name="uppercase"
-            value="uppercase"
-            checked={this.state.uppercase}
-            onChange={this.handleUppercaseChange}
-          ></input>
-        </div>
-        <div className="form-check">
-          <label className="form-check-label">Numbers</label>
-          <input
-            type="checkbox"
-            className="form-check-input"
-            name="nums"
-            value="nums"
-            checked={this.state.nums}
-            onChange={this.handleNumsChange}
-          ></input>
-        </div>
-        <div className="form-check">
-          <label className="form-check-label">Symbols</label>
-          <input
-            type="checkbox"
-            className="form-check-input"
-            name="syms"
-            value="syms"
-            checked={this.state.syms}
-            onChange={this.handleSymsChange}
-          ></input>
+        <div className="row mt-3">
+          <div className="col form-check">
+            <label className="form-check-label">Numbers</label>
+            <input
+              type="checkbox"
+              className="form-check-input"
+              name="nums"
+              value="nums"
+              checked={this.state.nums}
+              onChange={this.handleNumsChange}
+            ></input>
+          </div>
+          <div className="col form-check">
+            <label className="form-check-label">Symbols</label>
+            <input
+              type="checkbox"
+              className="form-check-input"
+              name="syms"
+              value="syms"
+              checked={this.state.syms}
+              onChange={this.handleSymsChange}
+            ></input>
+          </div>
         </div>
         <div className="mt-4">
           <div className="row">
@@ -143,6 +155,7 @@ class PasswordForm extends Component {
                 value={this.state.minNums}
                 className="form-select"
                 onChange={this.handleMinNumsChange}
+                disabled={this.state.nums === true ? "" : "disabled"}
               >
                 {minNumsItems}
               </select>
@@ -155,15 +168,16 @@ class PasswordForm extends Component {
                 className="form-select"
                 value={this.state.minSyms}
                 onChange={this.handleMinSymsChange}
+                disabled={this.state.syms === true ? "" : "disabled"}
               >
                 {minSymsItems}
               </select>
             </label>
           </div>
         </div>
-        <div>
+        <div className="mt-3">
           <label>
-            Password length
+            Password Length
             <select
               className="form-select"
               value={this.state.passLen}
@@ -173,10 +187,22 @@ class PasswordForm extends Component {
             </select>
           </label>
         </div>
-        <div className="mt-3">
-          <button className="btn btn-primary" type="submit">
-            Submit
-          </button>
+        <div className="mt-5">
+          <div>
+            <input
+              className="form-control"
+              type="text"
+              placeholder={
+                this.state.password ? this.state.password : "Waiting..."
+              }
+              disabled="disabled"
+            ></input>
+          </div>
+          <div className="mt-3">
+            <button className="btn btn-primary" type="submit">
+              Create Password
+            </button>
+          </div>
         </div>
       </form>
     );
@@ -184,21 +210,3 @@ class PasswordForm extends Component {
 }
 
 export default PasswordForm;
-
-// {
-//   Object.keys(defaultCheckbox).map((checkboxName, index) => {
-//     return (
-//       <div key={index}>
-//         <input
-//           type="checkbox"
-//           id={`custom-checkbox-${index}`}
-//           name={checkboxName}
-//           value={checkboxName}
-//           checked={checkedState[index]}
-//           onChange={() => handleOnChange(index)}
-//         />
-//         <label htmlFor={`custom-checkbox-${index}`}>{checkboxName}</label>
-//       </div>
-//     );
-//   });
-// }

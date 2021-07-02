@@ -10,7 +10,7 @@ function PasswordGen(props) {
           password!
         </p>
       </div>
-      <div className="d-flex justify-content-center">
+      <div>
         <PasswordForm />
       </div>
     </div>

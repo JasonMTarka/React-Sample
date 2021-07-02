@@ -16,10 +16,10 @@ function App() {
       <NavBar updatePage={updatePage} />
       <div className="container">
         <div className="row mt-3">
-          <div className="col-8">
+          <div className="col-7">
             <Body currentPage={currentPage} />
           </div>
-          <div className="col-4 mt-3">
+          <div className="col-5 mt-3">
             <SideBar currentPage={currentPage} />
           </div>
         </div>
