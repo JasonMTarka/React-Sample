@@ -5,33 +5,86 @@ function SideBar(props) {
     huiLink: "https://hui.co.jp/",
   };
 
+  const text = {
+    eng: {
+      HomePageName: "Home",
+      HomeDesc:
+        "You can view this site's source code at the Github link below.  Also, you can see the source code for each page by following each page's code link.",
+      HomeCodeText: "Website Code - Github",
+      SudokuPageName: "Sudoku Solver",
+      SudokuDesc:
+        "A sudoku solver which uses recursion and backtracking to find the solution.",
+      SudokuCodeText: "Sudoku Code - Github",
+      SudokuComponentText: "Sudoku Form Component - Github",
+      PassGenDesc:
+        "A password generator which generates a random password based on user input, including which character sets to include, minimum amounts of numbers and symbols, and password length.",
+      PassGenCodeText: "Password Logic - Github",
+      PassGenComponentText: "Password Form Component - Github",
+    },
+    jp: {
+      HomePageName: "ホームページ",
+      HomeDesc:
+        "本サイトのソースコードは以下のリンクを押せばご覧になります。また、各ページのコードリンクを押せば、そのページのソースコードが見えます。",
+      HomeCodeText: "本サイトのソースコード・Github",
+      SudokuPageName: "数独自動解決アプリ",
+      SudokuDesc: "再帰のアルゴリズムにより、数独を自動的に解決するアプリ。",
+      SudokuCodeText: "数独自動解決アプリのソースコード・Github",
+      SudokuComponentText: "数独のReactコンポーネント・Github",
+      PassGenPageName: "パスワード自動生成アプリ",
+      PassGenDesc:
+        "ユーザーの記入した情報に基づいて自動的にパスワードを作成するアプリ。",
+      PassGenCodeText: "パスワードアプリのソースコード・Github",
+      PassGenComponentText: "パスワードアプリのReactコンポーネント・Github",
+    },
+  };
+
   if (props.currentPage === "home") {
-    sideBar["pageName"] = "Home";
+    sideBar["pageName"] =
+      props.language === "jp" ? text.jp.HomePageName : text.eng.HomePageName;
     sideBar["description"] =
-      "You can view this site's source code at the Github link below.  Also, you can see the source code for each page by following each page's code link.";
-    sideBar["codeText"] = "Website Code - Github";
+      props.language === "jp" ? text.jp.HomeDesc : text.eng.HomeDesc;
+    sideBar["codeText"] =
+      props.language === "jp" ? text.jp.HomeCodeText : text.eng.HomeCodeText;
     sideBar["codeLink"] =
       "https://github.com/JasonMTarka/React-Sample/tree/main/src";
     //
   } else if (props.currentPage === "sudoku") {
-    sideBar["pageName"] = "Sudoku Solver";
+    sideBar["pageName"] =
+      props.language === "jp"
+        ? text.jp.SudokuPageName
+        : text.eng.SudokuPageName;
     sideBar["description"] =
-      "A sudoku solver which uses recursion and backtracking to find the solution.";
-    sideBar["codeText"] = "Sudoku Code - Github";
+      props.language === "jp" ? text.jp.SudokuDesc : text.eng.SudokuDesc;
+    sideBar["codeText"] =
+      props.language === "jp"
+        ? text.jp.SudokuCodeText
+        : text.eng.SudokuCodeText;
     sideBar["codeLink"] =
       "https://github.com/JasonMTarka/React-Sample/blob/main/src/Components/sudokuForm.js";
-    sideBar["componentCodeText"] = "Sudoku Form Component - Github";
+    sideBar["componentCodeText"] =
+      props.language === "jp"
+        ? text.jp.SudokuComponentText
+        : text.eng.SudokuComponentText;
     sideBar["componentCodeLink"] =
       "https://github.com/JasonMTarka/React-Sample/blob/main/src/Components/sudokuForm.js";
     //
   } else if (props.currentPage === "passwordGen") {
-    sideBar["pageName"] = "Password Generator";
+    sideBar["pageName"] =
+      props.language === "jp"
+        ? text.jp.PassGenPageName
+        : text.eng.PassGenPageName;
     sideBar["description"] =
-      "A password generator which generates a random password based on user input, including which character sets to include, minimum amounts of numbers and symbols, and password length. The copy password button enables users to copy the generated password for ease of use.";
-    sideBar["codeText"] = "Password Logic - Github";
+      props.language === "jp" ? text.jp.PassGenDesc : text.eng.PassGenDesc;
+    sideBar["codeText"] =
+      props.language === "jp"
+        ? text.jp.PassGenCodeText
+        : text.eng.PassGenCodeText;
     sideBar["codeLink"] =
       "https://github.com/JasonMTarka/React-Sample/blob/main/src/Components/Logic/passwordGenLogic.js";
-    sideBar["componentCodeText"] = "Password Form Component - Github";
+    sideBar["componentCodeText"] =
+      props.language === "jp"
+        ? text.jp.PassGenComponentText
+        : text.eng.PassGenComponentText;
     sideBar["componentCodeLink"] =
       "https://github.com/JasonMTarka/React-Sample/blob/main/src/Components/PasswordForm.js";
   }

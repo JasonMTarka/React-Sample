@@ -6,9 +6,27 @@ function Body(props) {
   return (
     <div>
       <div>
-        <div>{props.currentPage === "home" ? <Home /> : ""}</div>
-        <div>{props.currentPage === "sudoku" ? <Sudoku /> : ""}</div>
-        <div>{props.currentPage === "passwordGen" ? <PasswordGen /> : ""}</div>
+        <div>
+          {props.currentPage === "home" ? (
+            <Home language={props.language} />
+          ) : (
+            ""
+          )}
+        </div>
+        <div>
+          {props.currentPage === "sudoku" ? (
+            <Sudoku language={props.language} />
+          ) : (
+            ""
+          )}
+        </div>
+        <div>
+          {props.currentPage === "passwordGen" ? (
+            <PasswordGen language={props.language} />
+          ) : (
+            ""
+          )}
+        </div>
       </div>
     </div>
   );
