@@ -1,16 +1,41 @@
 class Sudoku {
   constructor(difficulty = "Easy #1") {
+    this._sudokus = {
+      "Easy #1": [
+        [1, 0, 0, 9, 0, 4, 0, 8, 2],
+        [0, 5, 2, 6, 8, 0, 3, 0, 0],
+        [8, 6, 4, 2, 0, 0, 9, 1, 0],
+        [0, 1, 0, 0, 4, 9, 8, 0, 6],
+        [4, 9, 8, 3, 0, 0, 7, 0, 1],
+        [6, 0, 7, 0, 1, 0, 0, 9, 3],
+        [0, 8, 6, 0, 3, 5, 2, 0, 9],
+        [5, 0, 9, 0, 0, 2, 1, 3, 0],
+        [0, 3, 0, 4, 9, 7, 0, 0, 8],
+      ],
+      "Easy #2": [
+        [0, 0, 0, 2, 6, 0, 7, 0, 1],
+        [6, 8, 0, 0, 7, 0, 0, 9, 0],
+        [1, 9, 0, 0, 0, 4, 5, 0, 0],
+        [8, 2, 0, 1, 0, 0, 0, 4, 0],
+        [0, 0, 4, 6, 0, 2, 9, 0, 0],
+        [0, 5, 0, 0, 0, 3, 0, 2, 8],
+        [0, 0, 9, 3, 0, 0, 0, 7, 4],
+        [0, 4, 0, 0, 5, 0, 0, 3, 6],
+        [7, 0, 3, 0, 1, 8, 0, 0, 0],
+      ],
+    };
+
     this.difficulty = difficulty;
-    this.grid = _sudokus[this.difficulty];
+    this.grid = this._sudokus[this.difficulty];
   }
 
   loadNew(difficulty) {
     this.difficulty = difficulty;
-    this.grid = _sudokus[this.difficulty];
+    this.grid = this._sudokus[this.difficulty];
   }
 
   reset() {
-    this.grid = _sudokus[this.difficulty];
+    this.grid = this._sudokus[this.difficulty];
   }
 
   printSudoku() {
@@ -90,6 +115,18 @@ class Sudoku {
 
   _gridCheck(guess, rowNum, colNum) {
     function innerGridCheck(gridNum, grid) {
+      const _gridfinder = {
+        1: [0, 3, 0, 3],
+        2: [0, 3, 3, 6],
+        3: [0, 3, 6, 9],
+        4: [3, 6, 0, 3],
+        5: [3, 6, 3, 6],
+        6: [3, 6, 6, 9],
+        7: [6, 9, 0, 3],
+        8: [6, 9, 3, 6],
+        9: [6, 9, 6, 9],
+      };
+
       let sectionBotAndTop = _gridfinder[gridNum];
       let [sectionBot, sectionTop, bot, top] = sectionBotAndTop;
       let gridArray = [];
@@ -131,39 +168,4 @@ class Sudoku {
   }
 }
 
-_gridfinder = {
-  1: [0, 3, 0, 3],
-  2: [0, 3, 3, 6],
-  3: [0, 3, 6, 9],
-  4: [3, 6, 0, 3],
-  5: [3, 6, 3, 6],
-  6: [3, 6, 6, 9],
-  7: [6, 9, 0, 3],
-  8: [6, 9, 3, 6],
-  9: [6, 9, 6, 9],
-};
-
-_sudokus = {
-  "Easy #1": [
-    [1, 0, 0, 9, 0, 4, 0, 8, 2],
-    [0, 5, 2, 6, 8, 0, 3, 0, 0],
-    [8, 6, 4, 2, 0, 0, 9, 1, 0],
-    [0, 1, 0, 0, 4, 9, 8, 0, 6],
-    [4, 9, 8, 3, 0, 0, 7, 0, 1],
-    [6, 0, 7, 0, 1, 0, 0, 9, 3],
-    [0, 8, 6, 0, 3, 5, 2, 0, 9],
-    [5, 0, 9, 0, 0, 2, 1, 3, 0],
-    [0, 3, 0, 4, 9, 7, 0, 0, 8],
-  ],
-  "Easy #2": [
-    [0, 0, 0, 2, 6, 0, 7, 0, 1],
-    [6, 8, 0, 0, 7, 0, 0, 9, 0],
-    [1, 9, 0, 0, 0, 4, 5, 0, 0],
-    [8, 2, 0, 1, 0, 0, 0, 4, 0],
-    [0, 0, 4, 6, 0, 2, 9, 0, 0],
-    [0, 5, 0, 0, 0, 3, 0, 2, 8],
-    [0, 0, 9, 3, 0, 0, 0, 7, 4],
-    [0, 4, 0, 0, 5, 0, 0, 3, 6],
-    [7, 0, 3, 0, 1, 8, 0, 0, 0],
-  ],
-};
+export default Sudoku;

@@ -39,27 +39,46 @@ function SideBar(props) {
   let componentCode = [];
   if (sideBar.componentCodeLink) {
     componentCode.push(
-      <li className="list-group-item list-group-item-light">
+      <li
+        key="component-code-link"
+        className="list-group-item list-group-item-light"
+      >
         <a href={sideBar.componentCodeLink}>{sideBar.componentCodeText}</a>
       </li>
     );
   }
 
   return (
-    <div className="container">
+    <div>
       <div className="content-section">
-        <ul className="list-group">
-          <li className="list-group-item list-group-item-light">
-            <p>{sideBar.description}</p>
+        <ul key="sidebar-ul" className="list-group">
+          <li
+            key="sidebar-desc"
+            className="list-group-item list-group-item-light"
+          >
+            <p key="desc">{sideBar.description}</p>
           </li>
-          <li className="list-group-item list-group-item-light">
-            <a href={sideBar.codeLink}>{sideBar.codeText}</a>
+          <li
+            key="sidebar-code-link"
+            className="list-group-item list-group-item-light"
+          >
+            <a key="code-link" href={sideBar.codeLink}>
+              {sideBar.codeText}
+            </a>
           </li>
           {componentCode}
-          <li className="list-group-item list-group-item-light">
-            <a href={sideBar.huiLink}>{sideBar.huiText}</a>
+          <li
+            key="sidebar-hui-link"
+            className="list-group-item list-group-item-light"
+          >
+            <a key="hui-link" href={sideBar.huiLink}>
+              {sideBar.huiText}
+            </a>
           </li>
-          <li className="list-group-item list-group-item-light">
+          <li
+            key="sidebar-email-link"
+            className="list-group-item list-group-item-light"
+          >
             {sideBar.emailBox}
           </li>
         </ul>

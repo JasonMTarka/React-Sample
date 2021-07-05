@@ -1,3 +1,5 @@
+import SudokuForm from "./SudokuForm";
+
 function Sudoku(props) {
   return (
     <div className="container">
@@ -6,6 +8,9 @@ function Sudoku(props) {
         I will implement a sudoku solver here using JSON-server, a mock RESTful
         API.
       </p>
+      <div>
+        <SudokuForm />
+      </div>
     </div>
   );
 }
