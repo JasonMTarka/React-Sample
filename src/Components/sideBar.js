@@ -45,8 +45,7 @@ function SideBar(props) {
       props.language === "jp" ? text.jp.HomeDesc : text.eng.HomeDesc;
     sideBar["codeText"] =
       props.language === "jp" ? text.jp.HomeCodeText : text.eng.HomeCodeText;
-    sideBar["codeLink"] =
-      "https://github.com/JasonMTarka/React-Sample/tree/main/src";
+    sideBar["codeLink"] = "https://github.com/JasonMTarka/React-Sample";
     //
   } else if (props.currentPage === "sudoku") {
     sideBar["pageName"] =
@@ -60,7 +59,7 @@ function SideBar(props) {
         ? text.jp.SudokuCodeText
         : text.eng.SudokuCodeText;
     sideBar["codeLink"] =
-      "https://github.com/JasonMTarka/React-Sample/blob/main/src/Components/sudokuForm.js";
+      "https://github.com/JasonMTarka/React-Sample/blob/main/src/Components/Logic/sudokuSolverLogic.js";
     sideBar["componentCodeText"] =
       props.language === "jp"
         ? text.jp.SudokuComponentText
