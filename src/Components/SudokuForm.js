@@ -21,7 +21,7 @@ class SudokuForm extends Component {
 
     this.state = {
       sudoku: new Sudoku(),
-      difficulties: {},
+      difficulties: {}, // Currently redundant while not using RESTful API
     };
   }
 
@@ -83,6 +83,7 @@ class SudokuForm extends Component {
 
     let difficultyOptions = [];
     for (let option of Object.keys(this.state.sudoku._sudokus)) {
+      // When reimplementing RESTful API, change to Object.keys(this.state.difficulties)
       difficultyOptions.push(<option key={keyCounter}>{option}</option>);
       keyCounter++;
     }
