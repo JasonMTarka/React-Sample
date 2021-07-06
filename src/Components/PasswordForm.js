@@ -5,6 +5,31 @@ class PasswordForm extends Component {
   constructor(props) {
     super(props);
 
+    this.text = {
+      eng: {
+        lowercase: "Lowercase",
+        uppercase: "Uppercase",
+        numbers: "Numbers",
+        symbols: "Symbols",
+        minNums: "Minimum Amount of Numbers",
+        minSyms: "Minimum Amount of Symbols",
+        passLen: "Password Length",
+        waiting: "Waiting...",
+        createPass: "Create Password",
+      },
+      jp: {
+        lowercase: "小文字",
+        uppercase: "大文字",
+        numbers: "数字",
+        symbols: "記号",
+        minNums: "数字の最小限",
+        minSyms: "記号の最小限",
+        passLen: "パスワードの長さ",
+        waiting: "待機中",
+        createPass: "パスワードを作成する",
+      },
+    };
+
     let defaultPassword = new Password({});
 
     this.state = {
@@ -101,7 +126,11 @@ class PasswordForm extends Component {
       <form onSubmit={this.handleSubmit}>
         <div className="row mt-3">
           <div className="col form-check">
-            <label className="form-check-label">Lowercase</label>
+            <label className="form-check-label">
+              {this.props.language === "jp"
+                ? this.text.jp.lowercase
+                : this.text.eng.lowercase}
+            </label>
             <input
               type="checkbox"
               className="form-check-input"
@@ -112,7 +141,11 @@ class PasswordForm extends Component {
             ></input>
           </div>
           <div className="col form-check">
-            <label className="form-check-label">Uppercase</label>
+            <label className="form-check-label">
+              {this.props.language === "jp"
+                ? this.text.jp.uppercase
+                : this.text.eng.uppercase}
+            </label>
             <input
               type="checkbox"
               className="form-check-input"
@@ -125,7 +158,11 @@ class PasswordForm extends Component {
         </div>
         <div className="row mt-3">
           <div className="col form-check">
-            <label className="form-check-label">Numbers</label>
+            <label className="form-check-label">
+              {this.props.language === "jp"
+                ? this.text.jp.numbers
+                : this.text.eng.numbers}
+            </label>
             <input
               type="checkbox"
               className="form-check-input"
@@ -136,7 +173,11 @@ class PasswordForm extends Component {
             ></input>
           </div>
           <div className="col form-check">
-            <label className="form-check-label">Symbols</label>
+            <label className="form-check-label">
+              {this.props.language === "jp"
+                ? this.text.jp.symbols
+                : this.text.eng.symbols}
+            </label>
             <input
               type="checkbox"
               className="form-check-input"
@@ -150,7 +191,9 @@ class PasswordForm extends Component {
         <div className="mt-4">
           <div className="row">
             <label>
-              Minimum Amount of Numbers
+              {this.props.language === "jp"
+                ? this.text.jp.minNums
+                : this.text.eng.minNums}
               <select
                 value={this.state.minNums}
                 className="form-select"
@@ -163,7 +206,9 @@ class PasswordForm extends Component {
           </div>
           <div className="row">
             <label>
-              Minimum Amount of Symbols
+              {this.props.language === "jp"
+                ? this.text.jp.minSyms
+                : this.text.eng.minSyms}
               <select
                 className="form-select"
                 value={this.state.minSyms}
@@ -177,7 +222,9 @@ class PasswordForm extends Component {
         </div>
         <div className="mt-3">
           <label>
-            Password Length
+            {this.props.language === "jp"
+              ? this.text.jp.passLen
+              : this.text.eng.passLen}
             <select
               className="form-select"
               value={this.state.passLen}
@@ -193,14 +240,20 @@ class PasswordForm extends Component {
               className="form-control"
               type="text"
               placeholder={
-                this.state.password ? this.state.password : "Waiting..."
+                this.state.password
+                  ? this.state.password
+                  : this.props.language === "jp"
+                  ? this.text.jp.waiting
+                  : this.text.eng.waiting
               }
               disabled="disabled"
             ></input>
           </div>
           <div className="mt-3">
             <button className="btn btn-primary" type="submit">
-              Create Password
+              {this.props.language === "jp"
+                ? this.text.jp.createPass
+                : this.text.eng.createPass}
             </button>
           </div>
         </div>
