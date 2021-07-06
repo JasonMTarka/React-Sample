@@ -3,6 +3,8 @@ import Sudoku from "./Logic/sudokuSolverLogic";
 import SudokuRow from "./SudokuRow";
 
 class SudokuForm extends Component {
+  _isMounted = false;
+
   constructor(props) {
     super(props);
 
@@ -24,10 +26,20 @@ class SudokuForm extends Component {
   }
 
   componentDidMount = () => {
+    this._isMounted = true;
+
     let fetchRequest = fetch("http://localhost:3000/difficulties");
     let fetchResponse = fetchRequest.then((response) => response.json());
-    fetchResponse.then((data) => this.setState({ difficulties: data }));
+    fetchResponse.then((data) => {
+      if (this._isMounted) {
+        this.setState({ difficulties: data });
+      }
+    });
   };
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
 
   setNewDifficulty = (difficulty) => {
     this.setState({ sudoku: new Sudoku(difficulty) });
