@@ -29,7 +29,7 @@ class SudokuForm extends Component {
     this._isMounted = true;
 
     let fetchRequest = fetch(
-      "sample-react-site-jasontarka.netlify.app/lambda_functions/hello-world/hello-world"
+      "sample-react-site-jasontarka.netlify.app/.netlify/functions/hello-world"
     );
     let fetchResponse = fetchRequest.then((response) => response.json());
     console.log(fetchResponse);
