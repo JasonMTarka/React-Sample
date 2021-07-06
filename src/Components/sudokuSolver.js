@@ -4,12 +4,12 @@ function Sudoku(props) {
   const text = {
     eng: {
       title: "Sudoku Solver",
-      desc: "A sudoku solver here using JSON-server, a mock RESTful API.",
+      desc: "Choose a difficulty below and press 'Solve' to begin recursive solving of the sudoku.",
     },
 
     jp: {
       title: "数独自動解決アプリ",
-      desc: "模擬RESTfulのAPIであるJSON-serverを利用する、数独を自動的に解決するアプリ。",
+      desc: "オプションメニューから難易度を選択し、「解決する」ボタンを押して数独の自動解決を見ましょう。",
     },
   };
 

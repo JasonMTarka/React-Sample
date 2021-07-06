@@ -27,17 +27,15 @@ class SudokuForm extends Component {
 
   componentDidMount = () => {
     this._isMounted = true;
-
-    let fetchRequest = fetch(
-      "sample-react-site-jasontarka.netlify.app/.netlify/functions/hello-world"
-    );
-    let fetchResponse = fetchRequest.then((response) => response.json());
-    console.log(fetchResponse);
-    fetchResponse.then((data) => {
-      if (this._isMounted) {
-        this.setState({ difficulties: data });
-      }
-    });
+    // Temporarily disabled fetch request while finding a solution for creating a production-level RESTful API
+    //
+    // let fetchRequest = fetch("http://localhost:3000/difficulties");
+    // let fetchResponse = fetchRequest.then((response) => response.json());
+    // fetchResponse.then((data) => {
+    //   if (this._isMounted) {
+    //     this.setState({ difficulties: data });
+    //   }
+    // });
   };
 
   componentWillUnmount() {
@@ -84,7 +82,7 @@ class SudokuForm extends Component {
     }
 
     let difficultyOptions = [];
-    for (let option of Object.keys(this.state.difficulties)) {
+    for (let option of Object.keys(this.state.sudoku._sudokus)) {
       difficultyOptions.push(<option key={keyCounter}>{option}</option>);
       keyCounter++;
     }
