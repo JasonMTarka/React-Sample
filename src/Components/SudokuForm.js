@@ -28,8 +28,11 @@ class SudokuForm extends Component {
   componentDidMount = () => {
     this._isMounted = true;
 
-    let fetchRequest = fetch("http://localhost:3000/difficulties");
+    let fetchRequest = fetch(
+      "sample-react-site-jasontarka.netlify.app/lambda_functions/hello-world/hello-world"
+    );
     let fetchResponse = fetchRequest.then((response) => response.json());
+    console.log(fetchResponse);
     fetchResponse.then((data) => {
       if (this._isMounted) {
         this.setState({ difficulties: data });
