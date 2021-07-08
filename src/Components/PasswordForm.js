@@ -16,6 +16,7 @@ class PasswordForm extends Component {
         passLen: "Password Length",
         waiting: "Waiting...",
         createPass: "Create Password",
+        copyPass: "Copy Password",
       },
       jp: {
         lowercase: "小文字",
@@ -27,6 +28,7 @@ class PasswordForm extends Component {
         passLen: "パスワードの長さ",
         waiting: "待機中",
         createPass: "パスワードを作成する",
+        copyPass: "パスワードをコーピーする",
       },
     };
 
@@ -42,6 +44,10 @@ class PasswordForm extends Component {
       passLen: defaultPassword.passLen,
     };
   }
+
+  copyPassword = () => {
+    navigator.clipboard.writeText(this.state.password);
+  };
 
   handleLowercaseChange = (event) => {
     this.setState({
@@ -101,27 +107,31 @@ class PasswordForm extends Component {
     event.preventDefault();
   };
 
-  render() {
-    const maxAllowedPassLen = 16;
-    const maxAllowedMinNums = 4;
-    const maxAllowedMinSyms = 4;
-
-    const minNumsOptions = maxAllowedMinNums;
-    const minNumsItems = [];
-    for (let i = 0; i < minNumsOptions + 1; i++) {
-      minNumsItems.push(<option key={i}>{i}</option>);
-    }
-    const minSymsOptions = maxAllowedMinSyms;
-    const minSymsItems = [];
-    for (let i = 0; i < minSymsOptions + 1; i++) {
-      minSymsItems.push(<option key={i}>{i}</option>);
-    }
-    const passLengthOptions = maxAllowedPassLen;
-    const passLengthItems = [];
+  renderPassLenOptions = (passLengthOptions = 16) => {
+    let passLengthItems = [];
     for (let i = 0; i < passLengthOptions + 1; i++) {
       passLengthItems.push(<option key={i}>{i}</option>);
     }
+    return passLengthItems;
+  };
 
+  renderMaxAllowedMinNumOptions = (maxAllowedMinNums = 4) => {
+    let minNumsItems = [];
+    for (let i = 0; i < maxAllowedMinNums + 1; i++) {
+      minNumsItems.push(<option key={i}>{i}</option>);
+    }
+    return minNumsItems;
+  };
+
+  renderMaxAllowedMinSymOptions = (maxAllowedMinSyms = 4) => {
+    let minSymsItems = [];
+    for (let i = 0; i < maxAllowedMinSyms + 1; i++) {
+      minSymsItems.push(<option key={i}>{i}</option>);
+    }
+    return minSymsItems;
+  };
+
+  render() {
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="row mt-3">
@@ -200,7 +210,7 @@ class PasswordForm extends Component {
                 onChange={this.handleMinNumsChange}
                 disabled={this.state.nums === true ? "" : "disabled"}
               >
-                {minNumsItems}
+                {this.renderMaxAllowedMinNumOptions()}
               </select>
             </label>
           </div>
@@ -215,7 +225,7 @@ class PasswordForm extends Component {
                 onChange={this.handleMinSymsChange}
                 disabled={this.state.syms === true ? "" : "disabled"}
               >
-                {minSymsItems}
+                {this.renderMaxAllowedMinSymOptions()}
               </select>
             </label>
           </div>
@@ -230,7 +240,7 @@ class PasswordForm extends Component {
               value={this.state.passLen}
               onChange={this.handlePassLenChange}
             >
-              {passLengthItems}
+              {this.renderPassLenOptions()}
             </select>
           </label>
         </div>
@@ -249,12 +259,27 @@ class PasswordForm extends Component {
               disabled="disabled"
             ></input>
           </div>
-          <div className="mt-3">
-            <button className="btn btn-primary" type="submit">
-              {this.props.language === "jp"
-                ? this.text.jp.createPass
-                : this.text.eng.createPass}
-            </button>
+          <div className="row mt-3">
+            <div className="col">
+              <button className="btn btn-primary" type="submit">
+                {this.props.language === "jp"
+                  ? this.text.jp.createPass
+                  : this.text.eng.createPass}
+              </button>
+            </div>
+            <div className="col">
+              {this.state.password ? (
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={() => this.copyPassword()}
+                >
+                  {this.props.language === "jp"
+                    ? this.text.jp.copyPass
+                    : this.text.eng.copyPass}
+                </button>
+              ) : null}
+            </div>
           </div>
         </div>
       </form>

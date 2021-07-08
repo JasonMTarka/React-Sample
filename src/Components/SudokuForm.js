@@ -69,7 +69,7 @@ class SudokuForm extends Component {
     this.solveSudoku(this.state.sudoku.difficulty);
   };
 
-  render() {
+  renderGrid = () => {
     let fieldRows = [];
     let keyCounter = 0;
     for (let row of this.state.sudoku.grid) {
@@ -80,17 +80,22 @@ class SudokuForm extends Component {
       );
       keyCounter++;
     }
+    return fieldRows;
+  };
 
+  renderDifficultyOptions = () => {
     let difficultyOptions = [];
     for (let option of Object.keys(this.state.sudoku._sudokus)) {
       // When reimplementing RESTful API, change to Object.keys(this.state.difficulties)
-      difficultyOptions.push(<option key={keyCounter}>{option}</option>);
-      keyCounter++;
+      difficultyOptions.push(<option key={option}>{option}</option>);
     }
+    return difficultyOptions;
+  };
 
+  render() {
     return (
       <div>
-        <div>{fieldRows}</div>
+        <div>{this.renderGrid()}</div>
         <div className="btn-toolbar mt-3">
           <button className="col btn btn-primary" onClick={this.handleSolve}>
             {this.props.language === "jp"
@@ -112,7 +117,7 @@ class SudokuForm extends Component {
             value={this.state.sudoku.difficulty}
             onChange={this.handleDifficultyChange}
           >
-            {difficultyOptions}
+            {this.renderDifficultyOptions()}
           </select>
         </div>
       </div>
