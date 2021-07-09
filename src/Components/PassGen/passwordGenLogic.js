@@ -24,8 +24,7 @@ class Password {
       const minNums = parseInt(this.minNums);
       const minSyms = parseInt(this.minSyms);
       const passLen = parseInt(this.passLen);
-      const msg =
-        "Invalid length: increase your minimum values or password length.";
+      const msg = "invalidLen";
 
       if (this.nums && this.syms) {
         if (passLen < minSyms + minNums) {
@@ -120,7 +119,7 @@ class Password {
     if (source) {
       this.value = passBuilder(source);
     } else {
-      this.value = "Please select at least one option.";
+      this.value = "invalidNoOptions";
     }
   };
 }

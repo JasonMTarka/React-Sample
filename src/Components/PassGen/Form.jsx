@@ -8,8 +8,8 @@ import ViewField from "./ViewField";
 import GenerateButton from "./GenerateButton";
 import CopyButton from "./CopyButton";
 
-export default function Form (props) {
-  
+export default function Form ({language}) {
+
   const text = {
     eng: {
       lowercase: "Lowercase",
@@ -37,7 +37,6 @@ export default function Form (props) {
     },
   };
 
-  const {language} = props;
   const [password, setPassword] = useState(new Password({}));
   const [copied, setCopied] = useState(false);
 
@@ -258,3 +257,4 @@ export default function Form (props) {
     </form>
   );
 }
+
