@@ -163,7 +163,7 @@ class Form extends Component {
 
   render() {
 
-    const {text} = this;
+    const {text, state } = this;
     const {language} = this.props;
     const {password} = this.state;
 
@@ -187,8 +187,8 @@ class Form extends Component {
               name="uppercase"
               text={
                 language === "jp"
-                  ? this.text.jp.uppercase
-                  : this.text.eng.uppercase
+                  ? text.jp.uppercase
+                  : text.eng.uppercase
               }
               state={password.uppercase}
               handler={this.handleUppercaseChange}
@@ -201,8 +201,8 @@ class Form extends Component {
               name="nums"
               text={
                 language === "jp"
-                  ? this.text.jp.numbers
-                  : this.text.eng.numbers
+                  ? text.jp.numbers
+                  : text.eng.numbers
               }
               state={password.nums}
               handler={this.handleNumsChange}
@@ -213,8 +213,8 @@ class Form extends Component {
               name="syms"
               text={
                 language === "jp"
-                  ? this.text.jp.symbols
-                  : this.text.eng.symbols
+                  ? text.jp.symbols
+                  : text.eng.symbols
               }
               state={password.syms}
               handler={this.handleSymsChange}
@@ -225,8 +225,8 @@ class Form extends Component {
           <Dropdown
             text={
               language === "jp"
-                ? this.text.jp.minNums
-                : this.text.eng.minNums
+                ? text.jp.minNums
+                : text.eng.minNums
             }
             value={password.minNums}
             handler={this.handleMinNumsChange}
@@ -237,8 +237,8 @@ class Form extends Component {
           <Dropdown
             text={
               language === "jp"
-                ? this.text.jp.minSyms
-                : this.text.eng.minSyms
+                ? text.jp.minSyms
+                : text.eng.minSyms
             }
             value={password.minSyms}
             handler={this.handleMinSymsChange}
@@ -250,8 +250,8 @@ class Form extends Component {
           <Dropdown
             text={
               language === "jp"
-                ? this.text.jp.passLen
-                : this.text.eng.passLen
+                ? text.jp.passLen
+                : text.eng.passLen
             }
             value={password.passLen}
             handler={this.handlePassLenChange}
@@ -261,23 +261,23 @@ class Form extends Component {
         <div className="mt-5">
           <div>
             <ViewField
-              text={this.text}
-              state={this.state}
+              text={text}
+              state={state}
               language={language}
             />
           </div>
           <div className="row mt-3">
-            <GenerateButton language={language} text={this.text} />
+            <GenerateButton language={language} text={text} />
 
             {password.value ? (
               <CopyButton
                 handler={this.copyPassword}
-                text={this.text}
+                text={text}
                 language={language}
               />
             ) : null}
           </div>
-          {this.state.copied ? (
+          {state.copied ? (
             <Alert className="mt-2" variant="success">
               Your password has been copied!
             </Alert>

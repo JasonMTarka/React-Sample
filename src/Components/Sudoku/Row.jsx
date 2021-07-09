@@ -17,4 +17,3 @@ export default function Row({row}) {
 
     return <div className="row mt-2">{values}</div>;
   }
-

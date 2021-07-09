@@ -4,7 +4,7 @@ import Home from "./home";
 import Sudoku from "./Sudoku/sudokuSolver";
 import PasswordGen from "./PassGen/passwordGen";
 
-function Body({currentPage, language}) {
+export default function Body({currentPage, language}) {
   return (
     <div>
       <div>
@@ -33,5 +33,3 @@ function Body({currentPage, language}) {
     </div>
   );
 }
-
-export default Body;

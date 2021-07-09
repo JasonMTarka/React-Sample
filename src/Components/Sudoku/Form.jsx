@@ -94,7 +94,7 @@ class Form extends Component {
 
   render() {
 
-    const {text} = this;
+    const { text } = this;
     const {language} = this.props;
 
     return (
