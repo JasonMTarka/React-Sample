@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Alert } from "react-bootstrap";
 
 import Password from "./passwordGenLogic";
@@ -8,117 +8,95 @@ import ViewField from "./ViewField";
 import GenerateButton from "./GenerateButton";
 import CopyButton from "./CopyButton";
 
-class Form extends Component {
-  constructor(props) {
-    super(props);
+export default function Form (props) {
+  
+  const text = {
+    eng: {
+      lowercase: "Lowercase",
+      uppercase: "Uppercase",
+      numbers: "Numbers",
+      symbols: "Symbols",
+      minNums: "Minimum Amount of Numbers",
+      minSyms: "Minimum Amount of Symbols",
+      passLen: "Password Length",
+      waiting: "",
+      createPass: "Create Password",
+      copyPass: "Copy Password",
+    },
+    jp: {
+      lowercase: "小文字",
+      uppercase: "大文字",
+      numbers: "数字",
+      symbols: "記号",
+      minNums: "数字の最小限",
+      minSyms: "記号の最小限",
+      passLen: "パスワードの長さ",
+      waiting: "",
+      createPass: "パスワードを作成する",
+      copyPass: "パスワードをコピーする",
+    },
+  };
 
-    this.text = {
-      eng: {
-        lowercase: "Lowercase",
-        uppercase: "Uppercase",
-        numbers: "Numbers",
-        symbols: "Symbols",
-        minNums: "Minimum Amount of Numbers",
-        minSyms: "Minimum Amount of Symbols",
-        passLen: "Password Length",
-        waiting: "",
-        createPass: "Create Password",
-        copyPass: "Copy Password",
-      },
-      jp: {
-        lowercase: "小文字",
-        uppercase: "大文字",
-        numbers: "数字",
-        symbols: "記号",
-        minNums: "数字の最小限",
-        minSyms: "記号の最小限",
-        passLen: "パスワードの長さ",
-        waiting: "",
-        createPass: "パスワードを作成する",
-        copyPass: "パスワードをコピーする",
-      },
-    };
+  const {language} = props;
+  const [password, setPassword] = useState(new Password({}));
+  const [copied, setCopied] = useState(false);
 
-    this.state = {
-      password: new Password({}),
-      copied: false,
-    };
+  const copyPassword = () => {
+    navigator.clipboard.writeText(password.value).then(() => {
+      setCopied(true);
+    })
+  }
+  
+  const handleLowercaseChange = event => {
+    setPassword(prevState => ({
+        ...prevState,
+        lowercase: event.target.checked,
+    }));
   }
 
-  copyPassword = () => {
-    navigator.clipboard.writeText(this.state.password.value).then(() => {
-      this.setState({
-        copied: true,
-      });
-    });
-  };
-
-  handleLowercaseChange = (event) => {
-    this.setState((prevState) => ({
-      password: {
-        ...prevState.password,
-        lowercase: event.target.checked,
-      },
-    }));
-  };
-
-  handleUppercaseChange = (event) => {
-    this.setState((prevState) => ({
-      password: {
-        ...prevState.password,
+  const handleUppercaseChange = event => {
+    setPassword(prevState => ({
+        ...prevState,
         uppercase: event.target.checked,
-      },
     }));
-  };
+  }
 
-  handleNumsChange = (event) => {
-    this.setState((prevState) => ({
-      password: {
-        ...prevState.password,
+  const handleNumsChange = event => {
+    setPassword(prevState => ({
+        ...prevState,
         nums: event.target.checked,
-      },
     }));
-  };
+  }
 
-  handleSymsChange = (event) => {
-    this.setState((prevState) => ({
-      password: {
-        ...prevState.password,
+  const handleSymsChange = event => {
+    setPassword(prevState => ({
+        ...prevState,
         syms: event.target.checked,
-      },
     }));
-  };
+  }
 
-  handleMinNumsChange = (event) => {
-    this.setState((prevState) => ({
-      password: {
-        ...prevState.password,
+  const handleMinNumsChange = event => {
+    setPassword(prevState => ({
+        ...prevState,
         minNums: event.target.value,
-      },
     }));
-  };
+  }
 
-  handleMinSymsChange = (event) => {
-    this.setState((prevState) => ({
-      password: {
-        ...prevState.password,
+  const handleMinSymsChange = event => {
+    setPassword(prevState => ({
+        ...prevState,
         minSyms: event.target.value,
-      },
     }));
-  };
+  }
 
-  handlePassLenChange = (event) => {
-    this.setState((prevState) => ({
-      password: {
-        ...prevState.password,
+  const handlePassLenChange = event => {
+    setPassword(prevState => ({
+        ...prevState,
         passLen: event.target.value,
-      },
     }));
-  };
+  }
 
-  handleSubmit = (event) => {
-
-    const {password} = this.state;
+  const handleSubmit = event => {
 
     const newPass = new Password({
       lowercase: password.lowercase,
@@ -129,163 +107,154 @@ class Form extends Component {
       minSyms: password.minSyms,
       passLen: password.passLen,
     });
-    newPass.generate();
-    this.setState({
-      password: newPass,
-    });
-    this.setState({ copied: false });
-    event.preventDefault();
-  };
 
-  renderPassLenOptions = (passLengthOptions = 16) => {
+    newPass.generate();
+    setPassword(newPass);
+    setCopied(false);
+    event.preventDefault();
+  }
+
+  const renderPassLenOptions = (passLengthOptions = 16) => {
     let passLengthItems = [];
     for (let i = 0; i < passLengthOptions + 1; i++) {
       passLengthItems.push(<option key={i}>{i}</option>);
     }
     return passLengthItems;
-  };
+  }
 
-  renderMaxAllowedMinNumOptions = (maxAllowedMinNums = 4) => {
+  const renderMaxAllowedMinNumOptions = (maxAllowedMinNums = 4) => {
     let minNumsItems = [];
     for (let i = 0; i < maxAllowedMinNums + 1; i++) {
       minNumsItems.push(<option key={i}>{i}</option>);
     }
     return minNumsItems;
-  };
+  }
 
-  renderMaxAllowedMinSymOptions = (maxAllowedMinSyms = 4) => {
+  const renderMaxAllowedMinSymOptions = (maxAllowedMinSyms = 4) => {
     let minSymsItems = [];
     for (let i = 0; i < maxAllowedMinSyms + 1; i++) {
       minSymsItems.push(<option key={i}>{i}</option>);
     }
     return minSymsItems;
-  };
+  }
 
-  render() {
+  return (
+    <form onSubmit={handleSubmit}>
+      <div className="row mt-3 ml-3">
+        <div className="col form-check">
+          <CheckBox
+            name="lowercase"
+            text={
+              language === "jp"
+                ? text.jp.lowercase
+                : text.eng.lowercase
+            }
+            checked={password.lowercase}
+            handler={handleLowercaseChange}
+          />
+        </div>
+        <div className="col form-check">
+          <CheckBox
+            name="uppercase"
+            text={
+              language === "jp"
+                ? text.jp.uppercase
+                : text.eng.uppercase
+            }
+            checked={password.uppercase}
+            handler={handleUppercaseChange}
+          />
+        </div>
+      </div>
+      <div className="row mt-3">
+        <div className="col form-check">
+          <CheckBox
+            name="nums"
+            text={
+              language === "jp"
+                ? text.jp.numbers
+                : text.eng.numbers
+            }
+            checked={password.nums}
+            handler={handleNumsChange}
+          />
+        </div>
+        <div className="col form-check">
+          <CheckBox
+            name="syms"
+            text={
+              language === "jp"
+                ? text.jp.symbols
+                : text.eng.symbols
+            }
+            checked={password.syms}
+            handler={handleSymsChange}
+          />
+        </div>
+      </div>
+      <div className="mt-4">
+        <Dropdown
+          text={
+            language === "jp"
+              ? text.jp.minNums
+              : text.eng.minNums
+          }
+          value={password.minNums}
+          handler={handleMinNumsChange}
+          disabled={password.nums === true ? "" : "disabled"}
+          renderer={renderMaxAllowedMinNumOptions}
+          
+        />
 
-    const {text, state } = this;
-    const {language} = this.props;
-    const {password} = this.state;
-
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <div className="row mt-3 ml-3">
-          <div className="col form-check">
-            <CheckBox
-              name="lowercase"
-              text={
-                language === "jp"
-                  ? text.jp.lowercase
-                  : text.eng.lowercase
-              }
-              state={password.lowercase}
-              handler={this.handleLowercaseChange}
-            />
-          </div>
-          <div className="col form-check">
-            <CheckBox
-              name="uppercase"
-              text={
-                language === "jp"
-                  ? text.jp.uppercase
-                  : text.eng.uppercase
-              }
-              state={password.uppercase}
-              handler={this.handleUppercaseChange}
-            />
-          </div>
+        <Dropdown
+          text={
+            language === "jp"
+              ? text.jp.minSyms
+              : text.eng.minSyms
+          }
+          value={password.minSyms}
+          handler={handleMinSymsChange}
+          disabled={password.syms === true ? "" : "disabled"}
+          renderer={renderMaxAllowedMinSymOptions}
+        />
+      </div>
+      <div className="mt-3">
+        <Dropdown
+          text={
+            language === "jp"
+              ? text.jp.passLen
+              : text.eng.passLen
+          }
+          handler={handlePassLenChange}
+          value={password.passLen}
+          renderer={renderPassLenOptions}
+        />
+      </div>
+      <div className="mt-5">
+        <div>
+          <ViewField
+            text={text}
+            password={password}
+            language={language}
+          />
         </div>
         <div className="row mt-3">
-          <div className="col form-check">
-            <CheckBox
-              name="nums"
-              text={
-                language === "jp"
-                  ? text.jp.numbers
-                  : text.eng.numbers
-              }
-              state={password.nums}
-              handler={this.handleNumsChange}
-            />
-          </div>
-          <div className="col form-check">
-            <CheckBox
-              name="syms"
-              text={
-                language === "jp"
-                  ? text.jp.symbols
-                  : text.eng.symbols
-              }
-              state={password.syms}
-              handler={this.handleSymsChange}
-            />
-          </div>
-        </div>
-        <div className="mt-4">
-          <Dropdown
-            text={
-              language === "jp"
-                ? text.jp.minNums
-                : text.eng.minNums
-            }
-            value={password.minNums}
-            handler={this.handleMinNumsChange}
-            disabled={password.nums === true ? "" : "disabled"}
-            renderer={this.renderMaxAllowedMinNumOptions}
-          />
+          <GenerateButton language={language} text={text} />
 
-          <Dropdown
-            text={
-              language === "jp"
-                ? text.jp.minSyms
-                : text.eng.minSyms
-            }
-            value={password.minSyms}
-            handler={this.handleMinSymsChange}
-            disabled={password.syms === true ? "" : "disabled"}
-            renderer={this.renderMaxAllowedMinSymOptions}
-          />
-        </div>
-        <div className="mt-3">
-          <Dropdown
-            text={
-              language === "jp"
-                ? text.jp.passLen
-                : text.eng.passLen
-            }
-            value={password.passLen}
-            handler={this.handlePassLenChange}
-            renderer={this.renderPassLenOptions}
-          />
-        </div>
-        <div className="mt-5">
-          <div>
-            <ViewField
+          {password.value ? (
+            <CopyButton
+              handler={copyPassword}
               text={text}
-              state={state}
               language={language}
             />
-          </div>
-          <div className="row mt-3">
-            <GenerateButton language={language} text={text} />
-
-            {password.value ? (
-              <CopyButton
-                handler={this.copyPassword}
-                text={text}
-                language={language}
-              />
-            ) : null}
-          </div>
-          {state.copied ? (
-            <Alert className="mt-2" variant="success">
-              Your password has been copied!
-            </Alert>
           ) : null}
         </div>
-      </form>
-    );
-  }
+        {copied ? (
+          <Alert className="mt-2" variant="success">
+            Your password has been copied!
+          </Alert>
+        ) : null}
+      </div>
+    </form>
+  );
 }
-
-export default Form;

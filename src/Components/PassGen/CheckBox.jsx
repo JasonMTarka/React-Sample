@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function CheckBox({ name, text, state, handler }) {
+export default function CheckBox({ name, text, checked, handler }) {
   return (
     <div className="col form-check">
       <label className="form-check-label">{text}</label>
@@ -9,7 +9,7 @@ export default function CheckBox({ name, text, state, handler }) {
         className="form-check-input"
         name={name}
         value={name}
-        checked={state}
+        checked={checked}
         onChange={handler}
       ></input>
     </div>

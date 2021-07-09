@@ -1,14 +1,14 @@
 import React from "react";
 
-export default function ViewField({ text, state, language }) {
+export default function ViewField({ text, password, language }) {
   return (
     <div>
       <input
         className="form-control"
         type="text"
         placeholder={
-          state.password.value
-            ? state.password.value
+          password.value
+            ? password.value
             : language === "jp"
             ? text.jp.waiting
             : text.eng.waiting
