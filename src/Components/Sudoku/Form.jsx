@@ -1,78 +1,40 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Sudoku from "./sudokuSolverLogic";
 import Row from "./Row";
 
-class Form extends Component {
-  _isMounted = false;
+export default function Form ({language}) {
 
-  constructor(props) {
-    super(props);
-
-    this.text = {
-      eng: {
-        solve: "Solve",
-        reset: "Reset",
-      },
-      jp: {
-        solve: "解決する",
-        reset: "リセット",
-      },
-    };
-
-    this.state = {
-      sudoku: new Sudoku(),
-      difficulties: {}, // Currently redundant while not using RESTful API
-    };
+  const text = {
+    eng: {
+      solve: "Solve",
+      reset: "Reset",
+    },
+    jp: {
+      solve: "解決する",
+      reset: "リセット",
+    },
   }
 
-  componentDidMount = () => {
-    this._isMounted = true;
-    // Temporarily disabled fetch request while finding a solution for creating a production-level RESTful API
-    //
-    // let fetchRequest = fetch("http://localhost:3000/difficulties");
-    // let fetchResponse = fetchRequest.then((response) => response.json());
-    // fetchResponse.then((data) => {
-    //   if (this._isMounted) {
-    //     this.setState({ difficulties: data });
-    //   }
-    // });
-  };
+  const [sudoku, setSudoku] = useState(new Sudoku())
 
-  componentWillUnmount() {
-    this._isMounted = false;
+  const resetSudoku = () => {
+    setSudoku(new Sudoku(sudoku.difficulty));
   }
 
-  setNewDifficulty = (difficulty) => {
-    this.setState({ sudoku: new Sudoku(difficulty) });
-  };
-
-  resetSudoku = () => {
-    this.setState({
-      sudoku: new Sudoku(this.state.sudoku.difficulty),
-    });
-  };
-
-  solveSudoku = () => {
-    let newSudoku = new Sudoku(this.state.sudoku.difficulty);
+  const solveSudoku = () => {
+    let newSudoku = new Sudoku(sudoku.difficulty);
     newSudoku.solve();
+    setSudoku(newSudoku);
+  }
 
-    this.setState({
-      sudoku: newSudoku,
-    });
-  };
+  const handleDifficultyChange = (event) => {
+    setSudoku(new Sudoku(event.target.value));
+  }
 
-  handleDifficultyChange = (event) => {
-    this.setNewDifficulty(event.target.value);
-  };
-
-  handleSolve = () => {
-    this.solveSudoku(this.state.sudoku.difficulty);
-  };
-
-  renderGrid = () => {
+  const renderGrid = () => {
     let fieldRows = [];
     let keyCounter = 0;
-    for (let row of this.state.sudoku.grid) {
+    for (let row of sudoku.grid) {
       fieldRows.push(
         <div key={keyCounter}>
           <Row row={row} />
@@ -81,52 +43,44 @@ class Form extends Component {
       keyCounter++;
     }
     return fieldRows;
-  };
+  }
 
-  renderDifficultyOptions = () => {
+  const renderDifficultyOptions = () => {
     let difficultyOptions = [];
-    for (let option of Object.keys(this.state.sudoku._sudokus)) {
-      // When reimplementing RESTful API, change to Object.keys(this.state.difficulties)
+    for (let option of Object.keys(sudoku._sudokus)) {
       difficultyOptions.push(<option key={option}>{option}</option>);
     }
     return difficultyOptions;
-  };
-
-  render() {
-
-    const { text } = this;
-    const {language} = this.props;
-
-    return (
-      <div>
-        <div>{this.renderGrid()}</div>
-        <div className="btn-toolbar mt-3">
-          <button className="col btn btn-primary" onClick={this.handleSolve}>
-            {language === "jp"
-              ? text.jp.solve
-              : text.eng.solve}
-          </button>
-          <button
-            className="col ml-2 btn btn-secondary"
-            onClick={this.resetSudoku}
-          >
-            {language === "jp"
-              ? text.jp.reset
-              : text.eng.reset}
-          </button>
-        </div>
-        <div className="mt-3">
-          <select
-            className="col form-select"
-            value={this.state.sudoku.difficulty}
-            onChange={this.handleDifficultyChange}
-          >
-            {this.renderDifficultyOptions()}
-          </select>
-        </div>
-      </div>
-    );
   }
+
+  return (
+    <div>
+      <div>{renderGrid()}</div>
+      <div className="btn-toolbar mt-3">
+        <button className="col btn btn-primary" onClick={solveSudoku}>
+          {language === "jp"
+            ? text.jp.solve
+            : text.eng.solve}
+        </button>
+        <button
+          className="col ml-2 btn btn-secondary"
+          onClick={resetSudoku}
+        >
+          {language === "jp"
+            ? text.jp.reset
+            : text.eng.reset}
+        </button>
+      </div>
+      <div className="mt-3">
+        <select
+          className="col form-select"
+          value={sudoku.difficulty}
+          onChange={handleDifficultyChange}
+        >
+          {renderDifficultyOptions()}
+        </select>
+      </div>
+    </div>
+  );
 }
 
-export default Form;
