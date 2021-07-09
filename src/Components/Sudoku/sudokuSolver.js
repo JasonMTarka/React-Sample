@@ -1,4 +1,4 @@
-import SudokuForm from "./SudokuForm";
+import Form from "./Form";
 
 function Sudoku(props) {
   const text = {
@@ -18,7 +18,7 @@ function Sudoku(props) {
       <h3>{props.language === "jp" ? text.jp.title : text.eng.title}</h3>
       <p>{props.language === "jp" ? text.jp.desc : text.eng.desc}</p>
       <div>
-        <SudokuForm language={props.language} />
+        <Form language={props.language} />
       </div>
     </div>
   );

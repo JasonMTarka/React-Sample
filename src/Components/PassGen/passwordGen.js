@@ -1,4 +1,4 @@
-import PasswordForm from "./PasswordForm";
+import Form from "./Form";
 
 function PasswordGen(props) {
   const text = {
@@ -20,7 +20,7 @@ function PasswordGen(props) {
         <p>{props.language === "jp" ? text.jp.desc : text.eng.desc}</p>
       </div>
       <div>
-        <PasswordForm language={props.language} />
+        <Form language={props.language} />
       </div>
     </div>
   );

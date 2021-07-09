@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import Sudoku from "./Logic/sudokuSolverLogic";
-import SudokuRow from "./SudokuRow";
+import Sudoku from "./sudokuSolverLogic";
+import Row from "./Row";
 
-class SudokuForm extends Component {
+class Form extends Component {
   _isMounted = false;
 
   constructor(props) {
@@ -75,7 +75,7 @@ class SudokuForm extends Component {
     for (let row of this.state.sudoku.grid) {
       fieldRows.push(
         <div key={keyCounter}>
-          <SudokuRow row={row} />
+          <Row row={row} />
         </div>
       );
       keyCounter++;
@@ -125,4 +125,4 @@ class SudokuForm extends Component {
   }
 }
 
-export default SudokuForm;
+export default Form;

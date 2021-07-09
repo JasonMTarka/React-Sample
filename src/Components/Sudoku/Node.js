@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class SudokuNode extends Component {
+class Node extends Component {
   render() {
     return (
       <div
@@ -15,4 +15,4 @@ class SudokuNode extends Component {
   }
 }
 
-export default SudokuNode;
+export default Node;

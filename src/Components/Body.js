@@ -1,6 +1,6 @@
 import Home from "./home";
-import Sudoku from "./sudokuSolver";
-import PasswordGen from "./passwordGen";
+import Sudoku from "./Sudoku/sudokuSolver";
+import PasswordGen from "./PassGen/passwordGen";
 
 function Body(props) {
   return (

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import SudokuNode from "./SudokuNode";
+import Node from "./Node";
 
-class SudokuRow extends Component {
+class Row extends Component {
   render() {
     let values = [];
     let keyCounter = 0;
@@ -9,7 +9,7 @@ class SudokuRow extends Component {
     for (let val of this.props.row) {
       values.push(
         <div key={keyCounter} className="col-sm-1">
-          <SudokuNode val={val} />
+          <Node val={val} />
         </div>
       );
       keyCounter++;
@@ -19,4 +19,4 @@ class SudokuRow extends Component {
   }
 }
 
-export default SudokuRow;
+export default Row;
