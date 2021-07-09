@@ -35,7 +35,7 @@ class Form extends Component {
         passLen: "パスワードの長さ",
         waiting: "待機中",
         createPass: "パスワードを作成する",
-        copyPass: "パスワードをコーピーする",
+        copyPass: "パスワードをコピーする",
       },
     };
 
