@@ -93,22 +93,26 @@ class Form extends Component {
   };
 
   render() {
+
+    const {text} = this;
+    const {language} = this.props;
+
     return (
       <div>
         <div>{this.renderGrid()}</div>
         <div className="btn-toolbar mt-3">
           <button className="col btn btn-primary" onClick={this.handleSolve}>
-            {this.props.language === "jp"
-              ? this.text.jp.solve
-              : this.text.eng.solve}
+            {language === "jp"
+              ? text.jp.solve
+              : text.eng.solve}
           </button>
           <button
             className="col ml-2 btn btn-secondary"
             onClick={this.resetSudoku}
           >
-            {this.props.language === "jp"
-              ? this.text.jp.reset
-              : this.text.eng.reset}
+            {language === "jp"
+              ? text.jp.reset
+              : text.eng.reset}
           </button>
         </div>
         <div className="mt-3">

@@ -1,4 +1,6 @@
-function SideBar(props) {
+import React from "react";
+
+export default function SideBar({currentPage, language}) {
   let sideBar = {
     emailBox: "jasonmtarka@gmail.com",
     huiText: "HUI",
@@ -38,50 +40,50 @@ function SideBar(props) {
     },
   };
 
-  if (props.currentPage === "home") {
+  if (currentPage === "home") {
     sideBar["pageName"] =
-      props.language === "jp" ? text.jp.HomePageName : text.eng.HomePageName;
+      language === "jp" ? text.jp.HomePageName : text.eng.HomePageName;
     sideBar["description"] =
-      props.language === "jp" ? text.jp.HomeDesc : text.eng.HomeDesc;
+      language === "jp" ? text.jp.HomeDesc : text.eng.HomeDesc;
     sideBar["codeText"] =
-      props.language === "jp" ? text.jp.HomeCodeText : text.eng.HomeCodeText;
+      language === "jp" ? text.jp.HomeCodeText : text.eng.HomeCodeText;
     sideBar["codeLink"] = "https://github.com/JasonMTarka/React-Sample";
     //
-  } else if (props.currentPage === "sudoku") {
+  } else if (currentPage === "sudoku") {
     sideBar["pageName"] =
-      props.language === "jp"
+      language === "jp"
         ? text.jp.SudokuPageName
         : text.eng.SudokuPageName;
     sideBar["description"] =
-      props.language === "jp" ? text.jp.SudokuDesc : text.eng.SudokuDesc;
+      language === "jp" ? text.jp.SudokuDesc : text.eng.SudokuDesc;
     sideBar["codeText"] =
-      props.language === "jp"
+      language === "jp"
         ? text.jp.SudokuCodeText
         : text.eng.SudokuCodeText;
     sideBar["codeLink"] =
       "https://github.com/JasonMTarka/React-Sample/blob/main/src/Components/Logic/sudokuSolverLogic.js";
     sideBar["componentCodeText"] =
-      props.language === "jp"
+      language === "jp"
         ? text.jp.SudokuComponentText
         : text.eng.SudokuComponentText;
     sideBar["componentCodeLink"] =
       "https://github.com/JasonMTarka/React-Sample/blob/main/src/Components/sudokuForm.js";
     //
-  } else if (props.currentPage === "passwordGen") {
+  } else if (currentPage === "passwordGen") {
     sideBar["pageName"] =
-      props.language === "jp"
+      language === "jp"
         ? text.jp.PassGenPageName
         : text.eng.PassGenPageName;
     sideBar["description"] =
-      props.language === "jp" ? text.jp.PassGenDesc : text.eng.PassGenDesc;
+      language === "jp" ? text.jp.PassGenDesc : text.eng.PassGenDesc;
     sideBar["codeText"] =
-      props.language === "jp"
+      language === "jp"
         ? text.jp.PassGenCodeText
         : text.eng.PassGenCodeText;
     sideBar["codeLink"] =
       "https://github.com/JasonMTarka/React-Sample/blob/main/src/Components/Logic/passwordGenLogic.js";
     sideBar["componentCodeText"] =
-      props.language === "jp"
+      language === "jp"
         ? text.jp.PassGenComponentText
         : text.eng.PassGenComponentText;
     sideBar["componentCodeLink"] =
@@ -138,5 +140,3 @@ function SideBar(props) {
     </div>
   );
 }
-
-export default SideBar;

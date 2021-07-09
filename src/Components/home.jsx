@@ -1,4 +1,6 @@
-function Home(props) {
+import React from "react";
+
+export default function Home({language}) {
   const text = {
     eng: {
       about: "About this Site",
@@ -19,14 +21,12 @@ function Home(props) {
   return (
     <div className="container">
       <h3 key="about">
-        {props.language === "jp" ? text.jp.about : text.eng.about}
+        {language === "jp" ? text.jp.about : text.eng.about}
       </h3>
-      <p key="1">{props.language === "jp" ? text.jp.p1 : text.eng.p1}</p>
-      <p key="2">{props.language === "jp" ? text.jp.p2 : text.eng.p2}</p>
-      <p key="3">{props.language === "jp" ? text.jp.p3 : text.eng.p3}</p>
-      <p key="4">{props.language === "jp" ? text.jp.p4 : text.eng.p4}</p>
+      <p key="1">{language === "jp" ? text.jp.p1 : text.eng.p1}</p>
+      <p key="2">{language === "jp" ? text.jp.p2 : text.eng.p2}</p>
+      <p key="3">{language === "jp" ? text.jp.p3 : text.eng.p3}</p>
+      <p key="4">{language === "jp" ? text.jp.p4 : text.eng.p4}</p>
     </div>
   );
 }
-
-export default Home;

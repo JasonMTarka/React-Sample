@@ -1,6 +1,7 @@
+import React from "react";
 import Form from "./Form";
 
-function Sudoku(props) {
+export default function Sudoku({language}) {
   const text = {
     eng: {
       title: "Sudoku Solver",
@@ -15,13 +16,11 @@ function Sudoku(props) {
 
   return (
     <div className="container">
-      <h3>{props.language === "jp" ? text.jp.title : text.eng.title}</h3>
-      <p>{props.language === "jp" ? text.jp.desc : text.eng.desc}</p>
+      <h3>{language === "jp" ? text.jp.title : text.eng.title}</h3>
+      <p>{language === "jp" ? text.jp.desc : text.eng.desc}</p>
       <div>
-        <Form language={props.language} />
+        <Form language={language} />
       </div>
     </div>
   );
 }
-
-export default Sudoku;

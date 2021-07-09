@@ -21,7 +21,7 @@ class Form extends Component {
         minNums: "Minimum Amount of Numbers",
         minSyms: "Minimum Amount of Symbols",
         passLen: "Password Length",
-        waiting: "Waiting...",
+        waiting: "",
         createPass: "Create Password",
         copyPass: "Copy Password",
       },
@@ -33,7 +33,7 @@ class Form extends Component {
         minNums: "数字の最小限",
         minSyms: "記号の最小限",
         passLen: "パスワードの長さ",
-        waiting: "待機中",
+        waiting: "",
         createPass: "パスワードを作成する",
         copyPass: "パスワードをコピーする",
       },
@@ -117,14 +117,17 @@ class Form extends Component {
   };
 
   handleSubmit = (event) => {
+
+    const {password} = this.state;
+
     const newPass = new Password({
-      lowercase: this.state.password.lowercase,
-      uppercase: this.state.password.uppercase,
-      nums: this.state.password.nums,
-      syms: this.state.password.syms,
-      minNums: this.state.password.minNums,
-      minSyms: this.state.password.minSyms,
-      passLen: this.state.password.passLen,
+      lowercase: password.lowercase,
+      uppercase: password.uppercase,
+      nums: password.nums,
+      syms: password.syms,
+      minNums: password.minNums,
+      minSyms: password.minSyms,
+      passLen: password.passLen,
     });
     newPass.generate();
     this.setState({
@@ -159,6 +162,11 @@ class Form extends Component {
   };
 
   render() {
+
+    const {text} = this;
+    const {language} = this.props;
+    const {password} = this.state;
+
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="row mt-3 ml-3">
@@ -166,11 +174,11 @@ class Form extends Component {
             <CheckBox
               name="lowercase"
               text={
-                this.props.language === "jp"
-                  ? this.text.jp.lowercase
-                  : this.text.eng.lowercase
+                language === "jp"
+                  ? text.jp.lowercase
+                  : text.eng.lowercase
               }
-              state={this.state.password.lowercase}
+              state={password.lowercase}
               handler={this.handleLowercaseChange}
             />
           </div>
@@ -178,11 +186,11 @@ class Form extends Component {
             <CheckBox
               name="uppercase"
               text={
-                this.props.language === "jp"
+                language === "jp"
                   ? this.text.jp.uppercase
                   : this.text.eng.uppercase
               }
-              state={this.state.password.uppercase}
+              state={password.uppercase}
               handler={this.handleUppercaseChange}
             />
           </div>
@@ -192,11 +200,11 @@ class Form extends Component {
             <CheckBox
               name="nums"
               text={
-                this.props.language === "jp"
+                language === "jp"
                   ? this.text.jp.numbers
                   : this.text.eng.numbers
               }
-              state={this.state.password.nums}
+              state={password.nums}
               handler={this.handleNumsChange}
             />
           </div>
@@ -204,11 +212,11 @@ class Form extends Component {
             <CheckBox
               name="syms"
               text={
-                this.props.language === "jp"
+                language === "jp"
                   ? this.text.jp.symbols
                   : this.text.eng.symbols
               }
-              state={this.state.password.syms}
+              state={password.syms}
               handler={this.handleSymsChange}
             />
           </div>
@@ -216,36 +224,36 @@ class Form extends Component {
         <div className="mt-4">
           <Dropdown
             text={
-              this.props.language === "jp"
+              language === "jp"
                 ? this.text.jp.minNums
                 : this.text.eng.minNums
             }
-            value={this.state.password.minNums}
+            value={password.minNums}
             handler={this.handleMinNumsChange}
-            disabled={this.state.password.nums === true ? "" : "disabled"}
+            disabled={password.nums === true ? "" : "disabled"}
             renderer={this.renderMaxAllowedMinNumOptions}
           />
 
           <Dropdown
             text={
-              this.props.language === "jp"
+              language === "jp"
                 ? this.text.jp.minSyms
                 : this.text.eng.minSyms
             }
-            value={this.state.password.minSyms}
+            value={password.minSyms}
             handler={this.handleMinSymsChange}
-            disabled={this.state.password.syms === true ? "" : "disabled"}
+            disabled={password.syms === true ? "" : "disabled"}
             renderer={this.renderMaxAllowedMinSymOptions}
           />
         </div>
         <div className="mt-3">
           <Dropdown
             text={
-              this.props.language === "jp"
+              language === "jp"
                 ? this.text.jp.passLen
                 : this.text.eng.passLen
             }
-            value={this.state.password.passLen}
+            value={password.passLen}
             handler={this.handlePassLenChange}
             renderer={this.renderPassLenOptions}
           />
@@ -255,17 +263,17 @@ class Form extends Component {
             <ViewField
               text={this.text}
               state={this.state}
-              language={this.props.language}
+              language={language}
             />
           </div>
           <div className="row mt-3">
-            <GenerateButton language={this.props.language} text={this.text} />
+            <GenerateButton language={language} text={this.text} />
 
-            {this.state.password.value ? (
+            {password.value ? (
               <CopyButton
                 handler={this.copyPassword}
                 text={this.text}
-                language={this.props.language}
+                language={language}
               />
             ) : null}
           </div>

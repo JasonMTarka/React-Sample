@@ -1,10 +1,12 @@
-function NavBar(props) {
+import React from "react";
+
+export default function NavBar({language, updateLanguage, updatePage}) {
   const navButtonPressed = (buttonName) => {
-    props.updatePage(buttonName);
+    updatePage(buttonName);
   };
 
   const handleLanguageChange = (event) => {
-    props.updateLanguage(event.target.value);
+    updateLanguage(event.target.value);
   };
 
   const text = {
@@ -28,7 +30,7 @@ function NavBar(props) {
             className="btn btn-primary row"
             onClick={() => navButtonPressed("home")}
           >
-            <h4>{props.language === "jp" ? text.jp.home : text.eng.home}</h4>
+            <h4>{language === "jp" ? text.jp.home : text.eng.home}</h4>
           </button>
         </ul>
         <ul className="navbar-nav w-100 justify-content-center">
@@ -37,7 +39,7 @@ function NavBar(props) {
               className="btn btn-primary"
               onClick={() => navButtonPressed("sudoku")}
             >
-              {props.language === "jp" ? text.jp.sudoku : text.eng.sudoku}
+              {language === "jp" ? text.jp.sudoku : text.eng.sudoku}
             </button>
           </li>
           <li className="nav-item">
@@ -45,12 +47,12 @@ function NavBar(props) {
               className="btn btn-primary"
               onClick={() => navButtonPressed("passwordGen")}
             >
-              {props.language === "jp" ? text.jp.passGen : text.eng.passGen}
+              {language === "jp" ? text.jp.passGen : text.eng.passGen}
             </button>
           </li>
         </ul>
         <div className="navbar-nav">
-          <select value={props.language} onChange={handleLanguageChange}>
+          <select value={language} onChange={handleLanguageChange}>
             <option value="eng" key="eng">
               English
             </option>
@@ -63,5 +65,3 @@ function NavBar(props) {
     </nav>
   );
 }
-
-export default NavBar;

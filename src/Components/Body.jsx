@@ -1,28 +1,30 @@
+import React from "react";
+
 import Home from "./home";
 import Sudoku from "./Sudoku/sudokuSolver";
 import PasswordGen from "./PassGen/passwordGen";
 
-function Body(props) {
+function Body({currentPage, language}) {
   return (
     <div>
       <div>
         <div>
-          {props.currentPage === "home" ? (
-            <Home language={props.language} />
+          {currentPage === "home" ? (
+            <Home language={language} />
           ) : (
             ""
           )}
         </div>
         <div>
-          {props.currentPage === "sudoku" ? (
-            <Sudoku language={props.language} />
+          {currentPage === "sudoku" ? (
+            <Sudoku language={language} />
           ) : (
             ""
           )}
         </div>
         <div>
-          {props.currentPage === "passwordGen" ? (
-            <PasswordGen language={props.language} />
+          {currentPage === "passwordGen" ? (
+            <PasswordGen language={language} />
           ) : (
             ""
           )}
