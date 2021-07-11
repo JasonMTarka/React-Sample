@@ -1,6 +1,6 @@
 import Form from "./Form";
 
-function PasswordGen({language}) {
+export default function PasswordGen({language}) {
   const text = {
     eng: {
       title: "Password Generator",
@@ -25,5 +25,3 @@ function PasswordGen({language}) {
     </div>
   );
 }
-
-export default PasswordGen;
