@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+
 import Sudoku from "./sudokuSolverLogic";
 import Row from "./Row";
-import {TEXT} from "../../text";
+import {SUDOKU_TXT as TEXT} from "../../Text/sudokuText";
+import { LANGUAGES } from "../../Text/languages";
 
-const {SUDOKU} = TEXT;
 
 export default function Form ({language}) {
 
@@ -49,17 +50,17 @@ export default function Form ({language}) {
       <div>{renderGrid()}</div>
       <div className="btn-toolbar mt-3">
         <button className="col btn btn-primary" onClick={solveSudoku}>
-          {language === TEXT.JP_LANG
-            ? SUDOKU.JP.SOLVE
-            : SUDOKU.ENG.SOLVE}
+          {language === LANGUAGES.JP
+            ? TEXT.JP.SOLVE
+            : TEXT.ENG.SOLVE}
         </button>
         <button
           className="col ml-2 btn btn-secondary"
           onClick={resetSudoku}
         >
-          {language === TEXT.JP_LANG
-            ? SUDOKU.JP.RESET
-            : SUDOKU.ENG.RESET}
+          {language === LANGUAGES.JP
+            ? TEXT.JP.RESET
+            : TEXT.ENG.RESET}
         </button>
       </div>
       <div className="mt-3">

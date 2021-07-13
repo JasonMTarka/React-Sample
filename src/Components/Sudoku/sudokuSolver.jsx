@@ -1,15 +1,15 @@
 import React from "react";
-import Form from "./Form";
-import { TEXT } from "../../text";
 
-const { SUDOKU } = TEXT;
+import Form from "./Form";
+import { SUDOKU_TXT } from "../../Text/sudokuText";
+import { LANGUAGES } from "../../Text/languages";
 
 export default function Sudoku({language}) {
  
   return (
     <div className="container">
-      <h3>{language === TEXT.JP_LANG ? SUDOKU.JP.TITLE : SUDOKU.ENG.TITLE}</h3>
-      <p>{language === TEXT.JP_LANG ? SUDOKU.JP.DESC : SUDOKU.ENG.DESC}</p>
+      <h3>{language === LANGUAGES.JP ? SUDOKU_TXT.JP.TITLE : SUDOKU_TXT.ENG.TITLE}</h3>
+      <p>{language === LANGUAGES.JP ? SUDOKU_TXT.JP.DESC : SUDOKU_TXT.ENG.DESC}</p>
       <div>
         <Form language={language} />
       </div>

@@ -7,7 +7,9 @@ import Dropdown from "./Dropdown";
 import ViewField from "./ViewField";
 import GenerateButton from "./GenerateButton";
 import CopyButton from "./CopyButton";
-import {TEXT} from "../../text";
+import { LANGUAGES } from "../../Text/languages";
+import { PASS_GEN_TXT as TEXT } from "../../Text/passGenText";
+
 
 export const ACTIONS = {
   UPDATE_LOWERCASE: "updateLowercase",
@@ -19,8 +21,6 @@ export const ACTIONS = {
   UPDATE_PASS_LEN: "updatePassLen",
   CREATE_NEW_PASS: "createNewPassword",
 };
-
-const {PASS_GEN} = TEXT;
 
 const reducer = (password, action) => {
   switch (action.type) {
@@ -99,7 +99,7 @@ export default function Form ({language}) {
   return (
     <form onSubmit={handleSubmit}>
       <div className="row mt-3 ml-3">
-        {[PASS_GEN.ENG.LOWERCASE, PASS_GEN.ENG.UPPERCASE].map(checkboxName => (
+        {[TEXT.ENG.LOWERCASE, TEXT.ENG.UPPERCASE].map(checkboxName => (
           <div key={checkboxName} className="col form-check">
           <CheckBox
             name={checkboxName}
@@ -111,7 +111,7 @@ export default function Form ({language}) {
         ))}
       </div>
       <div className="row mt-3">
-        {[PASS_GEN.ENG.NUMBERS, PASS_GEN.ENG.SYMBOLS].map(checkboxName => (
+        {[TEXT.ENG.NUMBERS, TEXT.ENG.SYMBOLS].map(checkboxName => (
           <div key={checkboxName} className="col form-check">
           <CheckBox
             name={checkboxName}
@@ -124,14 +124,14 @@ export default function Form ({language}) {
       </div>
       <div className="mt-4">
         <Dropdown
-          name={PASS_GEN.ENG.MIN_NUMS}
+          name={TEXT.ENG.MIN_NUMS}
           language={language}
           password={password}
           renderer={renderMaxAllowedMinNumOptions}
           dispatch={dispatch}
         />
          <Dropdown
-          name={PASS_GEN.ENG.MIN_SYMS}
+          name={TEXT.ENG.MIN_SYMS}
           language={language}
           password={password}
           renderer={renderMaxAllowedMinSymOptions}
@@ -140,7 +140,7 @@ export default function Form ({language}) {
       </div>
       <div className="mt-3">
       <Dropdown
-          name={PASS_GEN.ENG.PASS_LEN}
+          name={TEXT.ENG.PASS_LEN}
           language={language}
           password={password}
           renderer={renderPassLenOptions}
@@ -166,7 +166,7 @@ export default function Form ({language}) {
         </div>
         {copied ? (
           <Alert className="mt-2" variant="success">
-            {language === TEXT.JP_LANG ? PASS_GEN.JP.COPY_ALERT : PASS_GEN.ENG.COPY_ALERT}
+            {language === LANGUAGES.JP ? TEXT.JP.COPY_ALERT : TEXT.ENG.COPY_ALERT}
           </Alert>
         ) : null}
       </div>

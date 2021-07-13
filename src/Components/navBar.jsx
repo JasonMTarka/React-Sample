@@ -1,7 +1,8 @@
 import React from "react";
-import {TEXT} from "../text";
 
-const { NAVBAR } = TEXT;
+import { NAVBAR_TXT as TEXT } from "../Text/navBarText";
+import { LANGUAGES } from "../Text/languages";
+
 
 export default function NavBar({language, updateLanguage, updatePage}) {
   const navButtonPressed = (buttonName) => {
@@ -20,7 +21,7 @@ export default function NavBar({language, updateLanguage, updatePage}) {
             className="btn btn-primary row"
             onClick={() => navButtonPressed("home")}
           >
-            <h4>{language === TEXT.JP_LANG ? NAVBAR.JP.HOME : NAVBAR.ENG.HOME}</h4>
+            <h4>{language === LANGUAGES.JP ? TEXT.JP.HOME : TEXT.ENG.HOME}</h4>
           </button>
         </ul>
         <ul className="navbar-nav w-100 justify-content-center">
@@ -29,7 +30,7 @@ export default function NavBar({language, updateLanguage, updatePage}) {
               className="btn btn-primary"
               onClick={() => navButtonPressed("sudoku")}
             >
-              {language === TEXT.JP_LANG ? NAVBAR.JP.SUDOKU : NAVBAR.ENG.SUDOKU}
+              {language === LANGUAGES.JP ? TEXT.JP.SUDOKU : TEXT.ENG.SUDOKU}
             </button>
           </li>
           <li className="nav-item">
@@ -37,16 +38,16 @@ export default function NavBar({language, updateLanguage, updatePage}) {
               className="btn btn-primary"
               onClick={() => navButtonPressed("passwordGen")}
             >
-              {language === TEXT.JP_LANG ? NAVBAR.JP.PASS_GEN : NAVBAR.ENG.PASS_GEN}
+              {language === LANGUAGES.JP ? TEXT.JP.PASS_GEN : TEXT.ENG.PASS_GEN}
             </button>
           </li>
         </ul>
         <div className="navbar-nav">
           <select value={language} onChange={handleLanguageChange}>
-            <option value={TEXT.ENG_LANG} key={TEXT.ENG_LANG}>
+            <option value={LANGUAGES.ENG} key={LANGUAGES.ENG}>
               English
             </option>
-            <option value={TEXT.JP_LANG} key={TEXT.JP_LANG}>
+            <option value={LANGUAGES.JP} key={LANGUAGES.JP}>
               日本語
             </option>
           </select>

@@ -1,7 +1,6 @@
 import React from "react";
-import { TEXT } from "../../text";
-
-const {PASS_GEN} = TEXT;
+import { LANGUAGES } from "../../Text/languages";
+import { PASS_GEN_TXT as TEXT } from "../../Text/passGenText";
 
 export default function Copy({ handler, language }) {
   return (
@@ -11,7 +10,7 @@ export default function Copy({ handler, language }) {
         className="btn btn-success"
         onClick={() => handler()}
       >
-        {language === TEXT.JP_LANG ? PASS_GEN.JP.COPY_PASS : PASS_GEN.ENG.COPY_PASS}
+        {language === LANGUAGES.JP ? TEXT.JP.COPY_PASS : TEXT.ENG.COPY_PASS}
       </button>
     </div>
   );

@@ -1,15 +1,16 @@
 import Form from "./Form";
-import {TEXT} from "../../text"
 
-const {PASS_GEN} = TEXT
+import { LANGUAGES } from "../../Text/languages";
+import { PASS_GEN_TXT as TEXT } from "../../Text/passGenText";
+
 
 export default function PasswordGen({language}) {
  
   return (
     <div>
       <div>
-        <h3>{language === TEXT.JP_LANG ? PASS_GEN.JP.TITLE : PASS_GEN.ENG.TITLE}</h3>
-        <p>{language === TEXT.JP_LANG ? PASS_GEN.JP.DESC : PASS_GEN.ENG.DESC}</p>
+        <h3>{language === LANGUAGES.JP ? TEXT.JP.TITLE : TEXT.ENG.TITLE}</h3>
+        <p>{language === LANGUAGES.JP ? TEXT.JP.DESC : TEXT.ENG.DESC}</p>
       </div>
       <div>
         <Form language={language} />

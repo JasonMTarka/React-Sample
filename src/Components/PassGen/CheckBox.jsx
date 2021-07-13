@@ -1,8 +1,8 @@
 import React from "react";
-import { ACTIONS } from "./Form";
-import {TEXT} from "../../text";
 
-const {PASS_GEN} = TEXT;
+import { ACTIONS } from "./Form";
+import { PASS_GEN_TXT as TEXT } from "../../Text/passGenText";
+import { LANGUAGES } from "../../Text/languages";
 
 export default function CheckBox({ name, language, password, dispatch }) {
 
@@ -11,24 +11,24 @@ export default function CheckBox({ name, language, password, dispatch }) {
   let checked = false;
 
   switch (name) {
-    case PASS_GEN.ENG.LOWERCASE:
+    case TEXT.ENG.LOWERCASE:
       assignedType = ACTIONS.UPDATE_LOWERCASE;
-      text = language === TEXT.JP_LANG ? PASS_GEN.JP.LOWERCASE : PASS_GEN.ENG.LOWERCASE;
+      text = language === LANGUAGES.JP ? TEXT.JP.LOWERCASE : TEXT.ENG.LOWERCASE;
       checked = password.lowercase;
       break
-    case PASS_GEN.ENG.UPPERCASE:
+    case TEXT.ENG.UPPERCASE:
       assignedType = ACTIONS.UPDATE_UPPERCASE;
-      text = language === TEXT.JP_LANG ? PASS_GEN.JP.UPPERCASE : PASS_GEN.ENG.UPPERCASE;
+      text = language === LANGUAGES.JP ? TEXT.JP.UPPERCASE : TEXT.ENG.UPPERCASE;
       checked = password.uppercase;
       break
-    case PASS_GEN.ENG.NUMBERS:
+    case TEXT.ENG.NUMBERS:
       assignedType = ACTIONS.UPDATE_NUMS;
-      text = language === TEXT.JP_LANG ? PASS_GEN.JP.MIN_NUMS : PASS_GEN.ENG.MIN_NUMS;
+      text = language === LANGUAGES.JP ? TEXT.JP.MIN_NUMS : TEXT.ENG.MIN_NUMS;
       checked = password.nums;
       break
-    case PASS_GEN.ENG.SYMBOLS:
+    case TEXT.ENG.SYMBOLS:
       assignedType = ACTIONS.UPDATE_SYMS;
-      text = language === TEXT.JP_LANG ? PASS_GEN.JP.MIN_SYMS : PASS_GEN.ENG.MIN_SYMS;
+      text = language === LANGUAGES.JP ? TEXT.JP.MIN_SYMS : TEXT.ENG.MIN_SYMS;
       checked = password.syms;
       break
     default:

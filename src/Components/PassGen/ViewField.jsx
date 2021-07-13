@@ -1,7 +1,7 @@
 import React from "react";
-import { TEXT } from "../../text";
 
-const {PASS_GEN} = TEXT;
+import { PASS_GEN_TXT as TEXT } from "../../Text/passGenText";
+import { LANGUAGES } from "../../Text/languages";
 
 export default function ViewField({ password, language }) {
 
@@ -9,10 +9,10 @@ export default function ViewField({ password, language }) {
 
   switch (password.value) {
     case "invalidLen":
-      errMsg = language === TEXT.JP_LANG ? PASS_GEN.JP.ERR_LEN : PASS_GEN.ENG.ERR_LEN
+      errMsg = language === LANGUAGES.JP ? TEXT.JP.ERR_LEN : TEXT.ENG.ERR_LEN
       break;
     case "invalidNoOptions":
-      errMsg = language === TEXT.JP_LANG ? PASS_GEN.JP.ERR_OPT : PASS_GEN.ENG.ERR_OPT
+      errMsg = language === LANGUAGES.JP ? TEXT.JP.ERR_OPT : TEXT.ENG.ERR_OPT
       break;
     default:
       break;
@@ -26,9 +26,9 @@ export default function ViewField({ password, language }) {
         placeholder={(errMsg ? errMsg 
           : password.value
             ? password.value
-            : language === TEXT.JP_LANG
-            ? PASS_GEN.JP.WAITING
-            : PASS_GEN.ENG.WAITING
+            : language === LANGUAGES.JP
+            ? TEXT.JP.WAITING
+            : TEXT.ENG.WAITING
         )}
         disabled="disabled"
       ></input>

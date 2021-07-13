@@ -1,19 +1,20 @@
 import React from "react";
-import {TEXT} from "../text"
 
-const {HOME} = TEXT;
+import { HOME_TXT as TEXT} from "../Text/homeText"
+import { LANGUAGES } from "../Text/languages"
+
 
 export default function Home({language}) {
  
   return (
     <div className="container">
       <h3 key="about">
-        {language === TEXT.JP_LANG ? HOME.JP.ABOUT : HOME.ENG.ABOUT}
+        {language === LANGUAGES.JP ? TEXT.JP.ABOUT : TEXT.ENG.ABOUT}
       </h3>
-      <p key="1">{language === TEXT.JP_LANG ? HOME.JP.P1 : HOME.ENG.P1}</p>
-      <p key="2">{language === TEXT.JP_LANG ? HOME.JP.P2 : HOME.ENG.P2}</p>
-      <p key="3">{language === TEXT.JP_LANG ? HOME.JP.P3 : HOME.ENG.P3}</p>
-      <p key="4">{language === TEXT.JP_LANG ? HOME.JP.P4 : HOME.ENG.P4}</p>
+      <p key="1">{language === LANGUAGES.JP ? TEXT.JP.P1 : TEXT.ENG.P1}</p>
+      <p key="2">{language === LANGUAGES.JP ? TEXT.JP.P2 : TEXT.ENG.P2}</p>
+      <p key="3">{language === LANGUAGES.JP ? TEXT.JP.P3 : TEXT.ENG.P3}</p>
+      <p key="4">{language === LANGUAGES.JP ? TEXT.JP.P4 : TEXT.ENG.P4}</p>
     </div>
   );
 }
