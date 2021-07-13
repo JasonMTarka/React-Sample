@@ -46,11 +46,10 @@ export default function Form ({language}) {
   }
 
   const renderDifficultyOptions = () => {
-    let difficultyOptions = [];
-    for (let option of Object.keys(sudoku._sudokus)) {
-      difficultyOptions.push(<option key={option}>{option}</option>);
-    }
-    return difficultyOptions;
+    return Object.keys(sudoku._sudokus).map(option => (
+      <option key={option}>{option}</option>
+    ));
+    
   }
 
   return (

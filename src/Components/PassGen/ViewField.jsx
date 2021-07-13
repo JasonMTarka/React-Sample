@@ -1,19 +1,19 @@
 import React from "react";
+import { TEXT } from "./Form";
 
-export default function ViewField({ text, password, language }) {
+export default function ViewField({ password, language }) {
 
   let errMsg = "";
 
-  if (password.value === "invalidLen") {
-    if (language === "jp") { errMsg = "パスワードは短すぎます。長さ又は最小限を上げてください。"
-    } else {
-    errMsg = "Invalid length: increase your minimum values or password length."}
-  }
-
-  if (password.value === "invalidNoOptions") {
-    if (language === "jp") { errMsg = "上記の選択肢を少なくとも１つお選びください。"
-    } else {
-    errMsg = "Please choose at least one option."}
+  switch (password.value) {
+    case "invalidLen":
+      errMsg = language === TEXT.JP_LANG ? "パスワードは短すぎます。長さ又は最小限を上げてください。" : "Invalid length: increase your minimum values or password length."
+      break;
+    case "invalidNoOptions":
+      errMsg = language === TEXT.JP_LANG ? "上記の選択肢を少なくとも１つお選びください。" : "Please choose at least one option."
+      break;
+    default:
+      break;
   }
 
   return (
@@ -24,9 +24,9 @@ export default function ViewField({ text, password, language }) {
         placeholder={(errMsg ? errMsg 
           : password.value
             ? password.value
-            : language === "jp"
-            ? text.jp.waiting
-            : text.eng.waiting
+            : language === TEXT.JP_LANG
+            ? TEXT.JP.WAITING
+            : TEXT.ENG.WAITING
         )}
         disabled="disabled"
       ></input>

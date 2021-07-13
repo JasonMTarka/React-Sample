@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
 import { Alert } from "react-bootstrap";
 
 import Password from "./passwordGenLogic";
@@ -8,95 +8,84 @@ import ViewField from "./ViewField";
 import GenerateButton from "./GenerateButton";
 import CopyButton from "./CopyButton";
 
+
+export const TEXT = {
+  JP_LANG : "jp",
+  ENG_LANG : "eng",
+  ENG: {
+    LOWERCASE: "Lowercase",
+    UPPERCASE: "Uppercase",
+    NUMBERS: "Numbers",
+    SYMBOLS: "Symbols",
+    MIN_NUMS: "Minimum Amount of Numbers",
+    MIN_SYMS: "Minimum Amount of Symbols",
+    PASS_LEN: "Password Length",
+    WAITING: "",
+    CREATE_PASS: "Create Password",
+    COPY_PASS: "Copy Password",
+    COPY_ALERT: "Your password has been copied!",
+  },
+  JP: {
+    LOWERCASE: "小文字",
+    UPPERCASE: "大文字",
+    NUMBERS: "数字",
+    SYMBOLS: "記号",
+    MIN_NUMS: "数字の最小限",
+    MIN_SYMS: "記号の最小限",
+    PASS_LEN: "パスワードの長さ",
+    WAITING: "",
+    CREATE_PASS: "パスワードを作成する",
+    COPY_PASS: "パスワードをコピーする",
+    COPY_ALERT: "パスワードは無事にコピーされました！"
+  },
+};
+
+export const ACTIONS = {
+  UPDATE_LOWERCASE: "updateLowercase",
+  UPDATE_UPPERCASE: "updateUppercase",
+  UPDATE_NUMS: "updateNums",
+  UPDATE_SYMS: "updateSyms",
+  UPDATE_MIN_NUMS: "updateMinNums",
+  UPDATE_MIN_SYMS: "updateMinSyms",
+  UPDATE_PASS_LEN: "updatePassLen",
+  CREATE_NEW_PASS: "createNewPassword",
+};
+
+const reducer = (password, action) => {
+  switch (action.type) {
+    case ACTIONS.UPDATE_LOWERCASE:
+      return {...password, lowercase: action.payload.target.checked}
+    case ACTIONS.UPDATE_UPPERCASE:
+      return {...password, uppercase: action.payload.target.checked}
+    case ACTIONS.UPDATE_NUMS:
+      return {...password, nums: action.payload.target.checked}
+    case ACTIONS.UPDATE_SYMS:
+      return {...password, syms: action.payload.target.checked}
+    case ACTIONS.UPDATE_MIN_NUMS:
+      return {...password, minNums: action.payload.target.value}
+    case ACTIONS.UPDATE_MIN_SYMS:
+      return {...password, minSyms: action.payload.target.value}
+    case ACTIONS.UPDATE_PASS_LEN:
+      return {...password, passLen: action.payload.target.value}
+    case ACTIONS.CREATE_NEW_PASS:
+      return action.payload
+    default:
+      return password
+  }
+}
+
 export default function Form ({language}) {
 
-  const text = {
-    eng: {
-      lowercase: "Lowercase",
-      uppercase: "Uppercase",
-      numbers: "Numbers",
-      symbols: "Symbols",
-      minNums: "Minimum Amount of Numbers",
-      minSyms: "Minimum Amount of Symbols",
-      passLen: "Password Length",
-      waiting: "",
-      createPass: "Create Password",
-      copyPass: "Copy Password",
-    },
-    jp: {
-      lowercase: "小文字",
-      uppercase: "大文字",
-      numbers: "数字",
-      symbols: "記号",
-      minNums: "数字の最小限",
-      minSyms: "記号の最小限",
-      passLen: "パスワードの長さ",
-      waiting: "",
-      createPass: "パスワードを作成する",
-      copyPass: "パスワードをコピーする",
-    },
-  };
-
-  const [password, setPassword] = useState(new Password({}));
+  const [password, dispatch] = useReducer(reducer, new Password({}));
   const [copied, setCopied] = useState(false);
 
   const copyPassword = () => {
     navigator.clipboard.writeText(password.value).then(() => {
       setCopied(true);
     })
-  }
-  
-  const handleLowercaseChange = event => {
-    setPassword(prevState => ({
-        ...prevState,
-        lowercase: event.target.checked,
-    }));
-  }
-
-  const handleUppercaseChange = event => {
-    setPassword(prevState => ({
-        ...prevState,
-        uppercase: event.target.checked,
-    }));
-  }
-
-  const handleNumsChange = event => {
-    setPassword(prevState => ({
-        ...prevState,
-        nums: event.target.checked,
-    }));
-  }
-
-  const handleSymsChange = event => {
-    setPassword(prevState => ({
-        ...prevState,
-        syms: event.target.checked,
-    }));
-  }
-
-  const handleMinNumsChange = event => {
-    setPassword(prevState => ({
-        ...prevState,
-        minNums: event.target.value,
-    }));
-  }
-
-  const handleMinSymsChange = event => {
-    setPassword(prevState => ({
-        ...prevState,
-        minSyms: event.target.value,
-    }));
-  }
-
-  const handlePassLenChange = event => {
-    setPassword(prevState => ({
-        ...prevState,
-        passLen: event.target.value,
-    }));
-  }
+  };
 
   const handleSubmit = event => {
-
     const newPass = new Password({
       lowercase: password.lowercase,
       uppercase: password.uppercase,
@@ -106,12 +95,11 @@ export default function Form ({language}) {
       minSyms: password.minSyms,
       passLen: password.passLen,
     });
-
     newPass.generate();
-    setPassword(newPass);
+    dispatch({type: ACTIONS.CREATE_NEW_PASS, payload: newPass});
     setCopied(false);
     event.preventDefault();
-  }
+  };
 
   const renderPassLenOptions = (passLengthOptions = 16) => {
     let passLengthItems = [];
@@ -119,7 +107,7 @@ export default function Form ({language}) {
       passLengthItems.push(<option key={i}>{i}</option>);
     }
     return passLengthItems;
-  }
+  };
 
   const renderMaxAllowedMinNumOptions = (maxAllowedMinNums = 4) => {
     let minNumsItems = [];
@@ -127,7 +115,7 @@ export default function Form ({language}) {
       minNumsItems.push(<option key={i}>{i}</option>);
     }
     return minNumsItems;
-  }
+  };
 
   const renderMaxAllowedMinSymOptions = (maxAllowedMinSyms = 4) => {
     let minSymsItems = [];
@@ -135,122 +123,79 @@ export default function Form ({language}) {
       minSymsItems.push(<option key={i}>{i}</option>);
     }
     return minSymsItems;
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit}>
       <div className="row mt-3 ml-3">
-        <div className="col form-check">
+        {[TEXT.ENG.LOWERCASE, TEXT.ENG.UPPERCASE].map(checkboxName => (
+          <div key={checkboxName} className="col form-check">
           <CheckBox
-            name="lowercase"
-            text={
-              language === "jp"
-                ? text.jp.lowercase
-                : text.eng.lowercase
-            }
-            checked={password.lowercase}
-            handler={handleLowercaseChange}
+            name={checkboxName}
+            language={language}
+            password={password}
+            dispatch={dispatch}
           />
         </div>
-        <div className="col form-check">
-          <CheckBox
-            name="uppercase"
-            text={
-              language === "jp"
-                ? text.jp.uppercase
-                : text.eng.uppercase
-            }
-            checked={password.uppercase}
-            handler={handleUppercaseChange}
-          />
-        </div>
+        ))}
       </div>
       <div className="row mt-3">
-        <div className="col form-check">
+        {[TEXT.ENG.NUMBERS, TEXT.ENG.SYMBOLS].map(checkboxName => (
+          <div key={checkboxName} className="col form-check">
           <CheckBox
-            name="nums"
-            text={
-              language === "jp"
-                ? text.jp.numbers
-                : text.eng.numbers
-            }
-            checked={password.nums}
-            handler={handleNumsChange}
+            name={checkboxName}
+            language={language}
+            password={password}
+            dispatch={dispatch}
           />
         </div>
-        <div className="col form-check">
-          <CheckBox
-            name="syms"
-            text={
-              language === "jp"
-                ? text.jp.symbols
-                : text.eng.symbols
-            }
-            checked={password.syms}
-            handler={handleSymsChange}
-          />
-        </div>
+        ))}
       </div>
       <div className="mt-4">
         <Dropdown
-          text={
-            language === "jp"
-              ? text.jp.minNums
-              : text.eng.minNums
-          }
-          value={password.minNums}
-          handler={handleMinNumsChange}
-          disabled={password.nums === true ? "" : "disabled"}
+          name={TEXT.ENG.MIN_NUMS}
+          language={language}
+          password={password}
           renderer={renderMaxAllowedMinNumOptions}
-          
+          dispatch={dispatch}
         />
-
-        <Dropdown
-          text={
-            language === "jp"
-              ? text.jp.minSyms
-              : text.eng.minSyms
-          }
-          value={password.minSyms}
-          handler={handleMinSymsChange}
-          disabled={password.syms === true ? "" : "disabled"}
+         <Dropdown
+          name={TEXT.ENG.MIN_SYMS}
+          language={language}
+          password={password}
           renderer={renderMaxAllowedMinSymOptions}
+          dispatch={dispatch}
         />
       </div>
       <div className="mt-3">
-        <Dropdown
-          text={
-            language === "jp"
-              ? text.jp.passLen
-              : text.eng.passLen
-          }
-          handler={handlePassLenChange}
-          value={password.passLen}
+      <Dropdown
+          name={TEXT.ENG.PASS_LEN}
+          language={language}
+          password={password}
           renderer={renderPassLenOptions}
+          dispatch={dispatch}
         />
       </div>
       <div className="mt-5">
         <div>
           <ViewField
-            text={text}
             password={password}
             language={language}
           />
         </div>
         <div className="row mt-3">
-          <GenerateButton language={language} text={text} />
-
+          
+          <GenerateButton language={language} type="submit"/>
           {password.value ? (
             <CopyButton
               handler={copyPassword}
-              text={text}
               language={language}
             />
           ) : null}
         </div>
         {copied ? (
           <Alert className="mt-2" variant="success">
-            Your password has been copied!
+            {language === TEXT.JP_LANG ? TEXT.JP.COPY_ALERT : TEXT.ENG.COPY_ALERT}
           </Alert>
         ) : null}
       </div>

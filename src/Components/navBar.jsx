@@ -1,5 +1,20 @@
 import React from "react";
 
+const TEXT = {
+  JP_LANG : "jp",
+  ENG_LANG : "eng",
+  ENG: {
+    HOME: "Home",
+    SUDOKU: "Sudoku Solver",
+    PASS_GEN: "Password Generator",
+  },
+  JP: {
+    HOME: "ホームページ",
+    SUDOKU: "数独自動解決アプリ",
+    PASS_GEN: "パスワード自動生成アプリ",
+  },
+};
+
 export default function NavBar({language, updateLanguage, updatePage}) {
   const navButtonPressed = (buttonName) => {
     updatePage(buttonName);
@@ -7,19 +22,6 @@ export default function NavBar({language, updateLanguage, updatePage}) {
 
   const handleLanguageChange = (event) => {
     updateLanguage(event.target.value);
-  };
-
-  const text = {
-    eng: {
-      home: "Home",
-      sudoku: "Sudoku Solver",
-      passGen: "Password Generator",
-    },
-    jp: {
-      home: "ホームページ",
-      sudoku: "数独自動解決アプリ",
-      passGen: "パスワード自動生成アプリ",
-    },
   };
 
   return (
@@ -30,7 +32,7 @@ export default function NavBar({language, updateLanguage, updatePage}) {
             className="btn btn-primary row"
             onClick={() => navButtonPressed("home")}
           >
-            <h4>{language === "jp" ? text.jp.home : text.eng.home}</h4>
+            <h4>{language === TEXT.JP_LANG ? TEXT.JP.HOME : TEXT.ENG.HOME}</h4>
           </button>
         </ul>
         <ul className="navbar-nav w-100 justify-content-center">
@@ -39,7 +41,7 @@ export default function NavBar({language, updateLanguage, updatePage}) {
               className="btn btn-primary"
               onClick={() => navButtonPressed("sudoku")}
             >
-              {language === "jp" ? text.jp.sudoku : text.eng.sudoku}
+              {language === TEXT.JP_LANG ? TEXT.JP.SUDOKU : TEXT.ENG.SUDOKU}
             </button>
           </li>
           <li className="nav-item">
@@ -47,16 +49,16 @@ export default function NavBar({language, updateLanguage, updatePage}) {
               className="btn btn-primary"
               onClick={() => navButtonPressed("passwordGen")}
             >
-              {language === "jp" ? text.jp.passGen : text.eng.passGen}
+              {language === TEXT.JP_LANG ? TEXT.JP.PASS_GEN : TEXT.ENG.PASS_GEN}
             </button>
           </li>
         </ul>
         <div className="navbar-nav">
           <select value={language} onChange={handleLanguageChange}>
-            <option value="eng" key="eng">
+            <option value="ENG" key="ENG">
               English
             </option>
-            <option value="jp" key="jp">
+            <option value={TEXT.JP_LANG} key={TEXT.JP_LANG}>
               日本語
             </option>
           </select>
