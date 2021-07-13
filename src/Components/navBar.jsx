@@ -1,19 +1,7 @@
 import React from "react";
+import {TEXT} from "../text";
 
-const TEXT = {
-  JP_LANG : "jp",
-  ENG_LANG : "eng",
-  ENG: {
-    HOME: "Home",
-    SUDOKU: "Sudoku Solver",
-    PASS_GEN: "Password Generator",
-  },
-  JP: {
-    HOME: "ホームページ",
-    SUDOKU: "数独自動解決アプリ",
-    PASS_GEN: "パスワード自動生成アプリ",
-  },
-};
+const { NAVBAR } = TEXT;
 
 export default function NavBar({language, updateLanguage, updatePage}) {
   const navButtonPressed = (buttonName) => {
@@ -32,7 +20,7 @@ export default function NavBar({language, updateLanguage, updatePage}) {
             className="btn btn-primary row"
             onClick={() => navButtonPressed("home")}
           >
-            <h4>{language === TEXT.JP_LANG ? TEXT.JP.HOME : TEXT.ENG.HOME}</h4>
+            <h4>{language === TEXT.JP_LANG ? NAVBAR.JP.HOME : NAVBAR.ENG.HOME}</h4>
           </button>
         </ul>
         <ul className="navbar-nav w-100 justify-content-center">
@@ -41,7 +29,7 @@ export default function NavBar({language, updateLanguage, updatePage}) {
               className="btn btn-primary"
               onClick={() => navButtonPressed("sudoku")}
             >
-              {language === TEXT.JP_LANG ? TEXT.JP.SUDOKU : TEXT.ENG.SUDOKU}
+              {language === TEXT.JP_LANG ? NAVBAR.JP.SUDOKU : NAVBAR.ENG.SUDOKU}
             </button>
           </li>
           <li className="nav-item">
@@ -49,7 +37,7 @@ export default function NavBar({language, updateLanguage, updatePage}) {
               className="btn btn-primary"
               onClick={() => navButtonPressed("passwordGen")}
             >
-              {language === TEXT.JP_LANG ? TEXT.JP.PASS_GEN : TEXT.ENG.PASS_GEN}
+              {language === TEXT.JP_LANG ? NAVBAR.JP.PASS_GEN : NAVBAR.ENG.PASS_GEN}
             </button>
           </li>
         </ul>

@@ -1,5 +1,8 @@
 import React from "react";
-import { TEXT, ACTIONS } from "./Form"
+import { ACTIONS } from "./Form"
+import { TEXT } from "../../text";
+
+const {PASS_GEN} = TEXT;
 
 export default function Dropdown({ name, language, password, dispatch, renderer }) {
 
@@ -9,21 +12,21 @@ export default function Dropdown({ name, language, password, dispatch, renderer 
   let value = "";
 
   switch(name) {
-    case TEXT.ENG.MIN_NUMS:
+    case PASS_GEN.ENG.MIN_NUMS:
       assignedType = ACTIONS.UPDATE_MIN_NUMS;
-      text = language === TEXT.JP_LANG ? TEXT.JP.MIN_NUMS : TEXT.ENG.MIN_NUMS;
+      text = language === TEXT.JP_LANG ? PASS_GEN.JP.MIN_NUMS : PASS_GEN.ENG.MIN_NUMS;
       disabled = password.nums === true ? "" : "disabled";
       value = password.minNums;
       break
-    case TEXT.ENG.MIN_SYMS:
+    case PASS_GEN.ENG.MIN_SYMS:
       assignedType = ACTIONS.UPDATE_MIN_SYMS;
-      text = language === TEXT.JP_LANG ? TEXT.JP.MIN_SYMS : TEXT.ENG.MIN_SYMS;
+      text = language === TEXT.JP_LANG ? PASS_GEN.JP.MIN_SYMS : PASS_GEN.ENG.MIN_SYMS;
       disabled = password.syms === true ? "" : "disabled";
       value = password.minSyms;
       break
-    case TEXT.ENG.PASS_LEN:
+    case PASS_GEN.ENG.PASS_LEN:
       assignedType = ACTIONS.UPDATE_PASS_LEN;
-      text = language === TEXT.JP_LANG ? TEXT.JP.PASS_LEN : TEXT.ENG.PASS_LEN;
+      text = language === TEXT.JP_LANG ? PASS_GEN.JP.PASS_LEN : PASS_GEN.ENG.PASS_LEN;
       disabled = "";
       value = password.passLen;
       break

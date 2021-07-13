@@ -1,19 +1,11 @@
 import React, { useState } from "react";
 import Sudoku from "./sudokuSolverLogic";
 import Row from "./Row";
+import {TEXT} from "../../text";
+
+const {SUDOKU} = TEXT;
 
 export default function Form ({language}) {
-
-  const text = {
-    eng: {
-      solve: "Solve",
-      reset: "Reset",
-    },
-    jp: {
-      solve: "解決する",
-      reset: "リセット",
-    },
-  }
 
   const [sudoku, setSudoku] = useState(new Sudoku())
 
@@ -57,17 +49,17 @@ export default function Form ({language}) {
       <div>{renderGrid()}</div>
       <div className="btn-toolbar mt-3">
         <button className="col btn btn-primary" onClick={solveSudoku}>
-          {language === "jp"
-            ? text.jp.solve
-            : text.eng.solve}
+          {language === TEXT.JP_LANG
+            ? SUDOKU.JP.SOLVE
+            : SUDOKU.ENG.SOLVE}
         </button>
         <button
           className="col ml-2 btn btn-secondary"
           onClick={resetSudoku}
         >
-          {language === "jp"
-            ? text.jp.reset
-            : text.eng.reset}
+          {language === TEXT.JP_LANG
+            ? SUDOKU.JP.RESET
+            : SUDOKU.ENG.RESET}
         </button>
       </div>
       <div className="mt-3">

@@ -1,5 +1,7 @@
 import React from "react";
-import { TEXT } from "./Form";
+import { TEXT } from "../../text";
+
+const {PASS_GEN} = TEXT;
 
 export default function ViewField({ password, language }) {
 
@@ -7,10 +9,10 @@ export default function ViewField({ password, language }) {
 
   switch (password.value) {
     case "invalidLen":
-      errMsg = language === TEXT.JP_LANG ? "パスワードは短すぎます。長さ又は最小限を上げてください。" : "Invalid length: increase your minimum values or password length."
+      errMsg = language === TEXT.JP_LANG ? PASS_GEN.JP.ERR_LEN : PASS_GEN.ENG.ERR_LEN
       break;
     case "invalidNoOptions":
-      errMsg = language === TEXT.JP_LANG ? "上記の選択肢を少なくとも１つお選びください。" : "Please choose at least one option."
+      errMsg = language === TEXT.JP_LANG ? PASS_GEN.JP.ERR_OPT : PASS_GEN.ENG.ERR_OPT
       break;
     default:
       break;
@@ -25,8 +27,8 @@ export default function ViewField({ password, language }) {
           : password.value
             ? password.value
             : language === TEXT.JP_LANG
-            ? TEXT.JP.WAITING
-            : TEXT.ENG.WAITING
+            ? PASS_GEN.JP.WAITING
+            : PASS_GEN.ENG.WAITING
         )}
         disabled="disabled"
       ></input>

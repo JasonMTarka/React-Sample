@@ -12,21 +12,21 @@ export default function Body({currentPage, language}) {
           {currentPage === "home" ? (
             <Home language={language} />
           ) : (
-            ""
+            null
           )}
         </div>
         <div>
           {currentPage === "sudoku" ? (
             <Sudoku language={language} />
           ) : (
-            ""
+            null
           )}
         </div>
         <div>
           {currentPage === "passwordGen" ? (
             <PasswordGen language={language} />
           ) : (
-            ""
+            null
           )}
         </div>
       </div>

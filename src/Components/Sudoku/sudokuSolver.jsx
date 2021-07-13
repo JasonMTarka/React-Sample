@@ -1,23 +1,15 @@
 import React from "react";
 import Form from "./Form";
+import { TEXT } from "../../text";
+
+const { SUDOKU } = TEXT;
 
 export default function Sudoku({language}) {
-  const text = {
-    eng: {
-      title: "Sudoku Solver",
-      desc: "Choose a difficulty below and press 'Solve' to begin recursive solving of the sudoku.",
-    },
-
-    jp: {
-      title: "数独自動解決アプリ",
-      desc: "オプションメニューから難易度を選択し、「解決する」ボタンを押して数独の自動解決を見ましょう。",
-    },
-  };
-
+ 
   return (
     <div className="container">
-      <h3>{language === "jp" ? text.jp.title : text.eng.title}</h3>
-      <p>{language === "jp" ? text.jp.desc : text.eng.desc}</p>
+      <h3>{language === TEXT.JP_LANG ? SUDOKU.JP.TITLE : SUDOKU.ENG.TITLE}</h3>
+      <p>{language === TEXT.JP_LANG ? SUDOKU.JP.DESC : SUDOKU.ENG.DESC}</p>
       <div>
         <Form language={language} />
       </div>

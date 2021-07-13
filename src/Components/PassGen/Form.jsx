@@ -7,38 +7,7 @@ import Dropdown from "./Dropdown";
 import ViewField from "./ViewField";
 import GenerateButton from "./GenerateButton";
 import CopyButton from "./CopyButton";
-
-
-export const TEXT = {
-  JP_LANG : "jp",
-  ENG_LANG : "eng",
-  ENG: {
-    LOWERCASE: "Lowercase",
-    UPPERCASE: "Uppercase",
-    NUMBERS: "Numbers",
-    SYMBOLS: "Symbols",
-    MIN_NUMS: "Minimum Amount of Numbers",
-    MIN_SYMS: "Minimum Amount of Symbols",
-    PASS_LEN: "Password Length",
-    WAITING: "",
-    CREATE_PASS: "Create Password",
-    COPY_PASS: "Copy Password",
-    COPY_ALERT: "Your password has been copied!",
-  },
-  JP: {
-    LOWERCASE: "小文字",
-    UPPERCASE: "大文字",
-    NUMBERS: "数字",
-    SYMBOLS: "記号",
-    MIN_NUMS: "数字の最小限",
-    MIN_SYMS: "記号の最小限",
-    PASS_LEN: "パスワードの長さ",
-    WAITING: "",
-    CREATE_PASS: "パスワードを作成する",
-    COPY_PASS: "パスワードをコピーする",
-    COPY_ALERT: "パスワードは無事にコピーされました！"
-  },
-};
+import {TEXT} from "../../text";
 
 export const ACTIONS = {
   UPDATE_LOWERCASE: "updateLowercase",
@@ -50,6 +19,8 @@ export const ACTIONS = {
   UPDATE_PASS_LEN: "updatePassLen",
   CREATE_NEW_PASS: "createNewPassword",
 };
+
+const {PASS_GEN} = TEXT;
 
 const reducer = (password, action) => {
   switch (action.type) {
@@ -128,7 +99,7 @@ export default function Form ({language}) {
   return (
     <form onSubmit={handleSubmit}>
       <div className="row mt-3 ml-3">
-        {[TEXT.ENG.LOWERCASE, TEXT.ENG.UPPERCASE].map(checkboxName => (
+        {[PASS_GEN.ENG.LOWERCASE, PASS_GEN.ENG.UPPERCASE].map(checkboxName => (
           <div key={checkboxName} className="col form-check">
           <CheckBox
             name={checkboxName}
@@ -140,7 +111,7 @@ export default function Form ({language}) {
         ))}
       </div>
       <div className="row mt-3">
-        {[TEXT.ENG.NUMBERS, TEXT.ENG.SYMBOLS].map(checkboxName => (
+        {[PASS_GEN.ENG.NUMBERS, PASS_GEN.ENG.SYMBOLS].map(checkboxName => (
           <div key={checkboxName} className="col form-check">
           <CheckBox
             name={checkboxName}
@@ -153,14 +124,14 @@ export default function Form ({language}) {
       </div>
       <div className="mt-4">
         <Dropdown
-          name={TEXT.ENG.MIN_NUMS}
+          name={PASS_GEN.ENG.MIN_NUMS}
           language={language}
           password={password}
           renderer={renderMaxAllowedMinNumOptions}
           dispatch={dispatch}
         />
          <Dropdown
-          name={TEXT.ENG.MIN_SYMS}
+          name={PASS_GEN.ENG.MIN_SYMS}
           language={language}
           password={password}
           renderer={renderMaxAllowedMinSymOptions}
@@ -169,7 +140,7 @@ export default function Form ({language}) {
       </div>
       <div className="mt-3">
       <Dropdown
-          name={TEXT.ENG.PASS_LEN}
+          name={PASS_GEN.ENG.PASS_LEN}
           language={language}
           password={password}
           renderer={renderPassLenOptions}
@@ -195,7 +166,7 @@ export default function Form ({language}) {
         </div>
         {copied ? (
           <Alert className="mt-2" variant="success">
-            {language === TEXT.JP_LANG ? TEXT.JP.COPY_ALERT : TEXT.ENG.COPY_ALERT}
+            {language === TEXT.JP_LANG ? PASS_GEN.JP.COPY_ALERT : PASS_GEN.ENG.COPY_ALERT}
           </Alert>
         ) : null}
       </div>
