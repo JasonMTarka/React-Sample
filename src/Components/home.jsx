@@ -1,7 +1,7 @@
 import React from "react";
 
 import { HOME_TXT as TEXT} from "../Text/homeText"
-import { LANGUAGES } from "../Text/languages"
+import { LANGUAGES } from "../Text/defaults"
 
 
 export default function Home({language}) {

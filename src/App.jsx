@@ -1,12 +1,13 @@
 import { useState } from "react";
+import { LANGUAGES, PAGES } from "./Text/defaults";
 
 import NavBar from "./Components/navBar";
 import SideBar from "./Components/sideBar";
 import Body from "./Components/Body";
 
 function App() {
-  const [currentPage, setCurrentPage] = useState("home");
-  const [language, setLanguage] = useState("jp");
+  const [currentPage, setCurrentPage] = useState(PAGES.HOME);
+  const [language, setLanguage] = useState(LANGUAGES.JP);
 
   //callback function for getting current page
   const updatePage = (page) => {

@@ -7,7 +7,7 @@ import Dropdown from "./Dropdown";
 import ViewField from "./ViewField";
 import GenerateButton from "./GenerateButton";
 import CopyButton from "./CopyButton";
-import { LANGUAGES } from "../../Text/languages";
+import { LANGUAGES } from "../../Text/defaults";
 import { PASS_GEN_TXT as TEXT } from "../../Text/passGenText";
 
 

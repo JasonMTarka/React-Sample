@@ -2,7 +2,7 @@ import React from "react";
 
 import { ACTIONS } from "./Form";
 import { PASS_GEN_TXT as TEXT } from "../../Text/passGenText";
-import { LANGUAGES } from "../../Text/languages";
+import { LANGUAGES } from "../../Text/defaults";
 
 export default function CheckBox({ name, language, password, dispatch }) {
 

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { PASS_GEN_TXT as TEXT } from "../../Text/passGenText";
-import { LANGUAGES } from "../../Text/languages";
+import { LANGUAGES } from "../../Text/defaults";
 
 export default function ViewField({ password, language }) {
 

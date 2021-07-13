@@ -2,7 +2,7 @@ import React from "react";
 
 import Form from "./Form";
 import { SUDOKU_TXT } from "../../Text/sudokuText";
-import { LANGUAGES } from "../../Text/languages";
+import { LANGUAGES } from "../../Text/defaults";
 
 export default function Sudoku({language}) {
  

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { NAVBAR_TXT as TEXT } from "../Text/navBarText";
-import { LANGUAGES } from "../Text/languages";
+import { LANGUAGES, PAGES } from "../Text/defaults";
 
 
 export default function NavBar({language, updateLanguage, updatePage}) {
@@ -19,7 +19,7 @@ export default function NavBar({language, updateLanguage, updatePage}) {
         <ul className="navbar-nav w-100">
           <button
             className="btn btn-primary row"
-            onClick={() => navButtonPressed("home")}
+            onClick={() => navButtonPressed(PAGES.HOME)}
           >
             <h4>{language === LANGUAGES.JP ? TEXT.JP.HOME : TEXT.ENG.HOME}</h4>
           </button>
@@ -28,7 +28,7 @@ export default function NavBar({language, updateLanguage, updatePage}) {
           <li className="nav-item active">
             <button
               className="btn btn-primary"
-              onClick={() => navButtonPressed("sudoku")}
+              onClick={() => navButtonPressed(PAGES.SUDOKU)}
             >
               {language === LANGUAGES.JP ? TEXT.JP.SUDOKU : TEXT.ENG.SUDOKU}
             </button>
@@ -36,7 +36,7 @@ export default function NavBar({language, updateLanguage, updatePage}) {
           <li className="nav-item">
             <button
               className="btn btn-primary"
-              onClick={() => navButtonPressed("passwordGen")}
+              onClick={() => navButtonPressed(PAGES.PASS_GEN)}
             >
               {language === LANGUAGES.JP ? TEXT.JP.PASS_GEN : TEXT.ENG.PASS_GEN}
             </button>
