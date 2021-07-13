@@ -43,7 +43,7 @@ export default function NavBar({language, updateLanguage, updatePage}) {
         </ul>
         <div className="navbar-nav">
           <select value={language} onChange={handleLanguageChange}>
-            <option value="ENG" key="ENG">
+            <option value={TEXT.ENG_LANG} key={TEXT.ENG_LANG}>
               English
             </option>
             <option value={TEXT.JP_LANG} key={TEXT.JP_LANG}>
