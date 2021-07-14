@@ -11,10 +11,12 @@ export default function Form({ language }) {
   const prevSudoku = useRef([]);
   const loading = useRef(true);
 
+  const baseApiUrl = "https://sugoku.herokuapp.com/board?difficulty=";
+
   useEffect(() => {
     let isMounted = true;
     axios
-      .get("https://sugoku.herokuapp.com/board?difficulty=easy")
+      .get(baseApiUrl + "easy")
       .then((response) => {
         if (isMounted) {
           setSudoku(new Sudoku(response.data.board));
@@ -52,27 +54,21 @@ export default function Form({ language }) {
   const handleDifficultyChange = (event) => {
     switch (event.target.value) {
       case TEXT.ENG.DIFFICULTIES.EASY:
-        axios
-          .get("https://sugoku.herokuapp.com/board?difficulty=easy")
-          .then((response) => {
-            setSudoku(new Sudoku(response.data.board));
-          });
+        axios.get(baseApiUrl + "easy").then((response) => {
+          setSudoku(new Sudoku(response.data.board));
+        });
         break;
 
       case TEXT.ENG.DIFFICULTIES.MEDIUM:
-        axios
-          .get("https://sugoku.herokuapp.com/board?difficulty=medium")
-          .then((response) => {
-            setSudoku(new Sudoku(response.data.board));
-          });
+        axios.get(baseApiUrl + "medium").then((response) => {
+          setSudoku(new Sudoku(response.data.board));
+        });
         break;
 
       case TEXT.ENG.DIFFICULTIES.HARD:
-        axios
-          .get("https://sugoku.herokuapp.com/board?difficulty=hard")
-          .then((response) => {
-            setSudoku(new Sudoku(response.data.board));
-          });
+        axios.get(baseApiUrl + "hard").then((response) => {
+          setSudoku(new Sudoku(response.data.board));
+        });
         break;
 
       default:

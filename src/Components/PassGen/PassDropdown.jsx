@@ -11,6 +11,10 @@ export default function PassDropdown({
   dispatch,
   renderer,
 }) {
+  const numOfMinNumOptions = 4;
+  const numOfMinSymOptions = 4;
+  const numOfPassLenOptions = 16;
+
   let assignedType = "";
   let text = "";
   let disabled = "";
@@ -23,7 +27,7 @@ export default function PassDropdown({
       text = language === LANGUAGES.JP ? TEXT.JP.MIN_NUMS : TEXT.ENG.MIN_NUMS;
       disabled = password.nums === true ? "" : "disabled";
       value = password.minNums;
-      minOptions = 4;
+      minOptions = numOfMinNumOptions;
       break;
 
     case TEXT.ENG.MIN_SYMS:
@@ -31,7 +35,7 @@ export default function PassDropdown({
       text = language === LANGUAGES.JP ? TEXT.JP.MIN_SYMS : TEXT.ENG.MIN_SYMS;
       disabled = password.syms === true ? "" : "disabled";
       value = password.minSyms;
-      minOptions = 4;
+      minOptions = numOfMinSymOptions;
       break;
 
     case TEXT.ENG.PASS_LEN:
@@ -39,7 +43,7 @@ export default function PassDropdown({
       text = language === LANGUAGES.JP ? TEXT.JP.PASS_LEN : TEXT.ENG.PASS_LEN;
       disabled = "";
       value = password.passLen;
-      minOptions = 16;
+      minOptions = numOfPassLenOptions;
       break;
 
     default:
