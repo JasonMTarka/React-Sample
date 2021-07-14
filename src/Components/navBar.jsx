@@ -46,7 +46,7 @@ export default function NavBar({ language, updateLanguage, updatePage }) {
           <LinkContainer
             to="/password"
             onClick={() => {
-              navButtonPressed(PAGES.HOME);
+              navButtonPressed(PAGES.PASS_GEN);
             }}
           >
             <Nav.Link>
