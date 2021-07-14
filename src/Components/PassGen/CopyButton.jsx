@@ -2,7 +2,7 @@ import React from "react";
 import { LANGUAGES } from "../../Text/defaults";
 import { PASS_GEN_TXT as TEXT } from "../../Text/passGenText";
 
-export default function Copy({ handler, language }) {
+export default function CopyButton({ handler, language }) {
   return (
     <div className="col">
       <button
