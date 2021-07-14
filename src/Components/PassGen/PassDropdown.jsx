@@ -4,7 +4,7 @@ import { ACTIONS } from "./Form";
 import { LANGUAGES } from "../../Text/defaults";
 import { PASS_GEN_TXT as TEXT } from "../../Text/passGenText";
 
-export default function Dropdown({
+export default function PassDropdown({
   name,
   language,
   password,

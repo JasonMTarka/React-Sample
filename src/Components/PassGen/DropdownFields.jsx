@@ -1,6 +1,6 @@
 import React from "react";
 
-import Dropdown from "./Dropdown";
+import PassDropdown from "./PassDropdown";
 import { PASS_GEN_TXT as TEXT } from "../../Text/passGenText";
 
 export default function DropdownFields({ language, password, dispatch }) {
@@ -16,7 +16,7 @@ export default function DropdownFields({ language, password, dispatch }) {
     <>
       <div className="mt-4">
         {[TEXT.ENG.MIN_NUMS, TEXT.ENG.MIN_SYMS].map((menu) => (
-          <Dropdown
+          <PassDropdown
             key={menu}
             name={menu}
             language={language}
@@ -27,7 +27,7 @@ export default function DropdownFields({ language, password, dispatch }) {
         ))}
       </div>
       <div className="mt-3">
-        <Dropdown
+        <PassDropdown
           name={TEXT.ENG.PASS_LEN}
           language={language}
           password={password}
