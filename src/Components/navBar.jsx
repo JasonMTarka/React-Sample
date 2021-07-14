@@ -3,8 +3,7 @@ import React from "react";
 import { NAVBAR_TXT as TEXT } from "../Text/navBarText";
 import { LANGUAGES, PAGES } from "../Text/defaults";
 
-
-export default function NavBar({language, updateLanguage, updatePage}) {
+export default function NavBar({ language, updateLanguage, updatePage }) {
   const navButtonPressed = (buttonName) => {
     updatePage(buttonName);
   };

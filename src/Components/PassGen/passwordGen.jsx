@@ -3,9 +3,7 @@ import Form from "./Form";
 import { LANGUAGES } from "../../Text/defaults";
 import { PASS_GEN_TXT as TEXT } from "../../Text/passGenText";
 
-
-export default function PasswordGen({language}) {
- 
+export default function PasswordGen({ language }) {
   return (
     <div>
       <div>

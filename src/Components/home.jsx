@@ -1,11 +1,9 @@
 import React from "react";
 
-import { HOME_TXT as TEXT} from "../Text/homeText"
-import { LANGUAGES } from "../Text/defaults"
+import { HOME_TXT as TEXT } from "../Text/homeText";
+import { LANGUAGES } from "../Text/defaults";
 
-
-export default function Home({language}) {
- 
+export default function Home({ language }) {
   return (
     <div className="container">
       <h3 key="about">

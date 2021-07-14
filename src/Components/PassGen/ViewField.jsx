@@ -4,15 +4,14 @@ import { PASS_GEN_TXT as TEXT } from "../../Text/passGenText";
 import { LANGUAGES } from "../../Text/defaults";
 
 export default function ViewField({ password, language }) {
-
   let errMsg = "";
 
   switch (password.value) {
     case "invalidLen":
-      errMsg = language === LANGUAGES.JP ? TEXT.JP.ERR_LEN : TEXT.ENG.ERR_LEN
+      errMsg = language === LANGUAGES.JP ? TEXT.JP.ERR_LEN : TEXT.ENG.ERR_LEN;
       break;
     case "invalidNoOptions":
-      errMsg = language === LANGUAGES.JP ? TEXT.JP.ERR_OPT : TEXT.ENG.ERR_OPT
+      errMsg = language === LANGUAGES.JP ? TEXT.JP.ERR_OPT : TEXT.ENG.ERR_OPT;
       break;
     default:
       break;
@@ -23,13 +22,15 @@ export default function ViewField({ password, language }) {
       <input
         className="form-control"
         type="text"
-        placeholder={(errMsg ? errMsg 
-          : password.value
+        placeholder={
+          errMsg
+            ? errMsg
+            : password.value
             ? password.value
             : language === LANGUAGES.JP
             ? TEXT.JP.WAITING
             : TEXT.ENG.WAITING
-        )}
+        }
         disabled="disabled"
       ></input>
     </div>

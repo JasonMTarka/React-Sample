@@ -4,22 +4,22 @@ import { LANGUAGES, PAGES } from "../Text/defaults";
 import { SIDEBAR_TXT as TEXT } from "../Text/sideBarText";
 
 const SIDE_BAR = {
-    EMAIL: "jasonmtarka@gmail.com",
-    HUI_TEXT: "HUI",
-    HUI_LINK: "https://hui.co.jp/",
-  }; 
+  EMAIL: "jasonmtarka@gmail.com",
+  HUI_TEXT: "HUI",
+  HUI_LINK: "https://hui.co.jp/",
+};
 
-export default function SideBar({currentPage, language}) {
-
+export default function SideBar({ currentPage, language }) {
   switch (currentPage) {
-
-    case PAGES.HOME: 
+    case PAGES.HOME:
       SIDE_BAR.PAGE_NAME =
         language === LANGUAGES.JP ? TEXT.JP.HOME.NAME : TEXT.ENG.HOME.NAME;
       SIDE_BAR.DESC =
         language === LANGUAGES.JP ? TEXT.JP.HOME.DESC : TEXT.ENG.HOME.DESC;
       SIDE_BAR.CODE_TEXT =
-        language === LANGUAGES.JP ? TEXT.JP.HOME.CODE_TEXT : TEXT.ENG.HOME.CODE_TEXT;
+        language === LANGUAGES.JP
+          ? TEXT.JP.HOME.CODE_TEXT
+          : TEXT.ENG.HOME.CODE_TEXT;
       SIDE_BAR.CODE_LINK = "https://github.com/JasonMTarka/React-Sample";
       SIDE_BAR.COMP_LINK = "";
       SIDE_BAR.COMP_TEXT = "";
@@ -27,9 +27,7 @@ export default function SideBar({currentPage, language}) {
 
     case PAGES.SUDOKU:
       SIDE_BAR.PAGE_NAME =
-        language === LANGUAGES.JP
-          ? TEXT.JP.SUDOKU.NAME
-          : TEXT.ENG.SUDOKU.NAME;
+        language === LANGUAGES.JP ? TEXT.JP.SUDOKU.NAME : TEXT.ENG.SUDOKU.NAME;
       SIDE_BAR.DESC =
         language === LANGUAGES.JP ? TEXT.JP.SUDOKU.DESC : TEXT.ENG.SUDOKU.DESC;
       SIDE_BAR.CODE_TEXT =
@@ -52,7 +50,9 @@ export default function SideBar({currentPage, language}) {
           ? TEXT.JP.PASS_GEN.NAME
           : TEXT.ENG.PASS_GEN.NAME;
       SIDE_BAR.DESC =
-        language === LANGUAGES.JP ? TEXT.JP.PASS_GEN.DESC : TEXT.ENG.PASS_GEN.DESC;
+        language === LANGUAGES.JP
+          ? TEXT.JP.PASS_GEN.DESC
+          : TEXT.ENG.PASS_GEN.DESC;
       SIDE_BAR.CODE_TEXT =
         language === LANGUAGES.JP
           ? TEXT.JP.PASS_GEN.CODE_TEXT
@@ -68,7 +68,7 @@ export default function SideBar({currentPage, language}) {
       break;
 
     default:
-      throw new Error("Invalid page")
+      throw new Error("Invalid page");
   }
 
   let componentCode = [];

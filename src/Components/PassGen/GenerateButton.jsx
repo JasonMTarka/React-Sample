@@ -3,7 +3,6 @@ import React from "react";
 import { LANGUAGES } from "../../Text/defaults";
 import { PASS_GEN_TXT as TEXT } from "../../Text/passGenText";
 
-
 export default function GenerateButton({ language }) {
   return (
     <div className="col">

@@ -1,36 +1,47 @@
 import React from "react";
 
-import { ACTIONS } from "./Form"
+import { ACTIONS } from "./Form";
 import { LANGUAGES } from "../../Text/defaults";
 import { PASS_GEN_TXT as TEXT } from "../../Text/passGenText";
 
-
-export default function Dropdown({ name, language, password, dispatch, renderer }) {
-
+export default function Dropdown({
+  name,
+  language,
+  password,
+  dispatch,
+  renderer,
+}) {
   let assignedType = "";
   let text = "";
   let disabled = "";
   let value = "";
+  let minOptions = 0;
 
-  switch(name) {
+  switch (name) {
     case TEXT.ENG.MIN_NUMS:
       assignedType = ACTIONS.UPDATE_MIN_NUMS;
       text = language === LANGUAGES.JP ? TEXT.JP.MIN_NUMS : TEXT.ENG.MIN_NUMS;
       disabled = password.nums === true ? "" : "disabled";
       value = password.minNums;
-      break
+      minOptions = 4;
+      break;
+
     case TEXT.ENG.MIN_SYMS:
       assignedType = ACTIONS.UPDATE_MIN_SYMS;
       text = language === LANGUAGES.JP ? TEXT.JP.MIN_SYMS : TEXT.ENG.MIN_SYMS;
       disabled = password.syms === true ? "" : "disabled";
       value = password.minSyms;
-      break
+      minOptions = 4;
+      break;
+
     case TEXT.ENG.PASS_LEN:
       assignedType = ACTIONS.UPDATE_PASS_LEN;
       text = language === LANGUAGES.JP ? TEXT.JP.PASS_LEN : TEXT.ENG.PASS_LEN;
       disabled = "";
       value = password.passLen;
-      break
+      minOptions = 16;
+      break;
+
     default:
       throw new Error("Invalid Command");
   }
@@ -42,10 +53,10 @@ export default function Dropdown({ name, language, password, dispatch, renderer 
         <select
           value={value}
           className="form-select"
-          onChange={event => dispatch({type: assignedType, payload: event})}
+          onChange={(event) => dispatch({ type: assignedType, payload: event })}
           disabled={disabled}
         >
-          {renderer()}
+          {renderer(minOptions)}
         </select>
       </label>
     </div>
