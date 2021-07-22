@@ -19,6 +19,13 @@ export const SIDEBAR_TXT = {
       CODE_TEXT: "Password Logic - Github",
       COMP_TEXT: "Password Form Component - Github",
     },
+
+    TRACKER: {
+      NAME: "COVID-19 Case Tracker",
+      DESC: "",
+      CODE_TEXT: "",
+      COMP_TEXT: "",
+    },
   },
 
   JP: {
@@ -38,6 +45,13 @@ export const SIDEBAR_TXT = {
       DESC: "ユーザーの記入した情報に基づいて自動的にパスワードを作成するアプリ。",
       CODE_TEXT: "パスワードアプリのソースコード・Github",
       COMP_TEXT: "パスワードアプリのReactコンポーネント・Github",
+    },
+
+    TRACKER: {
+      NAME: "",
+      DESC: "",
+      CODE_TEXT: "",
+      COMP_TEXT: "",
     },
   },
 };

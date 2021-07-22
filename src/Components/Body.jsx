@@ -1,9 +1,10 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 
-import Home from "./home";
-import Sudoku from "./Sudoku/sudokuSolver";
-import PasswordGen from "./PassGen/passwordGen";
+import Home from "./Home";
+import Sudoku from "./Sudoku/SudokuSolver";
+import PasswordGen from "./PassGen/PasswordGen";
+import CovidCaseTracker from "./CovidCaseTracker/CovidCaseTracker";
 
 export default function Body({ language }) {
   return (
@@ -16,6 +17,9 @@ export default function Body({ language }) {
       </Route>
       <Route path="/password">
         <PasswordGen language={language} />
+      </Route>
+      <Route path="/tracker">
+        <CovidCaseTracker language={language} />
       </Route>
     </Switch>
   );

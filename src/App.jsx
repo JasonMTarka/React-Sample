@@ -2,8 +2,8 @@ import { useState } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import { LANGUAGES, PAGES } from "./Text/defaults";
-import NavBar from "./Components/navBar";
-import SideBar from "./Components/sideBar";
+import NavBar from "./Components/NavBar";
+import SideBar from "./Components/SideBar";
 import Body from "./Components/Body";
 
 function App() {

@@ -5,7 +5,7 @@ import { LANGUAGES } from "../Text/defaults";
 
 export default function Home({ language }) {
   return (
-    <div className="container">
+    <div>
       <h3 key="about">
         {language === LANGUAGES.JP ? TEXT.JP.ABOUT : TEXT.ENG.ABOUT}
       </h3>

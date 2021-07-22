@@ -67,6 +67,13 @@ export default function SideBar({ currentPage, language }) {
         "https://github.com/JasonMTarka/React-Sample/blob/main/src/Components/PassGen/Form.jsx";
       break;
 
+    case PAGES.TRACKER:
+      SIDE_BAR.PAGE_NAME =
+        language === LANGUAGES.JP
+          ? TEXT.JP.TRACKER.NAME
+          : TEXT.ENG.TRACKER.NAME;
+      break;
+
     default:
       throw new Error("Invalid page");
   }

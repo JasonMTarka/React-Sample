@@ -32,6 +32,18 @@ export default function NavBar({ language, updateLanguage, updatePage }) {
       <Container>
         <Nav className="justify-content-end">
           <LinkContainer
+            to="/tracker"
+            onClick={() => {
+              navButtonPressed(PAGES.TRACKER);
+            }}
+          >
+            <Nav.Link>
+              <h5>
+                {language === LANGUAGES.JP ? TEXT.JP.TRACKER : TEXT.ENG.TRACKER}
+              </h5>
+            </Nav.Link>
+          </LinkContainer>
+          <LinkContainer
             to="/sudoku"
             onClick={() => {
               navButtonPressed(PAGES.SUDOKU);
