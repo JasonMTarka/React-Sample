@@ -9,6 +9,6 @@ export const NAVBAR_TXT = {
     HOME: "ホームページ",
     SUDOKU: "数独自動解決アプリ",
     PASS_GEN: "パスワード自動生成アプリ",
-    TRACKER: "Coronavirus Case TrackerJP",
+    TRACKER: "新型コロナ感染者数トラッカー",
   },
 };

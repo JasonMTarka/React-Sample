@@ -12,6 +12,8 @@ export default function CovidCaseTracker({ language }) {
 
   useEffect(() => {
     const url = "https://covid-19.dataflowkit.com/v1";
+    let isMounted = true;
+
     axios
       .get(url)
       .then((response) => {
@@ -25,9 +27,13 @@ export default function CovidCaseTracker({ language }) {
           newData.push(countryData);
           searchedCountries.current.push(countryData.Country_text);
         }
-        setData(newData);
+        if (isMounted) {
+          setData(newData);
+        }
       });
-    return;
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const updateData = (countryData) => {

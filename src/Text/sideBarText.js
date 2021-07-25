@@ -16,15 +16,15 @@ export const SIDEBAR_TXT = {
     PASS_GEN: {
       NAME: "Password Generator",
       DESC: "A password generator which generates a random password based on user input, including which character sets to include, minimum amounts of numbers and symbols, and password length.",
-      CODE_TEXT: "Password Logic - Github",
+      CODE_TEXT: "Password Generator Code - Github",
       COMP_TEXT: "Password Form Component - Github",
     },
 
     TRACKER: {
       NAME: "COVID-19 Case Tracker",
-      DESC: "",
-      CODE_TEXT: "",
-      COMP_TEXT: "",
+      DESC: "A COVID-19 case tracker which uses an API to get information about coronavirus infections worldwide.",
+      CODE_TEXT: "COVID-19 Tracker Code - Github",
+      COMP_TEXT: "Tracker Table Row Component - Github",
     },
   },
 
@@ -48,10 +48,10 @@ export const SIDEBAR_TXT = {
     },
 
     TRACKER: {
-      NAME: "",
-      DESC: "",
-      CODE_TEXT: "",
-      COMP_TEXT: "",
+      NAME: "新型コロナ感染者数トラッカー",
+      DESC: "新型コロナウイルス感染者数のデータをAPIを呼び出して表示するトラッカー。",
+      CODE_TEXT: "新型コロナトラッカーのソースコード・Github",
+      COMP_TEXT: "テーブルの一行のソースコード・Github",
     },
   },
 };

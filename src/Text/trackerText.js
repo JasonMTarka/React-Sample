@@ -6,6 +6,8 @@ export const TRACKER_TXT = {
     TOTAL: "Total Cases",
     UPDATED: "Last Updated",
     MISSING: "Not Updated",
+    COUNTRY_INPUT: "Enter the name of a country you want to see:",
+    COUNTRY_INPUT_SMALL: "Please enter in English.",
   },
   JP: {
     NAME: "国名",
@@ -14,5 +16,7 @@ export const TRACKER_TXT = {
     TOTAL: "陽性者数 (累計)",
     UPDATED: "更新日時",
     MISSING: "未報告",
+    COUNTRY_INPUT: "感染状況が確認したい国の国名を入力してください。",
+    COUNTRY_INPUT_SMALL: "国名は英語での記入をお願いします。",
   },
 };

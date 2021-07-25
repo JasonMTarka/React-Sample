@@ -72,6 +72,22 @@ export default function SideBar({ currentPage, language }) {
         language === LANGUAGES.JP
           ? TEXT.JP.TRACKER.NAME
           : TEXT.ENG.TRACKER.NAME;
+      SIDE_BAR.DESC =
+        language === LANGUAGES.JP
+          ? TEXT.JP.TRACKER.DESC
+          : TEXT.ENG.TRACKER.DESC;
+      SIDE_BAR.CODE_TEXT =
+        language === LANGUAGES.JP
+          ? TEXT.JP.TRACKER.CODE_TEXT
+          : TEXT.ENG.TRACKER.CODE_TEXT;
+      SIDE_BAR.CODE_LINK =
+        "https://github.com/JasonMTarka/React-Sample/blob/main/src/Components/CovidCaseTracker/CovidCaseTracker.jsx";
+      SIDE_BAR.COMP_TEXT =
+        language === LANGUAGES.JP
+          ? TEXT.JP.TRACKER.COMP_TEXT
+          : TEXT.ENG.TRACKER.COMP_TEXT;
+      SIDE_BAR.COMP_LINK =
+        "https://github.com/JasonMTarka/React-Sample/blob/main/src/Components/CovidCaseTracker/TrackerRow.jsx";
       break;
 
     default:

@@ -8,7 +8,11 @@ import TrackerRow from "./TrackerRow";
 export default function TrackerTable({ data, language }) {
   const renderData = () => {
     return data.map((country) => (
-      <TrackerRow country={country} language={language}></TrackerRow>
+      <TrackerRow
+        key={country.Country_text}
+        country={country}
+        language={language}
+      ></TrackerRow>
     ));
   };
 
