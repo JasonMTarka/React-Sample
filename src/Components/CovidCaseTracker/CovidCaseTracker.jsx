@@ -1,31 +1,48 @@
-import React, { useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 
 import TrackerTable from "./TrackerTable";
 import TrackerForm from "./TrackerForm";
 
-export default function CovidCaseTracker() {
+export default function CovidCaseTracker({ language }) {
   const [data, setData] = useState([]);
   const [input, setInput] = useState("");
+  const allData = useRef([]);
   const searchedCountries = useRef([]);
 
-  const baseUrl = "https://covid-19.dataflowkit.com/v1/";
+  useEffect(() => {
+    const url = "https://covid-19.dataflowkit.com/v1";
+    axios
+      .get(url)
+      .then((response) => {
+        allData.current = response.data;
+      })
+      .then(() => {
+        const newData = [];
+        const defaults = ["USA", "Japan", "UK"];
+        for (let country of defaults) {
+          const countryData = getData(country);
+          newData.push(countryData);
+          searchedCountries.current.push(countryData.Country_text);
+        }
+        setData(newData);
+      });
+    return;
+  }, []);
 
-  const updateData = (url) => {
-    if (searchedCountries.current.includes(input.toLowerCase())) {
-      return;
-    }
+  const updateData = (countryData) => {
+    const newData = [...data];
+    newData.push(countryData);
+    searchedCountries.current.push(countryData.Country_text);
+    setData(newData);
+  };
 
-    axios.get(url).then((response) => {
-      if (response.data.Country_text === "World") {
-        console.log("Invalid Input");
-        return;
+  const getData = (countryName) => {
+    for (let country of allData.current) {
+      if (country.Country_text === countryName) {
+        return country;
       }
-      const newData = [...data];
-      newData.push(response.data);
-      searchedCountries.current.push(response.data.Country_text.toLowerCase());
-      setData(newData);
-    });
+    }
   };
 
   const handleInputChange = (newVal) => {
@@ -34,11 +51,13 @@ export default function CovidCaseTracker() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (!input) {
-      return;
+    const foundCountry = getData(input);
+    if (foundCountry) {
+      if (searchedCountries.current.includes(foundCountry.Country_text)) {
+        return;
+      }
+      updateData(foundCountry);
     }
-    const newUrl = baseUrl + input;
-    updateData(newUrl);
   };
 
   return (
@@ -46,10 +65,11 @@ export default function CovidCaseTracker() {
       <TrackerForm
         handleInputChange={handleInputChange}
         handleSubmit={handleSubmit}
+        language={language}
       />
       {}
       <div className="mt-5">
-        <TrackerTable data={data} />
+        <TrackerTable data={data} language={language} />
       </div>
     </div>
   );
