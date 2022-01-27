@@ -1,10 +1,13 @@
-import React from "react";
-
 import PassDropdown from "./PassDropdown";
 import { PASS_GEN_TXT as TEXT } from "../../Text/passGenText";
+import { PasswordProps } from "../../types/common";
 
-export default function DropdownFields({ language, password, dispatch }) {
-  const renderOptions = (options) => {
+interface DropdownFieldsProps extends PasswordProps{
+  dispatch: any
+}
+
+export default function DropdownFields({ language, password, dispatch }: DropdownFieldsProps) {
+  const renderOptions = (options: number) => {
     let items = [];
     for (let i = 0; i < options + 1; i++) {
       items.push(<option key={i}>{i}</option>);

@@ -1,8 +1,12 @@
-import React from "react";
 import { LANGUAGES } from "../../Text/defaults";
 import { PASS_GEN_TXT as TEXT } from "../../Text/passGenText";
+import { Props } from "../../types/common"
 
-export default function CopyButton({ handler, language }) {
+interface CopyButtonProps extends Props {
+  handler: any
+}
+
+export default function CopyButton({ handler, language }: CopyButtonProps) {
   return (
     <div className="col">
       <button

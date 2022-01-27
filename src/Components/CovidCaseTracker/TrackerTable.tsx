@@ -1,11 +1,16 @@
-import React from "react";
 import Table from "react-bootstrap/Table";
 
 import { LANGUAGES } from "../../Text/defaults";
 import { TRACKER_TXT as TEXT } from "../../Text/trackerText";
 import TrackerRow from "./TrackerRow";
+import { CovidTrackerApiResponse } from "./CovidCaseTracker"
+import { Props } from "../../types/common";
 
-export default function TrackerTable({ data, language }) {
+interface TrackerTableProps extends Props {
+  data: CovidTrackerApiResponse[]
+}
+
+export default function TrackerTable({ data, language }: TrackerTableProps) {
   const renderData = () => {
     return data.map((country) => (
       <TrackerRow

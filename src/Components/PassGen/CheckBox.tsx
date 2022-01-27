@@ -1,10 +1,17 @@
-import React from "react";
-
 import { ACTIONS } from "./Form";
 import { PASS_GEN_TXT as TEXT } from "../../Text/passGenText";
 import { LANGUAGES } from "../../Text/defaults";
+import Password from "./passwordGenLogic";
 
-export default function CheckBox({ name, language, password, dispatch }) {
+
+interface CheckBoxProps {
+  name: string
+  language: string
+  password: Password
+  dispatch: (event: Record<any, any>) => void
+}
+
+export default function CheckBox({ name, language, password, dispatch }: CheckBoxProps) {
   let assignedType = "";
   let text = "";
   let checked = false;

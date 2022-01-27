@@ -1,5 +1,11 @@
+type Grid = number[][]
+
 class Sudoku {
-  constructor(grid) {
+  grid: Grid
+  originalGrid: Grid
+  solvedSudoku?: Grid
+
+  constructor(grid: Grid) {
     this.grid = grid;
     this.originalGrid = [...grid];
   }
@@ -8,18 +14,20 @@ class Sudoku {
     this.grid = this.originalGrid;
   };
 
-  saveSudoku = (grid) => {
+  saveSudoku = (grid: Grid) => {
     let solvedSudoku = JSON.parse(JSON.stringify(grid));
     return solvedSudoku;
   };
 
   solve = () => {
     const setSudoku = () => {
-      this.grid = this.solvedSudoku;
+      if (this.solvedSudoku) {
+        this.grid = this.solvedSudoku;
+      }
     };
 
     const recursiveSolve = () => {
-      const validSpot = (guess, x, y) => {
+      const validSpot = (guess: number, x: number, y: number) => {
         if (rowCheck(guess, x)) {
           if (colCheck(guess, y)) {
             if (gridCheck(guess, x, y)) {
@@ -34,7 +42,7 @@ class Sudoku {
         return false;
       };
 
-      const rowCheck = (guess, rowNum) => {
+      const rowCheck = (guess: number, rowNum: number) => {
         if (this.grid[rowNum - 1].includes(guess)) {
           return false;
         } else {
@@ -42,8 +50,8 @@ class Sudoku {
         }
       };
 
-      const colCheck = (guess, colNum) => {
-        let newCol = [];
+      const colCheck = (guess: number, colNum: number) => {
+        let newCol: number[] = [];
         for (let row of this.grid) {
           newCol.push(row[colNum - 1]);
         }
@@ -55,21 +63,21 @@ class Sudoku {
         }
       };
 
-      const gridCheck = (guess, rowNum, colNum) => {
-        function innerGridCheck(gridNum, grid) {
-          const _gridfinder = {
-            1: [0, 3, 0, 3],
-            2: [0, 3, 3, 6],
-            3: [0, 3, 6, 9],
-            4: [3, 6, 0, 3],
-            5: [3, 6, 3, 6],
-            6: [3, 6, 6, 9],
-            7: [6, 9, 0, 3],
-            8: [6, 9, 3, 6],
-            9: [6, 9, 6, 9],
-          };
+      const gridCheck = (guess: number, rowNum: number, colNum: number) => {
+        function innerGridCheck(gridNum: number, grid: Grid) {
+          const _gridfinder = [
+            [0, 3, 0, 3],
+            [0, 3, 3, 6],
+            [0, 3, 6, 9],
+            [3, 6, 0, 3],
+            [3, 6, 3, 6],
+            [3, 6, 6, 9],
+            [6, 9, 0, 3],
+            [6, 9, 3, 6],
+            [6, 9, 6, 9],
+          ];
 
-          let sectionBotAndTop = _gridfinder[gridNum];
+          let sectionBotAndTop = _gridfinder[gridNum - 1];
           let [sectionBot, sectionTop, bot, top] = sectionBotAndTop;
           let gridArray = [];
           for (let i = sectionBot; i < sectionTop; i++) {

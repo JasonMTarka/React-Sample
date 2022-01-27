@@ -1,9 +1,15 @@
-import React from "react";
-
 import CheckBox from "./CheckBox";
 import { PASS_GEN_TXT as TEXT } from "../../Text/passGenText";
+import { SupportedLanguage } from "../../Text/defaults";
+import Password from "./passwordGenLogic";
 
-export default function Checkboxes({ language, password, dispatch }) {
+interface CheckboxesProps {
+  language: SupportedLanguage
+  password: Password
+  dispatch: any
+}
+
+export default function Checkboxes({ language, password, dispatch }: CheckboxesProps) {
   return (
     <>
       <div className="row mt-3 ml-3">

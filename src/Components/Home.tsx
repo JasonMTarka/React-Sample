@@ -1,9 +1,8 @@
-import React from "react";
-
 import { HOME_TXT as TEXT } from "../Text/homeText";
 import { LANGUAGES } from "../Text/defaults";
+import { Props } from "../types/common";
 
-export default function Home({ language }) {
+export default function Home({ language }: Props) {
   return (
     <div>
       <h3 key="about">

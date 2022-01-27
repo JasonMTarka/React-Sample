@@ -1,9 +1,11 @@
-import React, { useState, useReducer } from "react";
+import { useState, useReducer, FormEvent } from "react";
 
 import Password from "./passwordGenLogic";
 import Checkboxes from "./Checkboxes";
 import DropdownFields from "./DropdownFields";
 import Outputs from "./Outputs";
+import { Props } from "../../types/common";
+
 
 export const ACTIONS = {
   UPDATE_LOWERCASE: "updateLowercase",
@@ -16,7 +18,9 @@ export const ACTIONS = {
   CREATE_NEW_PASS: "createNewPassword",
 };
 
-const reducer = (password, action) => {
+
+
+const reducer = (password: Password, action: any) => {
   switch (action.type) {
     case ACTIONS.UPDATE_LOWERCASE:
       return { ...password, lowercase: action.payload.target.checked };
@@ -39,11 +43,11 @@ const reducer = (password, action) => {
   }
 };
 
-export default function Form({ language }) {
+export default function Form({ language }: Props) {
   const [password, dispatch] = useReducer(reducer, new Password({}));
   const [copied, setCopied] = useState(false);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent) => {
     const newPass = new Password({
       lowercase: password.lowercase,
       uppercase: password.uppercase,

@@ -1,7 +1,7 @@
 export const HOME_TXT = {
   ENG: {
     ABOUT: "About this Site",
-    P1: "This is a sample React website created by Jason Tarka at HUI.",
+    P1: "This is a sample React website created by Jason Tarka.",
     P2: "This is a Single Page Application (SPA) using React components to dynamically display data without repeated HTTP requests.",
     P3: "By clicking the buttons on the navigation bar above, you can load new page components into this space using React-Router. As an example, I have included some small applications I created for learning purposes",
     P4: "The formatting for this website is done through Bootstrap, an open-source CSS framework.",

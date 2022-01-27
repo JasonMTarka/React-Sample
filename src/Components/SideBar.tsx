@@ -1,15 +1,30 @@
-import React from "react";
-
 import { LANGUAGES, PAGES } from "../Text/defaults";
 import { SIDEBAR_TXT as TEXT } from "../Text/sideBarText";
+import { Props } from "../types/common";
 
-const SIDE_BAR = {
-  EMAIL: "jasonmtarka@gmail.com",
-  HUI_TEXT: "HUI",
-  HUI_LINK: "https://hui.co.jp/",
-};
+interface SideBarProps extends Props {
+  currentPage: string
+}
 
-export default function SideBar({ currentPage, language }) {
+interface SideBarTextInterface {
+  EMAIL: string
+  HUI_TEXT: string
+  HUI_LINK: string
+  PAGE_NAME?: string
+  DESC?: string
+  CODE_TEXT?: string
+  CODE_LINK?: string
+  COMP_LINK?: string
+  COMP_TEXT?: string
+}
+
+const SIDE_BAR: SideBarTextInterface = {
+    EMAIL: "jasonmtarka@gmail.com",
+    HUI_TEXT: "HUI",
+    HUI_LINK: "https://hui.co.jp/"
+  };
+
+export default function SideBar({ currentPage, language }: SideBarProps) {
   switch (currentPage) {
     case PAGES.HOME:
       SIDE_BAR.PAGE_NAME =

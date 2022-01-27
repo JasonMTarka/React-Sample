@@ -1,18 +1,20 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 import Sudoku from "./sudokuSolverLogic";
 import Row from "./Row";
 import { SUDOKU_TXT as TEXT } from "../../Text/sudokuText";
 import { LANGUAGES } from "../../Text/defaults";
+import { Props } from "../../types/common";
 
-export default function Form({ language }) {
-  const [sudoku, setSudoku] = useState(null);
-  const prevSudoku = useRef([]);
+export default function Form({ language }: Props) {
+  const [sudoku, setSudoku] = useState<Sudoku>();
+  const prevSudoku = useRef<number[][]>();
   const loading = useRef(true);
 
   const baseApiUrl = "https://sugoku.herokuapp.com/board?difficulty=";
 
+  // add error handling
   useEffect(() => {
     let isMounted = true;
     axios
@@ -22,8 +24,7 @@ export default function Form({ language }) {
           setSudoku(new Sudoku(response.data.board));
         }
       })
-      .then((loading.current = false));
-
+    loading.current = false
     return () => {
       isMounted = false;
     };
@@ -38,20 +39,24 @@ export default function Form({ language }) {
   }, [sudoku]);
 
   const resetSudoku = () => {
-    let newSudoku = new Sudoku(prevSudoku.current);
-    setSudoku(newSudoku);
+    if (prevSudoku?.current)  {
+      const newSudoku = new Sudoku(prevSudoku.current);
+      setSudoku(newSudoku);
+    }
   };
 
   const solveSudoku = () => {
-    if (sudoku.solvedSudoku) {
-      return;
+    if (sudoku) {
+      if (sudoku.solvedSudoku)  {
+        return;
+      }
+      const newSudoku = new Sudoku(sudoku.grid);
+      newSudoku.solve();
+      setSudoku(newSudoku);
     }
-    let newSudoku = new Sudoku(sudoku.grid);
-    newSudoku.solve();
-    setSudoku(newSudoku);
   };
 
-  const handleDifficultyChange = (event) => {
+  const handleDifficultyChange = (event: any) => {
     switch (event.target.value) {
       case TEXT.ENG.DIFFICULTIES.EASY:
         axios.get(baseApiUrl + "easy").then((response) => {
@@ -81,7 +86,7 @@ export default function Form({ language }) {
     let keyCounter = 0;
 
     if (sudoku) {
-      for (let row of sudoku.grid) {
+      for (const row of sudoku.grid) {
         fieldRows.push(
           <div key={keyCounter}>
             <Row row={row} />
@@ -100,14 +105,14 @@ export default function Form({ language }) {
         <button
           className="col btn btn-primary"
           onClick={solveSudoku}
-          disabled={loading.current ? "disabled" : ""}
+          disabled={loading.current}
         >
           {language === LANGUAGES.JP ? TEXT.JP.SOLVE : TEXT.ENG.SOLVE}
         </button>
         <button
           className="col ml-2 btn btn-secondary"
           onClick={resetSudoku}
-          disabled={loading.current ? "disabled" : ""}
+          disabled={loading.current}
         >
           {language === LANGUAGES.JP ? TEXT.JP.RESET : TEXT.ENG.RESET}
         </button>
@@ -117,9 +122,8 @@ export default function Form({ language }) {
           <>
             <select
               className="col form-select"
-              value={sudoku.difficulty}
               onChange={handleDifficultyChange}
-              disabled={loading.current ? "disabled" : ""}
+              disabled={loading.current}
             >
               <option value={TEXT.ENG.DIFFICULTIES.EASY}>
                 {language === LANGUAGES.JP

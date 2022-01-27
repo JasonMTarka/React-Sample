@@ -1,9 +1,8 @@
-import React from "react";
-
 import { PASS_GEN_TXT as TEXT } from "../../Text/passGenText";
 import { LANGUAGES } from "../../Text/defaults";
+import { PasswordProps } from "../../types/common";
 
-export default function ViewField({ password, language }) {
+export default function ViewField({ password, language }: PasswordProps) {
   let errMsg = "";
 
   switch (password.value) {
@@ -31,7 +30,7 @@ export default function ViewField({ password, language }) {
             ? TEXT.JP.WAITING
             : TEXT.ENG.WAITING
         }
-        disabled="disabled"
+        disabled={true}
       ></input>
     </div>
   );

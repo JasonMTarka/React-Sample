@@ -1,7 +1,10 @@
-import React from "react";
 import Node from "./Node";
 
-export default function Row({ row }) {
+interface RowProps {
+  row: number[]
+}
+
+export default function Row({ row }: RowProps) {
   let values = [];
   let keyCounter = 0;
 

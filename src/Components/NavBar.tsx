@@ -1,17 +1,22 @@
-import React from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import Dropdown from "react-bootstrap/Dropdown";
 
 import { NAVBAR_TXT as TEXT } from "../Text/navBarText";
-import { LANGUAGES, PAGES } from "../Text/defaults";
+import { LANGUAGES, PAGES, SupportedLanguage } from "../Text/defaults";
+import { Props } from "../types/common"
 
-export default function NavBar({ language, updateLanguage, updatePage }) {
-  const navButtonPressed = (buttonName) => {
+interface NavBarProps extends Props {
+  updateLanguage: any
+  updatePage: any
+}
+
+export default function NavBar({ language, updateLanguage, updatePage }: NavBarProps) {
+  const navButtonPressed = (buttonName: string) => {
     updatePage(buttonName);
   };
 
-  const handleLanguageChange = (language) => {
+  const handleLanguageChange = (language: SupportedLanguage) => {
     updateLanguage(language);
   };
 

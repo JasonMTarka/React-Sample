@@ -1,16 +1,22 @@
 import React from "react";
 
 import { Form, Button } from "react-bootstrap";
-import { LANGUAGES } from "../../Text/defaults";
+import { LANGUAGES, SupportedLanguage } from "../../Text/defaults";
 import { TRACKER_TXT as TEXT } from "../../Text/trackerText";
+
+interface TrackerFormProps {
+  language: SupportedLanguage
+  handleInputChange: any
+  handleSubmit: React.MouseEventHandler
+}
 
 export default function TrackerForm({
   language,
   handleInputChange,
   handleSubmit,
-}) {
+}: TrackerFormProps) {
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>
           {language === LANGUAGES.JP

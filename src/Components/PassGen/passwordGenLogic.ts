@@ -1,4 +1,13 @@
 class Password {
+  lowercase: boolean
+  uppercase: boolean
+  nums: boolean
+  syms: boolean
+  minNums: number
+  minSyms: number
+  passLen: number
+  value: string
+
   constructor({
     lowercase = true,
     uppercase = true,
@@ -20,10 +29,10 @@ class Password {
   }
 
   generate = () => {
-    const lenChecker = () => {
-      const minNums = parseInt(this.minNums);
-      const minSyms = parseInt(this.minSyms);
-      const passLen = parseInt(this.passLen);
+    const lenChecker = (): boolean => {
+      const minNums = this.minNums;
+      const minSyms = this.minSyms;
+      const passLen = this.passLen;
       const msg = "invalidLen";
 
       if (this.nums && this.syms) {
@@ -45,23 +54,24 @@ class Password {
       return true;
     };
 
-    const passBuilder = (source) => {
-      const shuffle = (array) => {
+    const passBuilder = (source: string): string => {
+
+      const shuffle = (password: string[]): string[] => {
         // Fisher-Yates Shuffle
-        var currentIndex = array.length,
-          randomIndex;
+        var currentIndex = password.length,
+          randomIndex: number;
         while (0 !== currentIndex) {
           randomIndex = Math.floor(Math.random() * currentIndex);
           currentIndex--;
-          [array[currentIndex], array[randomIndex]] = [
-            array[randomIndex],
-            array[currentIndex],
+          [password[currentIndex], password[randomIndex]] = [
+            password[randomIndex],
+            password[currentIndex],
           ];
         }
-        return array;
+        return password;
       };
 
-      let tempPassword = [];
+      let tempPassword: string[] = [];
 
       if (this.nums) {
         for (let i = 0; i < this.minNums; i++) {
@@ -77,8 +87,6 @@ class Password {
         }
       }
 
-      shuffle(tempPassword);
-
       while (tempPassword.length > this.passLen) {
         tempPassword.pop();
       }
@@ -90,7 +98,7 @@ class Password {
 
       shuffle(tempPassword);
 
-      let finalPassword = tempPassword.join("");
+      const finalPassword = tempPassword.join("");
       return finalPassword;
     };
 

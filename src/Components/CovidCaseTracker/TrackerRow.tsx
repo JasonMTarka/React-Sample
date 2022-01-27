@@ -1,9 +1,13 @@
-import React from "react";
-
 import { LANGUAGES } from "../../Text/defaults";
 import { TRACKER_TXT as TEXT } from "../../Text/trackerText";
+import { Props } from "../../types/common"
+import { CovidTrackerApiResponse } from "./CovidCaseTracker"
 
-export default function TrackerRow({ country, language }) {
+interface TrackerRowProps extends Props {
+  country: CovidTrackerApiResponse
+}
+
+export default function TrackerRow({ country, language }: TrackerRowProps) {
   return (
     <tr key={country.Country_text}>
       <td>{country.Country_text}</td>

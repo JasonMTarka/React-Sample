@@ -3,29 +3,48 @@ import axios from "axios";
 
 import TrackerTable from "./TrackerTable";
 import TrackerForm from "./TrackerForm";
+import { SupportedLanguage } from "../../Text/defaults";
 
-export default function CovidCaseTracker({ language }) {
-  const [data, setData] = useState([]);
+
+export interface CovidTrackerApiResponse {
+  "Active Cases_text" : string,
+  Country_text: string,
+  "Last Update": string,
+  "New Cases_text": string,
+  "New Deaths_text": string,
+  "Total Cases_text": string,
+  "Total Deaths_text": string,
+  "Total Recovered_text": string
+}
+
+interface CovidCaseTrackerProps {
+  language: SupportedLanguage
+}
+
+export default function CovidCaseTracker({ language }: CovidCaseTrackerProps) {
+  const [data, setData] = useState<CovidTrackerApiResponse[]>([]);
   const [input, setInput] = useState("");
-  const allData = useRef([]);
-  const searchedCountries = useRef([]);
+  const allData: React.MutableRefObject<CovidTrackerApiResponse[]> = useRef([]);
+  const searchedCountries: React.MutableRefObject<string[]> = useRef([]);
 
   useEffect(() => {
-    const url = "https://covid-19.dataflowkit.com/v1";
+    const URL = "https://covid-19.dataflowkit.com/v1";
     let isMounted = true;
 
     axios
-      .get(url)
+      .get(URL)
       .then((response) => {
         allData.current = response.data;
       })
       .then(() => {
-        const newData = [];
+        const newData: CovidTrackerApiResponse[] = [];
         const defaults = ["USA", "Japan", "UK"];
         for (let country of defaults) {
           const countryData = getData(country);
-          newData.push(countryData);
-          searchedCountries.current.push(countryData.Country_text);
+          if (countryData) {
+            newData.push(countryData);
+            searchedCountries.current.push(countryData.Country_text);
+          }
         }
         if (isMounted) {
           setData(newData);
@@ -36,14 +55,14 @@ export default function CovidCaseTracker({ language }) {
     };
   }, []);
 
-  const updateData = (countryData) => {
+  const updateData = (countryData: CovidTrackerApiResponse) => {
     const newData = [...data];
     newData.push(countryData);
     searchedCountries.current.push(countryData.Country_text);
     setData(newData);
   };
 
-  const getData = (countryName) => {
+  const getData = (countryName: string) => {
     for (let country of allData.current) {
       if (country.Country_text === countryName) {
         return country;
@@ -51,11 +70,11 @@ export default function CovidCaseTracker({ language }) {
     }
   };
 
-  const handleInputChange = (newVal) => {
+  const handleInputChange = (newVal: string): void => {
     setInput(newVal);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit: React.MouseEventHandler<HTMLFormElement> = (event): void => {
     event.preventDefault();
     const foundCountry = getData(input);
     if (foundCountry) {
