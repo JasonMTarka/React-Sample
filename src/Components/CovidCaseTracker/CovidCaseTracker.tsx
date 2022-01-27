@@ -3,7 +3,7 @@ import axios from "axios";
 
 import TrackerTable from "./TrackerTable";
 import TrackerForm from "./TrackerForm";
-import { SupportedLanguage } from "../../Text/defaults";
+import { Props } from "../../types/common";
 
 
 export interface CovidTrackerApiResponse {
@@ -17,11 +17,8 @@ export interface CovidTrackerApiResponse {
   "Total Recovered_text": string
 }
 
-interface CovidCaseTrackerProps {
-  language: SupportedLanguage
-}
 
-export default function CovidCaseTracker({ language }: CovidCaseTrackerProps) {
+export default function CovidCaseTracker({ language }: Props) {
   const [data, setData] = useState<CovidTrackerApiResponse[]>([]);
   const [input, setInput] = useState("");
   const allData: React.MutableRefObject<CovidTrackerApiResponse[]> = useRef([]);

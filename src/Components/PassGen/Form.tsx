@@ -4,8 +4,9 @@ import Password from "./passwordGenLogic";
 import Checkboxes from "./Checkboxes";
 import DropdownFields from "./DropdownFields";
 import Outputs from "./Outputs";
-import { Props } from "../../types/common";
+import { ActionInterface, Props } from "../../types/common";
 
+type PasswordReducer = [password: Password, dispatch: React.Dispatch<ActionInterface>]
 
 export const ACTIONS = {
   UPDATE_LOWERCASE: "updateLowercase",
@@ -17,8 +18,6 @@ export const ACTIONS = {
   UPDATE_PASS_LEN: "updatePassLen",
   CREATE_NEW_PASS: "createNewPassword",
 };
-
-
 
 const reducer = (password: Password, action: any) => {
   switch (action.type) {
@@ -44,7 +43,7 @@ const reducer = (password: Password, action: any) => {
 };
 
 export default function Form({ language }: Props) {
-  const [password, dispatch] = useReducer(reducer, new Password({}));
+  const [password, dispatch]: PasswordReducer = useReducer(reducer, new Password({}));
   const [copied, setCopied] = useState(false);
 
   const handleSubmit = (event: FormEvent) => {

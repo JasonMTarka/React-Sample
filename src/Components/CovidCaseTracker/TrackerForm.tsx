@@ -1,11 +1,11 @@
 import React from "react";
 
 import { Form, Button } from "react-bootstrap";
-import { LANGUAGES, SupportedLanguage } from "../../Text/defaults";
+import { LANGUAGES } from "../../Text/defaults";
 import { TRACKER_TXT as TEXT } from "../../Text/trackerText";
+import { Props } from "../../types/common";
 
-interface TrackerFormProps {
-  language: SupportedLanguage
+interface TrackerFormProps extends Props {
   handleInputChange: any
   handleSubmit: React.MouseEventHandler
 }

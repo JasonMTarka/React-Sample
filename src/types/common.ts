@@ -8,3 +8,8 @@ export interface Props {
 export interface PasswordProps extends Props {
     password: Password
 }
+
+export interface ActionInterface {
+    type: string
+    payload: React.ChangeEvent | Password
+  }

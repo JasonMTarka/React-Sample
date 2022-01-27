@@ -1,9 +1,9 @@
 import PassDropdown from "./PassDropdown";
 import { PASS_GEN_TXT as TEXT } from "../../Text/passGenText";
-import { PasswordProps } from "../../types/common";
+import { ActionInterface, PasswordProps } from "../../types/common";
 
-interface DropdownFieldsProps extends PasswordProps{
-  dispatch: any
+interface DropdownFieldsProps extends PasswordProps {
+  dispatch: React.Dispatch<ActionInterface>
 }
 
 export default function DropdownFields({ language, password, dispatch }: DropdownFieldsProps) {

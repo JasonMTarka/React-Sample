@@ -1,11 +1,12 @@
 import { ACTIONS } from "./Form";
 import { LANGUAGES } from "../../Text/defaults";
 import { PASS_GEN_TXT as TEXT } from "../../Text/passGenText";
-import { PasswordProps } from "../../types/common";
+import { ActionInterface, PasswordProps } from "../../types/common";
+
 
 interface PassDropdownProps extends PasswordProps {
   name: string
-  dispatch: React.Dispatch<any>
+  dispatch: React.Dispatch<ActionInterface>
   renderer: any
 }
 
