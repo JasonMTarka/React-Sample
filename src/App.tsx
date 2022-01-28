@@ -1,21 +1,22 @@
 import { useState } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import { LANGUAGES, PAGES, SupportedLanguage } from "./Text/defaults";
+import { LANGUAGES, PAGES, Language, Page } from "./Text/defaults";
 import NavBar from "./Components/NavBar";
 import SideBar from "./Components/SideBar";
 import Body from "./Components/Body";
 
+
 function App() {
-  const [currentPage, setCurrentPage] = useState<string>(PAGES.HOME);
-  const [language, setLanguage] = useState<SupportedLanguage>(LANGUAGES.JP);
+  const [currentPage, setCurrentPage] = useState<Page>(PAGES.HOME);
+  const [language, setLanguage] = useState<Language>(LANGUAGES.JP);
 
   //callback function for getting current page
-  const updatePage = (page: string) => {
+  const updatePage = (page: Page) => {
     setCurrentPage(page);
   };
 
-  const updateLanguage = (language: SupportedLanguage) => {
+  const updateLanguage = (language: Language) => {
     setLanguage(language);
   };
 

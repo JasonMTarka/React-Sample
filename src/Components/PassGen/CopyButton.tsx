@@ -2,6 +2,7 @@ import { LANGUAGES } from "../../Text/defaults";
 import { PASS_GEN_TXT as TEXT } from "../../Text/passGenText";
 import { Props } from "../../types/common"
 
+
 interface CopyButtonProps extends Props {
   handler: any
 }

@@ -1,11 +1,7 @@
 import { LANGUAGES } from "../../Text/defaults";
 import { TRACKER_TXT as TEXT } from "../../Text/trackerText";
-import { Props } from "../../types/common"
-import { CovidTrackerApiResponse } from "./CovidCaseTracker"
+import { TrackerRowProps } from "../../types/tracker"
 
-interface TrackerRowProps extends Props {
-  country: CovidTrackerApiResponse
-}
 
 export default function TrackerRow({ country, language }: TrackerRowProps) {
   return (

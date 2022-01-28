@@ -1,10 +1,7 @@
 import CheckBox from "./CheckBox";
 import { PASS_GEN_TXT as TEXT } from "../../Text/passGenText";
-import { ActionInterface, PasswordProps } from "../../types/common";
+import { CheckboxesProps } from "../../types/password";
 
-interface CheckboxesProps extends PasswordProps {
-  dispatch: React.Dispatch<ActionInterface>
-}
 
 export default function Checkboxes({ language, password, dispatch }: CheckboxesProps) {
   return (

@@ -6,6 +6,7 @@ import PasswordGen from "./PassGen/PasswordGen";
 import CovidCaseTracker from "./CovidCaseTracker/CovidCaseTracker";
 import { Props } from "../types/common";
 
+
 export default function Body({ language }: Props) {
   return (
     <Switch>

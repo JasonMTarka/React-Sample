@@ -8,6 +8,11 @@ class Password {
   passLen: number
   value: string
 
+  LOWER = "abcdefghijklmnopqrstuvwxyz";
+  UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  NUMS = "0123456789";
+  SYMS = "!@#$%^&*"
+
   constructor({
     lowercase = true,
     uppercase = true,
@@ -71,19 +76,19 @@ class Password {
         return password;
       };
 
-      let tempPassword: string[] = [];
+      const tempPassword: string[] = [];
 
       if (this.nums) {
         for (let i = 0; i < this.minNums; i++) {
-          const randomIndex = Math.floor(Math.random() * "0123456789".length);
-          tempPassword.push("0123456789"[randomIndex]);
+          const randomIndex = Math.floor(Math.random() * this.NUMS.length);
+          tempPassword.push(this.NUMS[randomIndex]);
         }
       }
 
       if (this.syms) {
         for (let i = 0; i < this.minSyms; i++) {
-          const randomIndex = Math.floor(Math.random() * "!@#$%^&*".length);
-          tempPassword.push("!@#$%^&*"[randomIndex]);
+          const randomIndex = Math.floor(Math.random() * this.SYMS.length);
+          tempPassword.push(this.SYMS[randomIndex]);
         }
       }
 
@@ -107,22 +112,18 @@ class Password {
     }
 
     let source = "";
-    const lowercaseVals = "abcdefghijklmnopqrstuvwxyz";
-    const uppercaseVals = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    const nums = "0123456789";
-    const symbols = "!@#$%^&*";
 
     if (this.lowercase) {
-      source += lowercaseVals;
+      source += this.LOWER;
     }
     if (this.uppercase) {
-      source += uppercaseVals;
+      source += this.UPPER;
     }
     if (this.nums) {
-      source += nums;
+      source += this.NUMS;
     }
     if (this.syms) {
-      source += symbols;
+      source += this.SYMS;
     }
     if (source) {
       this.value = passBuilder(source);

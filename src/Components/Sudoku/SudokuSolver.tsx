@@ -3,6 +3,7 @@ import { SUDOKU_TXT } from "../../Text/sudokuText";
 import { LANGUAGES } from "../../Text/defaults";
 import { Props } from "../../types/common";
 
+
 export default function Sudoku({ language }: Props) {
   return (
     <div className="container">

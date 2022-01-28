@@ -4,9 +4,9 @@ import Password from "./passwordGenLogic";
 import Checkboxes from "./Checkboxes";
 import DropdownFields from "./DropdownFields";
 import Outputs from "./Outputs";
-import { ActionInterface, Props } from "../../types/common";
+import { PasswordReducer } from "../../types/password";
+import { Props } from "../../types/common";
 
-type PasswordReducer = [password: Password, dispatch: React.Dispatch<ActionInterface>]
 
 export const ACTIONS = {
   UPDATE_LOWERCASE: "updateLowercase",

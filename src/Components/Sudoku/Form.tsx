@@ -7,6 +7,7 @@ import { SUDOKU_TXT as TEXT } from "../../Text/sudokuText";
 import { LANGUAGES } from "../../Text/defaults";
 import { Props } from "../../types/common";
 
+
 export default function Form({ language }: Props) {
   const [sudoku, setSudoku] = useState<Sudoku>();
   const prevSudoku = useRef<number[][]>();
@@ -82,7 +83,7 @@ export default function Form({ language }: Props) {
   };
 
   const renderGrid = () => {
-    let fieldRows = [];
+    const fieldRows = [];
     let keyCounter = 0;
 
     if (sudoku) {

@@ -1,4 +1,5 @@
-type Grid = number[][]
+import { Grid } from "../../types/sudoku"
+
 
 class Sudoku {
   grid: Grid
@@ -15,7 +16,7 @@ class Sudoku {
   };
 
   saveSudoku = (grid: Grid) => {
-    let solvedSudoku = JSON.parse(JSON.stringify(grid));
+    const solvedSudoku = JSON.parse(JSON.stringify(grid));
     return solvedSudoku;
   };
 
@@ -51,8 +52,8 @@ class Sudoku {
       };
 
       const colCheck = (guess: number, colNum: number) => {
-        let newCol: number[] = [];
-        for (let row of this.grid) {
+        const newCol: number[] = [];
+        for (const row of this.grid) {
           newCol.push(row[colNum - 1]);
         }
 
@@ -77,9 +78,9 @@ class Sudoku {
             [6, 9, 6, 9],
           ];
 
-          let sectionBotAndTop = _gridfinder[gridNum - 1];
-          let [sectionBot, sectionTop, bot, top] = sectionBotAndTop;
-          let gridArray = [];
+          const sectionBotAndTop = _gridfinder[gridNum - 1];
+          const [sectionBot, sectionTop, bot, top] = sectionBotAndTop;
+          const gridArray = [];
           for (let i = sectionBot; i < sectionTop; i++) {
             gridArray.push(...grid[i].slice(bot, top));
           }

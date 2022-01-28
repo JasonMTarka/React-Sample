@@ -1,28 +1,13 @@
 import { LANGUAGES, PAGES } from "../Text/defaults";
 import { SIDEBAR_TXT as TEXT } from "../Text/sideBarText";
-import { Props } from "../types/common";
+import { SideBarProps, SideBarTextInterface } from "../types/common";
 
-interface SideBarProps extends Props {
-  currentPage: string
-}
-
-interface SideBarTextInterface {
-  EMAIL: string
-  HUI_TEXT: string
-  HUI_LINK: string
-  PAGE_NAME?: string
-  DESC?: string
-  CODE_TEXT?: string
-  CODE_LINK?: string
-  COMP_LINK?: string
-  COMP_TEXT?: string
-}
 
 const SIDE_BAR: SideBarTextInterface = {
     EMAIL: "jasonmtarka@gmail.com",
     HUI_TEXT: "HUI",
     HUI_LINK: "https://hui.co.jp/"
-  };
+};
 
 export default function SideBar({ currentPage, language }: SideBarProps) {
   switch (currentPage) {
@@ -109,7 +94,7 @@ export default function SideBar({ currentPage, language }: SideBarProps) {
       throw new Error("Invalid page");
   }
 
-  let componentCode = [];
+  const componentCode = [];
   if (SIDE_BAR.COMP_LINK) {
     componentCode.push(
       <li

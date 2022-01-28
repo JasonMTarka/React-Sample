@@ -1,14 +1,8 @@
-import React from "react";
-
 import { Form, Button } from "react-bootstrap";
 import { LANGUAGES } from "../../Text/defaults";
 import { TRACKER_TXT as TEXT } from "../../Text/trackerText";
-import { Props } from "../../types/common";
+import { TrackerFormProps } from "../../types/tracker";
 
-interface TrackerFormProps extends Props {
-  handleInputChange: any
-  handleSubmit: React.MouseEventHandler
-}
 
 export default function TrackerForm({
   language,

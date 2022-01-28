@@ -1,14 +1,12 @@
 import Node from "./Node";
+import { RowProps } from "../../types/sudoku";
 
-interface RowProps {
-  row: number[]
-}
 
 export default function Row({ row }: RowProps) {
-  let values = [];
+  const values = [];
   let keyCounter = 0;
 
-  for (let val of row) {
+  for (const val of row) {
     values.push(
       <div key={keyCounter} className="col-sm-1">
         <Node val={val} />

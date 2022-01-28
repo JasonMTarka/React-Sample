@@ -3,19 +3,8 @@ import axios from "axios";
 
 import TrackerTable from "./TrackerTable";
 import TrackerForm from "./TrackerForm";
+import { CovidTrackerApiResponse } from "../../types/tracker";
 import { Props } from "../../types/common";
-
-
-export interface CovidTrackerApiResponse {
-  "Active Cases_text" : string,
-  Country_text: string,
-  "Last Update": string,
-  "New Cases_text": string,
-  "New Deaths_text": string,
-  "Total Cases_text": string,
-  "Total Deaths_text": string,
-  "Total Recovered_text": string
-}
 
 
 export default function CovidCaseTracker({ language }: Props) {

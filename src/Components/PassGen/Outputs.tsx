@@ -5,12 +5,8 @@ import GenerateButton from "./GenerateButton";
 import CopyButton from "./CopyButton";
 import { LANGUAGES } from "../../Text/defaults";
 import { PASS_GEN_TXT as TEXT } from "../../Text/passGenText";
-import { PasswordProps } from "../../types/common";
+import { OutputsProps } from "../../types/password";
 
-interface OutputsProps extends PasswordProps {
-  copied: boolean
-  setCopied: any
-}
 
 export default function Outputs({ password, language, copied, setCopied }: OutputsProps) {
   const copyPassword = () => {

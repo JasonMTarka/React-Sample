@@ -3,20 +3,16 @@ import { LinkContainer } from "react-router-bootstrap";
 import Dropdown from "react-bootstrap/Dropdown";
 
 import { NAVBAR_TXT as TEXT } from "../Text/navBarText";
-import { LANGUAGES, PAGES, SupportedLanguage } from "../Text/defaults";
-import { Props } from "../types/common"
+import { LANGUAGES, PAGES, Language, Page } from "../Text/defaults";
+import { NavBarProps } from "../types/common";
 
-interface NavBarProps extends Props {
-  updateLanguage: any
-  updatePage: any
-}
 
 export default function NavBar({ language, updateLanguage, updatePage }: NavBarProps) {
-  const navButtonPressed = (buttonName: string) => {
+  const navButtonPressed = (buttonName: Page) => {
     updatePage(buttonName);
   };
 
-  const handleLanguageChange = (language: SupportedLanguage) => {
+  const handleLanguageChange = (language: Language) => {
     updateLanguage(language);
   };
 
