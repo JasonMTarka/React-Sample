@@ -76,21 +76,35 @@ class Password {
         return password;
       };
 
+      const minChars = (charset: string, minLen: number): string[] => {
+        const minChars: string[] = [];
+
+        for (let i = 0; i < minLen; i++) {
+          const randomIndex = Math.floor(Math.random() * charset.length);
+          minChars.push(charset[randomIndex]);
+        }
+        return minChars;
+      }
+      
       const tempPassword: string[] = [];
 
+      if (this.lowercase) {
+        tempPassword.push(...minChars(this.LOWER, 1));
+      }
+
+      if (this.uppercase) {
+        tempPassword.push(...minChars(this.UPPER, 1));
+      }
+
       if (this.nums) {
-        for (let i = 0; i < this.minNums; i++) {
-          const randomIndex = Math.floor(Math.random() * this.NUMS.length);
-          tempPassword.push(this.NUMS[randomIndex]);
-        }
+        tempPassword.push(...minChars(this.NUMS, this.minNums));
       }
 
       if (this.syms) {
-        for (let i = 0; i < this.minSyms; i++) {
-          const randomIndex = Math.floor(Math.random() * this.SYMS.length);
-          tempPassword.push(this.SYMS[randomIndex]);
-        }
+        tempPassword.push(...minChars(this.SYMS, this.minSyms));
       }
+
+      shuffle(tempPassword);
 
       while (tempPassword.length > this.passLen) {
         tempPassword.pop();
