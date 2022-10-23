@@ -30,11 +30,11 @@ const reducer = (password: Password, action: any) => {
     case ACTIONS.UPDATE_SYMS:
       return { ...password, syms: action.payload.target.checked };
     case ACTIONS.UPDATE_MIN_NUMS:
-      return { ...password, minNums: action.payload.target.value };
+      return { ...password, minNums: parseInt(action.payload.target.value) };
     case ACTIONS.UPDATE_MIN_SYMS:
-      return { ...password, minSyms: action.payload.target.value };
+      return { ...password, minSyms: parseInt(action.payload.target.value) };
     case ACTIONS.UPDATE_PASS_LEN:
-      return { ...password, passLen: action.payload.target.value };
+      return { ...password, passLen: parseInt(action.payload.target.value) };
     case ACTIONS.CREATE_NEW_PASS:
       return action.payload;
     default:

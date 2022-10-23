@@ -34,7 +34,7 @@ class Password {
   }
 
   generate = () => {
-    const lenChecker = (): boolean => {
+    const isValidLength = (): boolean => {
       const minNums = this.minNums;
       const minSyms = this.minSyms;
       const passLen = this.passLen;
@@ -88,26 +88,12 @@ class Password {
       
       const tempPassword: string[] = [];
 
-      if (this.lowercase) {
-        tempPassword.push(...minChars(this.LOWER, 1));
-      }
-
-      if (this.uppercase) {
-        tempPassword.push(...minChars(this.UPPER, 1));
-      }
-
       if (this.nums) {
         tempPassword.push(...minChars(this.NUMS, this.minNums));
       }
 
       if (this.syms) {
         tempPassword.push(...minChars(this.SYMS, this.minSyms));
-      }
-
-      shuffle(tempPassword);
-
-      while (tempPassword.length > this.passLen) {
-        tempPassword.pop();
       }
 
       while (tempPassword.length < this.passLen) {
@@ -121,7 +107,7 @@ class Password {
       return finalPassword;
     };
 
-    if (!lenChecker()) {
+    if (!isValidLength()) {
       return;
     }
 
