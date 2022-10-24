@@ -25,7 +25,7 @@ export default function CovidCaseTracker({ language }: Props) {
       .then(() => {
         const newData: CovidTrackerApiResponse[] = [];
         const defaults = ["USA", "Japan", "UK"];
-        for (let country of defaults) {
+        for (const country of defaults) {
           const countryData = getData(country);
           if (countryData) {
             newData.push(countryData);
@@ -49,7 +49,7 @@ export default function CovidCaseTracker({ language }: Props) {
   };
 
   const getData = (countryName: string) => {
-    for (let country of allData.current) {
+    for (const country of allData.current) {
       if (country.Country_text === countryName) {
         return country;
       }
