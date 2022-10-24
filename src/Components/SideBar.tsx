@@ -2,11 +2,10 @@ import { LANGUAGES, PAGES } from "../Text/defaults";
 import { SIDEBAR_TXT as TEXT } from "../Text/sideBarText";
 import { SideBarProps, SideBarTextInterface } from "../types/common";
 
-
 const SIDE_BAR: SideBarTextInterface = {
-    EMAIL: "jasonmtarka@gmail.com",
-    HUI_TEXT: "HUI",
-    HUI_LINK: "https://hui.co.jp/"
+  EMAIL: "jasonmtarka@gmail.com",
+  HUI_TEXT: "HUI",
+  HUI_LINK: "https://hui.co.jp/",
 };
 
 export default function SideBar({ currentPage, language }: SideBarProps) {
@@ -35,13 +34,13 @@ export default function SideBar({ currentPage, language }: SideBarProps) {
           ? TEXT.JP.SUDOKU.CODE_TEXT
           : TEXT.ENG.SUDOKU.CODE_TEXT;
       SIDE_BAR.CODE_LINK =
-        "https://github.com/JasonMTarka/React-Sample/blob/main/src/Components/Sudoku/sudokuSolverLogic.js";
+        "https://github.com/JasonMTarka/React-Sample/blob/main/src/Components/Sudoku/sudokuSolverLogic.ts";
       SIDE_BAR.COMP_TEXT =
         language === LANGUAGES.JP
           ? TEXT.JP.SUDOKU.COMP_TEXT
           : TEXT.ENG.SUDOKU.COMP_TEXT;
       SIDE_BAR.COMP_LINK =
-        "https://github.com/JasonMTarka/React-Sample/blob/main/src/Components/Sudoku/Form.jsx";
+        "https://github.com/JasonMTarka/React-Sample/blob/main/src/Components/Sudoku/Form.tsx";
       break;
 
     case PAGES.PASS_GEN:
@@ -58,13 +57,13 @@ export default function SideBar({ currentPage, language }: SideBarProps) {
           ? TEXT.JP.PASS_GEN.CODE_TEXT
           : TEXT.ENG.PASS_GEN.CODE_TEXT;
       SIDE_BAR.CODE_LINK =
-        "https://github.com/JasonMTarka/React-Sample/blob/main/src/Components/PassGen/passwordGenLogic.js";
+        "https://github.com/JasonMTarka/React-Sample/blob/main/src/Components/PassGen/passwordGenLogic.ts";
       SIDE_BAR.COMP_TEXT =
         language === LANGUAGES.JP
           ? TEXT.JP.PASS_GEN.COMP_TEXT
           : TEXT.ENG.PASS_GEN.COMP_TEXT;
       SIDE_BAR.COMP_LINK =
-        "https://github.com/JasonMTarka/React-Sample/blob/main/src/Components/PassGen/Form.jsx";
+        "https://github.com/JasonMTarka/React-Sample/blob/main/src/Components/PassGen/Form.tsx";
       break;
 
     case PAGES.TRACKER:
@@ -81,13 +80,13 @@ export default function SideBar({ currentPage, language }: SideBarProps) {
           ? TEXT.JP.TRACKER.CODE_TEXT
           : TEXT.ENG.TRACKER.CODE_TEXT;
       SIDE_BAR.CODE_LINK =
-        "https://github.com/JasonMTarka/React-Sample/blob/main/src/Components/CovidCaseTracker/CovidCaseTracker.jsx";
+        "https://github.com/JasonMTarka/React-Sample/blob/main/src/Components/CovidCaseTracker/CovidCaseTracker.tsx";
       SIDE_BAR.COMP_TEXT =
         language === LANGUAGES.JP
           ? TEXT.JP.TRACKER.COMP_TEXT
           : TEXT.ENG.TRACKER.COMP_TEXT;
       SIDE_BAR.COMP_LINK =
-        "https://github.com/JasonMTarka/React-Sample/blob/main/src/Components/CovidCaseTracker/TrackerRow.jsx";
+        "https://github.com/JasonMTarka/React-Sample/blob/main/src/Components/CovidCaseTracker/TrackerRow.tsx";
       break;
 
     default:
