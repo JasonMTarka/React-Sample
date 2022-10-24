@@ -3,7 +3,6 @@ import { LANGUAGES } from "../../Text/defaults";
 import { TRACKER_TXT as TEXT } from "../../Text/trackerText";
 import { TrackerFormProps } from "../../types/tracker";
 
-
 export default function TrackerForm({
   language,
   handleInputChange,
@@ -19,7 +18,7 @@ export default function TrackerForm({
         </Form.Label>
         <Form.Control
           type="name"
-          placeholder="Japan"
+          placeholder="Australia"
           onChange={(event) => handleInputChange(event.target.value)}
         />
         <Form.Text className="text-muted">
