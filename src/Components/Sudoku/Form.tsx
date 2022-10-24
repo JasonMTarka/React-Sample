@@ -1,31 +1,36 @@
 import { useState, useEffect, useRef } from "react";
-import axios from "axios";
+// import axios from "axios";
 
 import Sudoku from "./sudokuSolverLogic";
 import Row from "./Row";
 import { SUDOKU_TXT as TEXT } from "../../Text/sudokuText";
 import { LANGUAGES } from "../../Text/defaults";
 import { Props } from "../../types/common";
-
+import { GRIDS } from "./Grids";
 
 export default function Form({ language }: Props) {
   const [sudoku, setSudoku] = useState<Sudoku>();
   const prevSudoku = useRef<number[][]>();
   const loading = useRef(true);
 
-  const baseApiUrl = "https://sugoku.herokuapp.com/board?difficulty=";
+  // URL for Sudoku API (not working as of 2022/10/24)
+  //const baseApiUrl = "https://sugoku.herokuapp.com/board?difficulty=";
 
-  // add error handling
   useEffect(() => {
     let isMounted = true;
-    axios
-      .get(baseApiUrl + "easy")
-      .then((response) => {
-        if (isMounted) {
-          setSudoku(new Sudoku(response.data.board));
-        }
-      })
-    loading.current = false
+    // Use following to get grids from API when working:
+    // axios.get(baseApiUrl + "easy").then((response) => {
+    //   if (isMounted) {
+    //     setSudoku(new Sudoku(response.data.board));
+    //   }
+    // });
+    let grids: number[][][] = [];
+    grids = GRIDS["easy"];
+    if (isMounted) {
+      setSudoku(new Sudoku(grids[Math.floor(Math.random() * grids.length)]));
+    }
+
+    loading.current = false;
     return () => {
       isMounted = false;
     };
@@ -40,7 +45,7 @@ export default function Form({ language }: Props) {
   }, [sudoku]);
 
   const resetSudoku = () => {
-    if (prevSudoku?.current)  {
+    if (prevSudoku?.current) {
       const newSudoku = new Sudoku(prevSudoku.current);
       setSudoku(newSudoku);
     }
@@ -48,7 +53,7 @@ export default function Form({ language }: Props) {
 
   const solveSudoku = () => {
     if (sudoku) {
-      if (sudoku.solvedSudoku)  {
+      if (sudoku.solvedSudoku) {
         return;
       }
       const newSudoku = new Sudoku(sudoku.grid);
@@ -58,28 +63,17 @@ export default function Form({ language }: Props) {
   };
 
   const handleDifficultyChange = (event: any) => {
-    switch (event.target.value) {
-      case TEXT.ENG.DIFFICULTIES.EASY:
-        axios.get(baseApiUrl + "easy").then((response) => {
-          setSudoku(new Sudoku(response.data.board));
-        });
-        break;
-
-      case TEXT.ENG.DIFFICULTIES.MEDIUM:
-        axios.get(baseApiUrl + "medium").then((response) => {
-          setSudoku(new Sudoku(response.data.board));
-        });
-        break;
-
-      case TEXT.ENG.DIFFICULTIES.HARD:
-        axios.get(baseApiUrl + "hard").then((response) => {
-          setSudoku(new Sudoku(response.data.board));
-        });
-        break;
-
-      default:
-        throw new Error("Invalid Difficulty");
+    const choice = event.target.value;
+    let grids: number[][][] = [];
+    if (choice === TEXT.ENG.DIFFICULTIES.EASY) {
+      grids = GRIDS["easy"];
+    } else if (choice === TEXT.ENG.DIFFICULTIES.MEDIUM) {
+      grids = GRIDS["med"];
+    } else if (choice === TEXT.ENG.DIFFICULTIES.HARD) {
+      grids = GRIDS["hard"];
     }
+    const sudoku = new Sudoku(grids[Math.floor(Math.random() * grids.length)]);
+    setSudoku(sudoku);
   };
 
   const renderGrid = () => {
